@@ -1,3 +1,6 @@
+
+
+
 function love.load()
     math.randomseed(os.time())
 
@@ -12,6 +15,7 @@ function love.load()
 end
 
 function love.update(dt)
+
   updateAll(dt)
 end
 
