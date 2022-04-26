@@ -10,6 +10,7 @@ function love.load()
 
     require("src/startup/gameStart")
     gameStart()
+    love.graphics.setBackgroundColor(0.1, 0.5, 0.2)
     --createNewSave()
 
 end
