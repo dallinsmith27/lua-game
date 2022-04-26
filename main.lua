@@ -16,7 +16,7 @@ function love.update(dt)
 end
 
 function love.draw()
-
+  drawAll()
 end
 
 function love.keypressed(key)

@@ -11,5 +11,5 @@ function player:update(dt)
 end
 
 function player:draw()
-
+  love.graphics.rectangle("fill", 400, 300, 40, 70)
 end
