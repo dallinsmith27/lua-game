@@ -1,5 +1,6 @@
 function drawAll()
-  player:draw()
+
   map.draw()
+  player:draw()
   world:draw()
 end

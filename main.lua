@@ -21,7 +21,12 @@ function love.update(dt)
 end
 
 function love.draw()
+  cam:attach()
+  
   drawAll()
+  cam:detach()
+  love.graphics.print(cam.x)
+  love.graphics.print(cam.y)
 end
 
 function love.keypressed(key)

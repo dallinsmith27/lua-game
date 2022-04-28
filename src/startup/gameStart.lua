@@ -10,10 +10,10 @@ function gameStart()
 
     -- 3 parameters: fullscreen, width, height
     -- width and height are ignored if fullscreen is true
-    --setWindowSize(false, 1920, 1360)
+    setWindowSize(true, 1920, 1360)
 
     -- The game's graphics scale up, this method finds the right ratio
-    --setScale()
+    setScale()
 
     --vector = require "libraries/hump/vector"
     flux = require "libraries/flux/flux"

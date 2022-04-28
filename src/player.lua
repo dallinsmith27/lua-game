@@ -2,9 +2,17 @@
 
 player = {}
 sprites = {}
+player.x = 275
+player.y = 300
 player.dir = "down"
-player.collider = world:newCircleCollider(300,300,35)
-player.speed = 300
+player.rightWall = 600
+player.leftWall = 100
+player.upWall = 100
+player.downWall = 400
+player.walking = false
+player.collider = world:newCircleCollider(player.x,player.y,25)
+player.collider:setCollisionClass("Player")
+player.speed = 250
 player.animSpeed = 0.08
 sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")
 player.animations = {}
@@ -25,38 +33,40 @@ player.state = 0
 --player.sprite = love.graphics.newImage('sprites/')
 
 function player:update(dt)
+  player.x = player.collider:getX() - player.width / 2
+  player.y = player.collider:getY() - player.height / 2
 
   if player.state == 0 then
-
         local dirX = 0
         local dirY = 0
 
         if love.keyboard.isDown("right") then
-            dirX = 1
-            player.anim = player.animations.walkRight
-            player.dir = "right"
+          dirX = 1
+          player.anim = player.animations.walkRight
+          player.dir = "right"
         end
 
         if love.keyboard.isDown("left") then
-            dirX = -1
-            player.anim = player.animations.walkLeft
-            player.dir = "left"
+          dirX = -1
+          player.anim = player.animations.walkLeft
+          player.dir = "left"
         end
 
         if love.keyboard.isDown("down") then
-            dirY = 1
-            player.anim = player.animations.walkDown
-            player.dir = "down"
+          dirY = 1
+          player.anim = player.animations.walkDown
+          player.dir = "down"
         end
 
         if love.keyboard.isDown("up") then
-            dirY = -1
-            player.anim = player.animations.walkUp
-            player.dir = "up"
+          dirY = -1
+          player.anim = player.animations.walkUp
+          player.dir = "up"
         end
 
-        player.collider:setLinearVelocity(dirX * player.speed, dirY * player.speed)
 
+
+        player.collider:setLinearVelocity(dirX * player.speed, dirY * player.speed)
         if dirX == 0 and dirY == 0 then
             player.walking = false
             player.anim:gotoFrame(1)
@@ -75,5 +85,5 @@ function player:draw()
     local px = player.collider:getX() - player.width / 2
     local py = player.collider:getY() - player.height / 2
     player.anim:draw(sprites.walkSheet, px, py)
-  
+
 end
