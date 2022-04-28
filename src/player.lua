@@ -40,25 +40,25 @@ function player:update(dt)
         local dirX = 0
         local dirY = 0
 
-        if love.keyboard.isDown("right") then
+        if love.keyboard.isDown("d") then
           dirX = 1
           player.anim = player.animations.walkRight
           player.dir = "right"
         end
 
-        if love.keyboard.isDown("left") then
+        if love.keyboard.isDown("a") then
           dirX = -1
           player.anim = player.animations.walkLeft
           player.dir = "left"
         end
 
-        if love.keyboard.isDown("down") then
+        if love.keyboard.isDown("s") then
           dirY = 1
           player.anim = player.animations.walkDown
           player.dir = "down"
         end
 
-        if love.keyboard.isDown("up") then
+        if love.keyboard.isDown("w") then
           dirY = -1
           player.anim = player.animations.walkUp
           player.dir = "up"
