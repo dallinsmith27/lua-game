@@ -87,5 +87,5 @@ function player:draw()
     local px = player.collider:getX() - player.width / 2
     local py = player.collider:getY() - player.height / 2
     player.anim:draw(sprites.walkSheet, px, py)
-
+    love.graphics.print(px,py)
 end

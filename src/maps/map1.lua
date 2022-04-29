@@ -4,6 +4,7 @@ doors = {}
 map1.id = 1
 map1.xSize = 3000
 map1.ySize = 2000
+map1.large = true
 map1.background = love.graphics.newImage('src/maps/images/testMap.png')
 brickHouse = love.graphics.newImage('sprites/brick house.png')
 
@@ -22,13 +23,7 @@ function map1.load()
 end
 
 function map1:update(dt)
-  local i = #doors
-
-  for i = #doors,1,-1 do
-    if doors[i].enter then
-      map.newId = 2
-    end
-  end
+  
 
 
 end
@@ -77,4 +72,12 @@ function interactions()
   door1.enter = false
   door1.id = 2
   table.insert(doors, door1)
+
+  local door2 = world:newRectangleCollider(580,760,40,60)
+  door2:setType('static')
+  door2:setCollisionClass("Door")
+  door2:setObject(door2)
+  door2.enter = false
+  door2.id = 2
+  table.insert(doors, door2)
 end
