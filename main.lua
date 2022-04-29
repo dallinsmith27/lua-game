@@ -27,7 +27,7 @@ function love.draw()
   drawAll()
   cam:detach()
   if test.bool then
-    love.graphics.print(test.num)
+    love.graphics.print("")
   end
 
 
@@ -61,13 +61,7 @@ function love.keypressed(key)
         map.newId = w.id
       end
     end
-      --if w:getObJect() == door1 then
-        --test.bool = true
-      --end
-    --end
-    --if #query > 0 then
-      --test.bool = true
-    --end
+    
 
   end
     --enter all keypress if statements...
