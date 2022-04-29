@@ -7,6 +7,7 @@ function requireAll()
   require("src/player")
 
   require("src/maps/maps")
+  require("src/maps/StartScreen")
   require("src/maps/map1")
   require("src/maps/map2")
   require("libraries.anim8.anim8")

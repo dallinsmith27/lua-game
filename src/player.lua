@@ -39,6 +39,7 @@ function player:update(dt)
   player.y = player.collider:getY() - player.height / 2
 
   if player.state == 0 then
+
         local dirX = 0
         local dirY = 0
 
@@ -87,5 +88,5 @@ function player:draw()
     local px = player.collider:getX() - player.width / 2
     local py = player.collider:getY() - player.height / 2
     player.anim:draw(sprites.walkSheet, px, py)
-    
+
 end

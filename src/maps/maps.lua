@@ -1,15 +1,17 @@
 map = {}
-map.id = 0
-map.newId = 1
+
+
+map.id = 9999
+map.newId = 0
 map.xSize = 3000
 map.ySize = 2000
 map.large = true
 
-function map:update(dt)
+function map.update(dt)
   if map.newId ~= map.id then
     -- switch map
     if map.id == 0 then
-
+      mapstart.unload()
     elseif map.id == 1 then
       --player.collider:destroy()
       map1.unload()
@@ -17,8 +19,14 @@ function map:update(dt)
     elseif map.id == 2 then
       map2.unload()
     end
-
-    if map.newId == 1 then
+    
+    if map.newId == 0 then
+      mapstart.load()
+      mapstart.update()
+      map.xSize = mapstart.xSize
+      map.ySize = mapstart.ySize
+      map.large = mapstart.large
+    elseif map.newId == 1 then
       map1.load()
       map1.update()
       map.xSize = map1.xSize
@@ -36,7 +44,9 @@ function map:update(dt)
     map.id = map.newId
 
   else
-    if map.id == 1 then
+    if mapid == 0 then
+      mapstart.update()
+    elseif map.id == 1 then
       map1.update()
     elseif map.id == 2 then
       map2.update()
@@ -44,8 +54,10 @@ function map:update(dt)
   end
 end
 
-function map:draw()
-  if map.id == 1 then
+function map.draw()
+  if map.id == 0 then
+    mapstart.draw()
+  elseif map.id == 1 then
     map1.draw()
   elseif map.id == 2 then
     map2.draw()

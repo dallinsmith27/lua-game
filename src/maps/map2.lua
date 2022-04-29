@@ -15,17 +15,17 @@ function map2.load()
   map2.border:setCollisionClass('Ignore')
 
 
-  map2:barriers()
-  map2:interactions()
+  map2.barriers()
+  map2.interactions()
 end
 
-function map2:update(dt)
-  
+function map2.update(dt)
+
 
 
 end
 
-function map2:draw()
+function map2.draw()
   love.graphics.draw(map2.background, 0, 0)
 end
 
@@ -37,11 +37,11 @@ function map2.unload()
   end
 end
 
-function map2:barriers()
+function map2.barriers()
 
 end
 
-function map2:interactions()
+function map2.interactions()
   local door1 = world:newRectangleCollider(680,700,40,60)
   door1:setType('static')
   door1:setCollisionClass("Door")

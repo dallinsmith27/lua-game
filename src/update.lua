@@ -1,5 +1,8 @@
 function updateAll(dt)
-  player:update(dt)
+  if not game.startScreen then
+    player:update(dt)
+  end
+  
   map:update(dt)
   cam:update(dt)
   world:update(dt)

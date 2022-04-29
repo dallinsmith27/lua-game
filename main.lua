@@ -1,7 +1,10 @@
 
 test = {}
-test.bool = false
+test.bool = true
 test.num = 9999
+game = {}
+game.startScreen = true
+game.buttonId = 0
 
 function love.load()
     math.randomseed(os.time())
@@ -27,7 +30,7 @@ function love.draw()
   drawAll()
   cam:detach()
   if test.bool then
-    love.graphics.print("")
+    love.graphics.print(love.mouse.getX())
   end
 
 
@@ -61,9 +64,24 @@ function love.keypressed(key)
         map.newId = w.id
       end
     end
-    
+
 
   end
     --enter all keypress if statements...
     -- this is where the game controls are defined.
+end
+
+function love.mousepressed(x, y, b, isTouch)
+  if game.startScreen then
+
+    if b == 1 then
+      local click  = world:queryCircleArea(love.mouse.getX()-(love.graphics.getWidth()-map.xSize)/2,love.mouse.getY() - (love.graphics.getHeight() - map.ySize) / 2,50,{"button"})
+      for _,c in ipairs(click) do
+        if c.id == 1 then
+          map.newId = 1
+          game.startScreen = false
+        end
+      end
+    end
+  end
 end

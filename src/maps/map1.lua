@@ -22,13 +22,13 @@ function map1.load()
   interactions()
 end
 
-function map1:update(dt)
-  
+function map1.update(dt)
+
 
 
 end
 
-function map1:draw()
+function map1.draw()
 
 
   love.graphics.draw(map1.background, 0, 0)
