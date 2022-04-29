@@ -14,26 +14,26 @@ function cam:update(dt)
 
     -- Get width/height of background
     --***NEEDS TO BE INTERFACED WITH MAP CLASS
-    local mapW = map.ySize -- * gameMap.tilewidth
-    local mapH = map.xSize -- * gameMap.tileheight
+    local mapW = map.xSize -- * gameMap.tilewidth
+    local mapH = map.ySize -- * gameMap.tileheight
 
     -- Left border
-    if camX < w/2 then
-        camX = w/2
+    if camX < w/.45 then
+        camX = w/.45
+    end
+
+    -- top border
+    if camY < h/.5 then
+        camY = h/.5
     end
 
     -- Right border
-    if camY < h/2 then
-        camY = h/2
-    end
-
-    -- Right border
-    if camX > (mapW - w/2) then
-        camX = (mapW - w/2)
+    if camX > (mapW - w/.45) then
+        camX = (mapW - w/.45)
     end
     -- Bottom border
-    if camY > (mapH - h/2) then
-        camY = (mapH - h/2)
+    if camY > (mapH - h/.5) then
+        camY = (mapH - h/.5)
     end
 
     cam:lookAt(camX, camY)

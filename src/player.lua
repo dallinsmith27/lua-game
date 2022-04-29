@@ -12,6 +12,8 @@ player.downWall = 400
 player.walking = false
 player.collider = world:newCircleCollider(player.x,player.y,25)
 player.collider:setCollisionClass("Player")
+
+
 player.speed = 250
 player.animSpeed = 0.08
 sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")

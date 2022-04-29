@@ -1,5 +1,7 @@
 
-
+test = {}
+test.bool = false
+test.num = 9999
 
 function love.load()
     math.randomseed(os.time())
@@ -24,9 +26,50 @@ function love.draw()
   cam:attach()
   drawAll()
   cam:detach()
+  if test.bool then
+    love.graphics.print(test.num)
+  end
+
+
+
+
+
 end
 
 function love.keypressed(key)
+  if love.keyboard.isDown("escape") then
+    love.event.quit()
+  end
+  if love.keyboard.isDown("space") then
+    local px = player.collider:getX()
+    local py = player.collider:getY()
+
+    if player.dir == "up" then
+      py = py - 40
+    elseif player.dir == "down" then
+      py = py + 40
+    elseif player.dir == "left" then
+      px = px - 40
+    elseif player.dir == "right" then
+      px = px + 40
+    end
+
+    local query = world:queryCircleArea(px,py,25, {"Door"})
+
+    if #query > 0 then
+      for _,w in ipairs(query) do
+        map.newId = w.id
+      end
+    end
+      --if w:getObJect() == door1 then
+        --test.bool = true
+      --end
+    --end
+    --if #query > 0 then
+      --test.bool = true
+    --end
+
+  end
     --enter all keypress if statements...
     -- this is where the game controls are defined.
 end

@@ -12,16 +12,20 @@ function map:update(dt)
     elseif map.id == 1 then
       map1.unload()
     elseif map.id == 2 then
-      --map2.unload()
+      map2.unload()
     end
 
     if map.newId == 1 then
       map1.load()
       map1.update()
       map.xSize = map1.xSize
-      map.ySize = map1.xSize
+      map.ySize = map1.ySize
     elseif map.newId == 2 then
-      --map2.load()
+      map2.load()
+      map2.update()
+      map.xSize = map2.xSize
+      map.ySize = map2.ySize
+
     end
 
     map.id = map.newId
@@ -30,7 +34,7 @@ function map:update(dt)
     if map.id == 1 then
       map1.update()
     elseif map.id == 2 then
-
+      map2.update()
     end
   end
 end
@@ -39,7 +43,8 @@ function map:draw()
   if map.id == 1 then
     map1.draw()
   elseif map.id == 2 then
-
+    map2.draw()
   end
+  
 
 end
