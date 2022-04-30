@@ -7,6 +7,8 @@ map1.ySize = 2000
 map1.large = true
 map1.background = love.graphics.newImage('src/maps/images/testMap.png')
 brickHouse = love.graphics.newImage('sprites/brick house.png')
+fence = love.graphics.newImage('sprites/fence.png')
+fenceUp = love.graphics.newImage('sprites/fenceUp.png')
 
 
 function map1.load()
@@ -35,6 +37,10 @@ function map1.draw()
   love.graphics.draw(brickHouse, house1:getX()-100, house1:getY()-60)
   love.graphics.draw(brickHouse, house2:getX()-100, house2:getY()-60)
   love.graphics.draw(brickHouse, house3:getX()-100, house3:getY()-60)
+  love.graphics.draw(fenceUp, fence4:getX()-10, fence4:getY()-125)
+  love.graphics.draw(fence, fence1:getX()-100, fence1:getY()-55)
+  love.graphics.draw(fence, fence2:getX()-100, fence2:getY()-55)
+  love.graphics.draw(fence, fence3:getX()-100, fence3:getY()-55)
 
 end
 
@@ -62,6 +68,24 @@ function barriers()
   house3 = world:newRectangleCollider(500,900,200,120)
   house3:setType('static')
   house3:setCollisionClass('Wall')
+
+  fence1 = world:newRectangleCollider(1000,1000,196,30)
+  fence1:setType('static')
+  fence1:setCollisionClass('Wall')
+
+  fence2 = world:newRectangleCollider(1196,1000,196,30)
+  fence2:setType('static')
+  fence2:setCollisionClass('Wall')
+
+  fence3 = world:newRectangleCollider(1196+196,1000,196,30)
+  fence3:setType('static')
+  fence3:setCollisionClass('Wall')
+
+  fence4 = world:newRectangleCollider(1196+370,750,20,250)
+  fence4:setType('static')
+  fence4:setCollisionClass('Wall')
+
+
 end
 
 function interactions()

@@ -46,7 +46,7 @@ function mapstart.barriers()
 end
 
 function mapstart.interactions()
-  local start = world:newRectangleCollider(250,400,300,100) --enter the location of exit door
+  local start = world:newRectangleCollider(250,400,200,75) --enter the location of exit door
   start:setType('static')
   start:setCollisionClass("button")
   start:setObject(door2)
