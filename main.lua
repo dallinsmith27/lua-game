@@ -30,7 +30,7 @@ function love.draw()
   drawAll()
   cam:detach()
   if test.bool then
-    love.graphics.print(love.mouse.getX())
+    love.graphics.print(player.y)
   end
 
 
