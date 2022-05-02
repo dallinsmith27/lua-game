@@ -1,10 +1,11 @@
 
 test = {}
-test.bool = true
+test.bool = false
 test.num = 9999
 game = {}
 game.startScreen = true
 game.buttonId = 0
+
 
 function love.load()
     math.randomseed(os.time())
@@ -30,7 +31,7 @@ function love.draw()
   drawAll()
   cam:detach()
   if test.bool then
-    love.graphics.print(player.y)
+    love.graphics.print(test.num)
   end
 
 

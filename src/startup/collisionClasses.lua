@@ -6,4 +6,5 @@ function createCollisionClasses()
     world:addCollisionClass('Enemy', {ignores = {'Ignore'}})
     world:addCollisionClass('Door', {ignores = {'Ignore','Wall'}})
     world:addCollisionClass('button', {ignores = {'Ignore'}})
+    world:addCollisionClass('cow', {ignores = {'Ignore'}})
 end

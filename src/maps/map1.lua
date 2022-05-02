@@ -1,5 +1,5 @@
 map1 = {}
-
+map1.npc = {}
 doors = {}
 map1.id = 1
 map1.xSize = 3000
@@ -21,12 +21,20 @@ function map1.load()
   map1.collider:setType('static')
   map1.collider:setCollisionClass('Wall')
 
-  barriers()
-  interactions()
+  map1.barriers()
+  map1.interactions()
+  map1.setNpc()
+
+  for i = #map1.npc,1,-1 do
+    map1.npc[i]:load()
+  end
+
 end
 
 function map1.update(dt)
-
+  for i = #map1.npc,1,-1 do
+    map1.npc[i].update(dt)
+  end
 
 
 end
@@ -39,10 +47,19 @@ function map1.draw()
   love.graphics.draw(brickHouse, house2:getX()-100, house2:getY()-60)
   love.graphics.draw(defaultHouse, house4:getX()-150, house4:getY()-75)
   love.graphics.draw(brickHouse, house3:getX()-100, house3:getY()-60)
+  love.graphics.draw(fence, fence6:getX()-100, fence6:getY()-55)
+  love.graphics.draw(fence, fence7:getX()-100, fence7:getY()-55)
+  love.graphics.draw(fence, fence8:getX()-100, fence8:getY()-55)
   love.graphics.draw(fenceUp, fence4:getX()-10, fence4:getY()-125)
+  love.graphics.draw(fenceUp, fence5:getX()-10, fence5:getY()-125)
+
   love.graphics.draw(fence, fence1:getX()-100, fence1:getY()-55)
   love.graphics.draw(fence, fence2:getX()-100, fence2:getY()-55)
   love.graphics.draw(fence, fence3:getX()-100, fence3:getY()-55)
+
+  for i = #map1.npc,1,-1 do
+    map1.npc[i].draw()
+  end
 
 end
 
@@ -58,7 +75,7 @@ function map1.unload()
   end
 end
 
-function barriers()
+function map1.barriers()
   house1 = world:newRectangleCollider(500,500,200,120)
   house1:setType('static')
   house1:setCollisionClass('Wall')
@@ -91,10 +108,26 @@ function barriers()
   fence4:setType('static')
   fence4:setCollisionClass('Wall')
 
+  fence5 = world:newRectangleCollider(1000,750,20,250)
+  fence5:setType('static')
+  fence5:setCollisionClass('Wall')
+
+  fence6 = world:newRectangleCollider(1000,750,196,30)
+  fence6:setType('static')
+  fence6:setCollisionClass('Wall')
+
+  fence7 = world:newRectangleCollider(1196,750,196,30)
+  fence7:setType('static')
+  fence7:setCollisionClass('Wall')
+
+  fence8 = world:newRectangleCollider(1196+196,750,196,30)
+  fence8:setType('static')
+  fence8:setCollisionClass('Wall')
+
 
 end
 
-function interactions()
+function map1.interactions()
   local door1 = world:newRectangleCollider(580,560,40,60)
   door1:setType('static')
   door1:setCollisionClass("Door")
@@ -110,4 +143,11 @@ function interactions()
   door2.enter = false
   door2.id = 2
   table.insert(doors, door2)
+end
+
+function map1.setNpc()
+  for i=1,4 do
+    spawnNpc(1200,800,"cow",map1.npc)
+  end
+
 end

@@ -1,4 +1,5 @@
 map = {}
+--maps = {}
 
 
 map.id = 9999
@@ -19,22 +20,22 @@ function map.update(dt)
     elseif map.id == 2 then
       map2.unload()
     end
-    
+
     if map.newId == 0 then
       mapstart.load()
-      mapstart.update()
+      mapstart.update(dt)
       map.xSize = mapstart.xSize
       map.ySize = mapstart.ySize
       map.large = mapstart.large
     elseif map.newId == 1 then
       map1.load()
-      map1.update()
+      map1.update(dt)
       map.xSize = map1.xSize
       map.ySize = map1.ySize
       map.large = map1.large
     elseif map.newId == 2 then
       map2.load()
-      map2.update()
+      map2.update(dt)
       map.xSize = map2.xSize
       map.ySize = map2.ySize
       map.large = map2.large
@@ -45,11 +46,11 @@ function map.update(dt)
 
   else
     if mapid == 0 then
-      mapstart.update()
+      mapstart.update(dt)
     elseif map.id == 1 then
-      map1.update()
+      map1.update(dt)
     elseif map.id == 2 then
-      map2.update()
+      map2.update(dt)
     end
   end
 end
