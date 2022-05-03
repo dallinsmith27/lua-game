@@ -44,6 +44,21 @@ function love.keypressed(key)
   if love.keyboard.isDown("escape") then
     love.event.quit()
   end
+
+  if love.keyboard.isDown("e") then
+    if inventory.isOpen then
+      -- close inventory
+      inventory.isOpen = false
+      inventory:unload()
+    else
+      -- open inventory
+      inventory.isOpen = true
+      inventory:load()
+      
+    end
+  end
+
+
   if love.keyboard.isDown("space") then
     local px = player.collider:getX()
     local py = player.collider:getY()

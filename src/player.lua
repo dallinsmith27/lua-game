@@ -26,6 +26,8 @@ player.animations.walkLeft = anim8.newAnimation(player.grid('1-9', 2), player.an
 player.animations.walkRight = anim8.newAnimation(player.grid('1-9', 3), player.animSpeed)
 player.animations.walkUp = anim8.newAnimation(player.grid('1-9', 4), player.animSpeed)
 player.anim = player.animations.walkDown
+player.inventory = {}
+player.inventory.sword = false
 
 
 -- 0 = Normal gameplay
