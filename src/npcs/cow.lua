@@ -49,7 +49,7 @@ local function cowInit(cow,x,y)
 
       elseif cow.state == 1 then
         cow.dirx = 1
-        cow.timer = 2
+        cow.timer = math.random(0, 2) + .25 * math.random(1, 8)
         cow.anim = cow.animations.walkRight
         --move right
 
@@ -61,13 +61,13 @@ local function cowInit(cow,x,y)
 
       elseif cow.state == 3 then
         cow.diry = -1
-        cow.timer = 2
+        cow.timer = math.random(0, 2) + .25 * math.random(1, 8)
         cow.anim = cow.animations.walkUp
         --move up
 
       elseif cow.state == 4 then
         cow.diry = 1
-        cow.timer = 2
+        cow.timer = math.random(0, 2) + .25 * math.random(1, 8)
         cow.anim = cow.animations.walkDown
         -- move down
       end
@@ -96,6 +96,10 @@ local function cowInit(cow,x,y)
     local py = cow.collider:getY() - cow.height / 2
     cow.anim:draw(cow.walkSheet, px, py)
 
+  end
+
+  function cow.destroy()
+    cow.collider:destroy()
   end
 
 

@@ -4,9 +4,9 @@ mapstart = {}
 doorsstart = {}
 mapstart.id = 0
 mapstart.large = false
-mapstart.xSize = 1400  --change the size here
-mapstart.ySize = 700   -- change the size here
-mapstart.background = love.graphics.newImage('src/maps/images/StartPage.png') --replace "mapid2" with your map png
+mapstart.xSize = 2000  --change the size here
+mapstart.ySize = 800   -- change the size here
+mapstart.background = love.graphics.newImage('sprites/titlepage.png') --replace "mapid2" with your map png
 
 
 

@@ -1,6 +1,6 @@
 
 test = {}
-test.bool = false
+test.bool = true
 test.num = 9999
 game = {}
 game.startScreen = true
@@ -85,4 +85,9 @@ function love.mousepressed(x, y, b, isTouch)
       end
     end
   end
+end
+
+function distanceBetween(x1,y1,x2,y2)
+  local d = math.sqrt((x2-x1)^2+(y2-y1)^2)
+  return d
 end

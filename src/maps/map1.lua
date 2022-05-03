@@ -1,5 +1,6 @@
 map1 = {}
 map1.npc = {}
+map1.enemy = {}
 doors = {}
 map1.id = 1
 map1.xSize = 3000
@@ -24,11 +25,15 @@ function map1.load()
   map1.barriers()
   map1.interactions()
   map1.setNpc()
+  map1.setEnemies()
 
   for i = #map1.npc,1,-1 do
     map1.npc[i]:load()
   end
 
+  for i = #map1.enemy,1,-1 do
+    map1.enemy[i]:load()
+  end
 end
 
 function map1.update(dt)
@@ -36,6 +41,9 @@ function map1.update(dt)
     map1.npc[i].update(dt)
   end
 
+  for i = #map1.enemy,1,-1 do
+    map1.enemy[i].update()
+  end
 
 end
 
@@ -60,6 +68,9 @@ function map1.draw()
   for i = #map1.npc,1,-1 do
     map1.npc[i].draw()
   end
+  for i = #map1.enemy,1,-1 do
+    map1.enemy[i].draw()
+  end
 
 end
 
@@ -73,6 +84,17 @@ function map1.unload()
     doors[i]:destroy()
     doors[i] = nil
   end
+
+  for i = #map1.npc,1,-1 do
+    map1.npc[i].destroy()
+    map1.npc[i] = nil
+  end
+
+  for i = #map1.enemy,1,-1 do
+    map1.enemy[i].destroy()
+    map1.enemy[i] = nil
+  end
+
 end
 
 function map1.barriers()
@@ -147,7 +169,11 @@ end
 
 function map1.setNpc()
   for i=1,4 do
-    spawnNpc(1200,800,"cow",map1.npc)
+    spawnNpc(1100 + 100*i,800,"cow",map1.npc)
   end
 
+  function map1.setEnemies()
+
+      spawnEnemy(1500,1500,"glitch1",map1.enemy)
+    end
 end
