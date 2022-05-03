@@ -22,6 +22,8 @@ function map1.load()
   map1.collider:setType('static')
   map1.collider:setCollisionClass('Wall')
 
+  
+
   map1.barriers()
   map1.interactions()
   map1.setNpc()

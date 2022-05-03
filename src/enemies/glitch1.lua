@@ -13,9 +13,9 @@ local function glitch1Init(glitch1,x,y)
   -- 4 - moving down
 
 
-  glitch1.chaseModifier = 50
+  glitch1.chaseModifier = 400
   glitch1.state = 0
-  glitch1.maxSpeed = 150
+  glitch1.maxSpeed = 400
   glitch1.viewDistance = 600
   glitch1.speed = 75
   glitch1.animSpeed = 0.1

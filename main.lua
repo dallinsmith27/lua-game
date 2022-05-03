@@ -2,6 +2,7 @@
 test = {}
 test.bool = true
 test.num = 9999
+test.string = "none"
 game = {}
 game.startScreen = true
 game.buttonId = 0
@@ -31,7 +32,7 @@ function love.draw()
   drawAll()
   cam:detach()
   if test.bool then
-    love.graphics.print(test.num)
+    love.graphics.print(test.string)
   end
 
 
@@ -44,6 +45,9 @@ function love.keypressed(key)
   if love.keyboard.isDown("escape") then
     love.event.quit()
   end
+  if love.keyboard.isDown("p") then
+    player.inventory.sword = true
+  end
 
   if love.keyboard.isDown("e") then
     if inventory.isOpen then
@@ -54,7 +58,7 @@ function love.keypressed(key)
       -- open inventory
       inventory.isOpen = true
       inventory:load()
-      
+
     end
   end
 
@@ -99,7 +103,37 @@ function love.mousepressed(x, y, b, isTouch)
         end
       end
     end
+  elseif inventory.isOpen then
+    if b == 1 then
+
+      if 323 < y and y < 428 then
+        if 630 < x and x < 730 then
+          if player.inventory.sword then
+            player.equippedItem = "sword"
+          --clicked sword
+          elseif 780 < x and x < 880 then
+            test.string = "bow"
+          elseif 927 < x and x < 1026 then
+            test.string = "arrow"
+          end
+      elseif 462 < y and y < 568 then
+        if 630 < x and x < 730 then
+          test.string = "bomb"
+          --clicked\
+        elseif 780 < x and x < 880 then
+          test.string = "boomerang"
+        elseif 927 < x and x < 1026 then
+          test.string = "other"
+        end
+      end
+      test.string = player.equippedItem
+      --local click  = world:queryCircleArea(love.mouse.getX(),love.mouse.getY(),25,{"button"})
+      --for _,c in ipairs(click) do
+          --player.equippedItem = c.name
+      --end
+    end
   end
+end
 end
 
 function distanceBetween(x1,y1,x2,y2)

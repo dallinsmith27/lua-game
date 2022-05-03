@@ -5,4 +5,5 @@ function drawAll()
     player:draw()
   end
   world:draw()
+  inventory:draw()
 end

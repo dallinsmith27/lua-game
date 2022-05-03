@@ -12,7 +12,13 @@ player.downWall = 400
 player.walking = false
 player.collider = world:newCircleCollider(player.x,player.y,25)
 player.collider:setCollisionClass("Player")
-
+player.hearts = 3
+player.health = player.hearts * 4
+player.heartImage = love.graphics.newImage("sprites/fullHeart.png")
+player.halfHeartImage = love.graphics.newImage("sprites/halfHeart.png")
+player.quarterHeartImage = love.graphics.newImage("sprites/1-4Heart.png")
+player.threeQuarterHeartImage = love.graphics.newImage("sprites/3-4Heart.png")
+player.emptyHeartImage = love.graphics.newImage("sprites/emptyHeart.png")
 
 player.speed = 250
 player.animSpeed = 0.08
@@ -28,7 +34,7 @@ player.animations.walkUp = anim8.newAnimation(player.grid('1-9', 4), player.anim
 player.anim = player.animations.walkDown
 player.inventory = {}
 player.inventory.sword = false
-
+player.equippedItem = "none"
 
 -- 0 = Normal gameplay
 -- 10 = Damage stun
@@ -90,5 +96,14 @@ function player:draw()
     local px = player.collider:getX() - player.width / 2
     local py = player.collider:getY() - player.height / 2
     player.anim:draw(sprites.walkSheet, px, py)
+    local topx = cam.x - 75
+    local topy = cam.y
+    for i=1,player.hearts do
+      if player.health > 1 * i then
+        love.graphics.draw(player.heartImage,topx,topy)
+        topx = topx - 75
+      end
+    end
+
 
 end
