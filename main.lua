@@ -4,7 +4,7 @@ test.bool = true
 test.num = 9999
 test.string = "none"
 game = {}
-game.startScreen = true
+game.startScreen = false
 game.buttonId = 0
 
 
@@ -17,7 +17,9 @@ function love.load()
 
     require("src/startup/gameStart")
     gameStart()
+    love.graphics.setDefaultFilter("nearest", "nearest")
     love.graphics.setBackgroundColor(0.1, 0.5, 0.2)
+    map:load()
     --createNewSave()
 
 end
@@ -32,7 +34,7 @@ function love.draw()
   drawAll()
   cam:detach()
   if test.bool then
-    love.graphics.print(test.string)
+    love.graphics.print(test.num)
   end
 
 
@@ -81,6 +83,7 @@ function love.keypressed(key)
 
     if #query > 0 then
       for _,w in ipairs(query) do
+        
         map.newId = w.id
       end
     end

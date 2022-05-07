@@ -30,7 +30,7 @@ function mapstart.update(dt)
 end
 
 function mapstart.draw()
-  love.graphics.draw(mapstart.background, 0, 0)
+  love.graphics.draw(mapstart.background, cam.x - mapstart.xSize/2, cam.y - mapstart.ySize/2)
 end
 
 function mapstart.unload()

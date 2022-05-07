@@ -22,7 +22,7 @@ function map1.load()
   map1.collider:setType('static')
   map1.collider:setCollisionClass('Wall')
 
-  
+
 
   map1.barriers()
   map1.interactions()
@@ -83,7 +83,7 @@ function map1.unload()
   house2:destroy()
   house3:destroy()
   for i = #doors,1,-1 do
-    doors[i]:destroy()
+    doors[i].collider:destroy()
     doors[i] = nil
   end
 
@@ -152,20 +152,22 @@ function map1.barriers()
 end
 
 function map1.interactions()
-  local door1 = world:newRectangleCollider(580,560,40,60)
-  door1:setType('static')
-  door1:setCollisionClass("Door")
-  door1:setObject(door1)
-  door1.enter = false
-  door1.id = 2
+  local door1 = {}
+  door1.collider = world:newRectangleCollider(580,560,40,60)
+  door1.collider:setType('static')
+  door1.collider:setCollisionClass("Door")
+  door1.collider:setObject(door1)
+  door1.collider.enter = false
+  door1.collider.id = 2
   table.insert(doors, door1)
 
-  local door2 = world:newRectangleCollider(580,760,40,60)
-  door2:setType('static')
-  door2:setCollisionClass("Door")
-  door2:setObject(door2)
-  door2.enter = false
-  door2.id = 2
+  local door2 = {}
+  door2.collider = world:newRectangleCollider(580,760,40,60)
+  door2.collider:setType('static')
+  door2.collider:setCollisionClass("Door")
+  door2.collider:setObject(door2)
+  door2.collider.enter = false
+  door2.collider.id = 2
   table.insert(doors, door2)
 end
 
@@ -176,6 +178,7 @@ function map1.setNpc()
 
   function map1.setEnemies()
 
-      spawnEnemy(1500,1500,"glitch1",map1.enemy)
+      --spawnEnemy(1500,1500,"glitch1",map1.enemy)
+      spawnEnemy(1500,1500,"error", map1.enemy)
     end
 end

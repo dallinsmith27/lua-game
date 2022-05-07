@@ -11,8 +11,8 @@ function spawnEnemy(x,y,type,list)
      local init
      if type == "glitch1" then
          init = require("src/enemies/glitch1")
-     elseif type == "other" then
-         --init = require("src/enemies/bat")
+     elseif type == "error" then
+       init = require("src/enemies/error")
      end
 
      enemy = init(enemy, x, y)

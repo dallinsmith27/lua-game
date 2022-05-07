@@ -12,10 +12,10 @@ local function glitch1Init(glitch1,x,y)
   -- 3 - moving up
   -- 4 - moving down
 
-
-  glitch1.chaseModifier = 400
+  glitch1.hitCooldown = 0
+  glitch1.chaseModifier = 200
   glitch1.state = 0
-  glitch1.maxSpeed = 400
+  glitch1.maxSpeed = 200
   glitch1.viewDistance = 600
   glitch1.speed = 75
   glitch1.animSpeed = 0.1
@@ -32,22 +32,29 @@ local function glitch1Init(glitch1,x,y)
 
     glitch1.collider:setCollisionClass('glitch1')
     glitch1.collider:setFixedRotation(true)
-    glitch1.collider:setMass(1)
-    glitch1.collider:setLinearDamping(.5)
+    glitch1.collider:setMass(2)
+    glitch1.collider:setLinearDamping(2)
   end
 
   function glitch1.update(dt)
     delta = love.timer.getDelta( )
+    glitch1.hitCooldown = glitch1.hitCooldown - delta
+
     local px = glitch1.collider:getX()
     local py = glitch1.collider:getY()
     d = distanceBetween(px,py,player.x,player.y)
 
-    if (d) < glitch1.viewDistance then
+    if d < 56 then
+      if glitch1.hitCooldown <= 0 then
+        player:damage(1,vector(player.x - px, player.y - py):normalized(),.5)
+        glitch1.hitCooldown = 1
+      end
+    elseif d < glitch1.viewDistance then
       glitch1.timer = -1
       glitch1.state = 10
       glitch1.dir = vector(player.x - px, player.y - py):normalized() * glitch1.speed *glitch1.chaseModifier
       if distanceBetween(0, 0, glitch1.collider:getLinearVelocity()) < glitch1.maxSpeed then
-      glitch1.collider:applyForce(glitch1.dir:unpack())
+        glitch1.collider:applyForce(glitch1.dir:unpack())
       end
     else
       glitch1.state = 0
