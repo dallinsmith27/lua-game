@@ -18,7 +18,7 @@ function love.load()
     require("src/startup/gameStart")
     gameStart()
     love.graphics.setDefaultFilter("nearest", "nearest")
-    love.graphics.setBackgroundColor(0.1, 0.5, 0.2)
+    love.graphics.setBackgroundColor(1, .9, .9)
     map:load()
     --createNewSave()
 
@@ -34,6 +34,7 @@ function love.draw()
   drawAll()
   cam:detach()
   if test.bool then
+
     love.graphics.print(test.num)
   end
 
@@ -49,6 +50,7 @@ function love.keypressed(key)
   end
   if love.keyboard.isDown("p") then
     player.inventory.sword = true
+    player.inventory.key = true
   end
 
   if love.keyboard.isDown("e") then
@@ -83,7 +85,7 @@ function love.keypressed(key)
 
     if #query > 0 then
       for _,w in ipairs(query) do
-        
+
         map.newId = w.id
       end
     end
@@ -108,9 +110,13 @@ function love.mousepressed(x, y, b, isTouch)
     end
   elseif inventory.isOpen then
     if b == 1 then
+      local w = love.graphics.getWidth()
+      local h = love.graphics.getHeight()
+      test.num = h/2-330
+      test.num = y
 
-      if 323 < y and y < 428 then
-        if 630 < x and x < 730 then
+      if h/2-220 < y and y < h/2-111 then
+        if w/2 - 330 < x and x < w/2-225 then
           if player.inventory.sword then
             player.equippedItem = "sword"
           --clicked sword
@@ -119,7 +125,7 @@ function love.mousepressed(x, y, b, isTouch)
           elseif 927 < x and x < 1026 then
             test.string = "arrow"
           end
-      elseif 462 < y and y < 568 then
+      elseif h/2-82< y and y < h/2+25 then
         if 630 < x and x < 730 then
           test.string = "bomb"
           --clicked\

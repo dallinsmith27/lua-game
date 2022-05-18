@@ -2,8 +2,8 @@
 
 player = {}
 sprites = {}
-player.x = 275
-player.y = 300
+player.x = 600
+player.y = 600
 player.dir = "down"
 player.rightWall = 600
 player.leftWall = 100
@@ -11,14 +11,16 @@ player.upWall = 100
 player.downWall = 400
 player.walking = false
 player.collider = {}
-player.collider = world:newCircleCollider(player.x,player.y,25)
+player.collider = world:newBSGRectangleCollider(400,400,24,50,5)
 player.collider:setMass(1)
+player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
 player.collider:setLinearDamping(1)
 player.hearts = 3
 player.health = 12
 player.maxHealth = player.hearts * 4
 player.stunTimer = 0
+
 
 player.heartImage = love.graphics.newImage("sprites/fullHeart.png")
 player.halfHeartImage = love.graphics.newImage("sprites/halfHeart.png")
@@ -40,6 +42,7 @@ player.animations.walkUp = anim8.newAnimation(player.grid('1-9', 4), player.anim
 player.anim = player.animations.walkDown
 player.inventory = {}
 player.inventory.sword = false
+player.inventory.key = false
 player.equippedItem = "none"
 
 
@@ -101,6 +104,8 @@ function player:update(dt)
       player.state = 0
     end
   end
+
+
 end
 
 function player:draw()
@@ -166,4 +171,14 @@ function player.collider:damage(damage,knockback,stun)
   player.stunTimer = stun
   player.health = player.health - damage
   player.collider:setLinearVelocity(knockback:unpack())
+end
+
+function player:changePos(x, y)
+  player.collider:destroy()
+  player.collider = world:newBSGRectangleCollider(x,y,24,50,5)
+  player.collider:setMass(1)
+  player.collider:setFixedRotation(true)
+  player.collider:setCollisionClass("Player")
+  player.collider:setLinearDamping(1)
+
 end

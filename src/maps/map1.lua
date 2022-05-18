@@ -1,184 +1,702 @@
-map1 = {}
-map1.npc = {}
-map1.enemy = {}
-doors = {}
-map1.id = 1
-map1.xSize = 3000
-map1.ySize = 2000
-map1.large = true
-map1.background = love.graphics.newImage('src/maps/images/testMap.png')
-brickHouse = love.graphics.newImage('sprites/brick house.png')
-fence = love.graphics.newImage('sprites/fence.png')
-fenceUp = love.graphics.newImage('sprites/fenceUp.png')
-defaultHouse = love.graphics.newImage('sprites/defaultHouse.png')
-
-
-function map1.load()
-  map1.border = world:newRectangleCollider(0,0,map1.xSize,map1.ySize)
-  map1.border:setType('static')
-  map1.border:setCollisionClass('Ignore')
-
-  map1.collider = world:newRectangleCollider(0,0,3000,220)
-  map1.collider:setType('static')
-  map1.collider:setCollisionClass('Wall')
-
-
-
-  map1.barriers()
-  map1.interactions()
-  map1.setNpc()
-  map1.setEnemies()
-
-  for i = #map1.npc,1,-1 do
-    map1.npc[i]:load()
-  end
-
-  for i = #map1.enemy,1,-1 do
-    map1.enemy[i]:load()
-  end
-end
-
-function map1.update(dt)
-  for i = #map1.npc,1,-1 do
-    map1.npc[i].update(dt)
-  end
-
-  for i = #map1.enemy,1,-1 do
-    map1.enemy[i].update()
-  end
-
-end
-
-function map1.draw()
-
-
-  love.graphics.draw(map1.background, 0, 0)
-  love.graphics.draw(brickHouse, house1:getX()-100, house1:getY()-60)
-  love.graphics.draw(brickHouse, house2:getX()-100, house2:getY()-60)
-  love.graphics.draw(defaultHouse, house4:getX()-150, house4:getY()-75)
-  love.graphics.draw(brickHouse, house3:getX()-100, house3:getY()-60)
-  love.graphics.draw(fence, fence6:getX()-100, fence6:getY()-55)
-  love.graphics.draw(fence, fence7:getX()-100, fence7:getY()-55)
-  love.graphics.draw(fence, fence8:getX()-100, fence8:getY()-55)
-  love.graphics.draw(fenceUp, fence4:getX()-10, fence4:getY()-125)
-  love.graphics.draw(fenceUp, fence5:getX()-10, fence5:getY()-125)
-
-  love.graphics.draw(fence, fence1:getX()-100, fence1:getY()-55)
-  love.graphics.draw(fence, fence2:getX()-100, fence2:getY()-55)
-  love.graphics.draw(fence, fence3:getX()-100, fence3:getY()-55)
-
-  for i = #map1.npc,1,-1 do
-    map1.npc[i].draw()
-  end
-  for i = #map1.enemy,1,-1 do
-    map1.enemy[i].draw()
-  end
-
-end
-
-function map1.unload()
-  map1.border:destroy()
-  map1.collider:destroy()
-  house1:destroy()
-  house2:destroy()
-  house3:destroy()
-  for i = #doors,1,-1 do
-    doors[i].collider:destroy()
-    doors[i] = nil
-  end
-
-  for i = #map1.npc,1,-1 do
-    map1.npc[i].destroy()
-    map1.npc[i] = nil
-  end
-
-  for i = #map1.enemy,1,-1 do
-    map1.enemy[i].destroy()
-    map1.enemy[i] = nil
-  end
-
-end
-
-function map1.barriers()
-  house1 = world:newRectangleCollider(500,500,200,120)
-  house1:setType('static')
-  house1:setCollisionClass('Wall')
-
-  house2 = world:newRectangleCollider(500,700,200,120)
-  house2:setType('static')
-  house2:setCollisionClass('Wall')
-
-  house3 = world:newRectangleCollider(500,900,200,120)
-  house3:setType('static')
-  house3:setCollisionClass('Wall')
-
-  house4 = world:newRectangleCollider(500,1200,300,150)
-  house4:setType('static')
-  house4:setCollisionClass('Wall')
-
-  fence1 = world:newRectangleCollider(1000,1000,196,30)
-  fence1:setType('static')
-  fence1:setCollisionClass('Wall')
-
-  fence2 = world:newRectangleCollider(1196,1000,196,30)
-  fence2:setType('static')
-  fence2:setCollisionClass('Wall')
-
-  fence3 = world:newRectangleCollider(1196+196,1000,196,30)
-  fence3:setType('static')
-  fence3:setCollisionClass('Wall')
-
-  fence4 = world:newRectangleCollider(1196+370,750,20,250)
-  fence4:setType('static')
-  fence4:setCollisionClass('Wall')
-
-  fence5 = world:newRectangleCollider(1000,750,20,250)
-  fence5:setType('static')
-  fence5:setCollisionClass('Wall')
-
-  fence6 = world:newRectangleCollider(1000,750,196,30)
-  fence6:setType('static')
-  fence6:setCollisionClass('Wall')
-
-  fence7 = world:newRectangleCollider(1196,750,196,30)
-  fence7:setType('static')
-  fence7:setCollisionClass('Wall')
-
-  fence8 = world:newRectangleCollider(1196+196,750,196,30)
-  fence8:setType('static')
-  fence8:setCollisionClass('Wall')
-
-
-end
-
-function map1.interactions()
-  local door1 = {}
-  door1.collider = world:newRectangleCollider(580,560,40,60)
-  door1.collider:setType('static')
-  door1.collider:setCollisionClass("Door")
-  door1.collider:setObject(door1)
-  door1.collider.enter = false
-  door1.collider.id = 2
-  table.insert(doors, door1)
-
-  local door2 = {}
-  door2.collider = world:newRectangleCollider(580,760,40,60)
-  door2.collider:setType('static')
-  door2.collider:setCollisionClass("Door")
-  door2.collider:setObject(door2)
-  door2.collider.enter = false
-  door2.collider.id = 2
-  table.insert(doors, door2)
-end
-
-function map1.setNpc()
-  for i=1,4 do
-    spawnNpc(1100 + 100*i,800,"cow",map1.npc)
-  end
-
-  function map1.setEnemies()
-
-      --spawnEnemy(1500,1500,"glitch1",map1.enemy)
-      spawnEnemy(1500,1500,"error", map1.enemy)
-    end
-end
+return {
+  version = "1.5",
+  luaversion = "5.1",
+  tiledversion = "1.8.4",
+  orientation = "orthogonal",
+  renderorder = "right-down",
+  width = 25,
+  height = 20,
+  tilewidth = 64,
+  tileheight = 64,
+  nextlayerid = 5,
+  nextobjectid = 47,
+  properties = {},
+  tilesets = {
+    {
+      name = "tiless",
+      firstgid = 1,
+      tilewidth = 64,
+      tileheight = 64,
+      spacing = 0,
+      margin = 0,
+      columns = 18,
+      image = "../../sprites/tileset.png",
+      imagewidth = 1152,
+      imageheight = 768,
+      objectalignment = "unspecified",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 64,
+        height = 64
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 216,
+      tiles = {}
+    },
+    {
+      name = "tiless",
+      firstgid = 217,
+      tilewidth = 64,
+      tileheight = 64,
+      spacing = 0,
+      margin = 0,
+      columns = 18,
+      image = "../../sprites/tileset.png",
+      imagewidth = 1152,
+      imageheight = 768,
+      objectalignment = "unspecified",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 64,
+        height = 64
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 216,
+      tiles = {}
+    },
+    {
+      name = "tiless",
+      firstgid = 433,
+      tilewidth = 64,
+      tileheight = 64,
+      spacing = 0,
+      margin = 0,
+      columns = 18,
+      image = "../../sprites/tileset.png",
+      imagewidth = 1152,
+      imageheight = 768,
+      objectalignment = "unspecified",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 64,
+        height = 64
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 216,
+      tiles = {}
+    },
+    {
+      name = "tiless",
+      firstgid = 649,
+      tilewidth = 64,
+      tileheight = 64,
+      spacing = 0,
+      margin = 0,
+      columns = 18,
+      image = "../../sprites/tileset.png",
+      imagewidth = 1152,
+      imageheight = 768,
+      objectalignment = "unspecified",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 64,
+        height = 64
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 216,
+      tiles = {}
+    }
+  },
+  layers = {
+    {
+      type = "tilelayer",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      id = 1,
+      name = "base",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      encoding = "lua",
+      data = {
+        649, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 650, 651,
+        667, 20, 20, 20, 20, 20, 20, 831, 20, 20, 20, 20, 20, 20, 20, 20, 668, 20, 20, 20, 20, 163, 165, 20, 669,
+        667, 668, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 829, 831, 20, 669,
+        667, 20, 20, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 829, 831, 20, 669,
+        667, 20, 20, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 829, 831, 668, 669,
+        667, 20, 20, 19, 20, 20, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 20, 20, 21, 829, 831, 20, 669,
+        667, 20, 20, 19, 20, 21, 20, 20, 20, 20, 20, 20, 20, 668, 112, 113, 113, 114, 19, 20, 21, 829, 831, 20, 669,
+        667, 20, 20, 19, 20, 21, 20, 20, 20, 20, 20, 20, 20, 668, 130, 131, 131, 132, 19, 20, 21, 829, 831, 20, 669,
+        667, 668, 20, 19, 20, 21, 20, 20, 20, 20, 20, 20, 20, 668, 130, 131, 131, 132, 19, 20, 21, 829, 831, 20, 669,
+        667, 668, 20, 19, 668, 21, 20, 20, 20, 668, 20, 20, 20, 668, 148, 149, 149, 150, 19, 20, 21, 829, 831, 20, 669,
+        667, 20, 20, 19, 20, 21, 20, 20, 20, 20, 20, 20, 20, 668, 668, 20, 668, 668, 19, 20, 21, 199, 201, 20, 669,
+        667, 20, 20, 19, 20, 21, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 19, 20, 21, 20, 20, 20, 669,
+        667, 20, 20, 19, 20, 21, 20, 20, 20, 20, 20, 20, 20, 1, 2, 20, 20, 2, 20, 20, 21, 20, 20, 20, 669,
+        667, 668, 20, 19, 20, 21, 20, 1, 2, 2, 3, 20, 20, 19, 20, 20, 20, 20, 20, 20, 21, 20, 20, 20, 669,
+        667, 20, 20, 19, 20, 20, 2, 20, 20, 20, 21, 20, 20, 19, 20, 20, 20, 20, 20, 668, 21, 20, 20, 20, 669,
+        667, 20, 20, 19, 20, 20, 20, 20, 20, 20, 21, 20, 20, 19, 20, 20, 20, 20, 20, 20, 21, 20, 20, 20, 669,
+        667, 20, 20, 37, 38, 38, 38, 39, 20, 20, 39, 20, 20, 19, 20, 20, 20, 20, 20, 20, 21, 20, 20, 20, 669,
+        667, 20, 20, 20, 20, 20, 20, 20, 20, 21, 20, 20, 20, 19, 20, 668, 20, 20, 20, 20, 21, 20, 20, 20, 669,
+        667, 20, 20, 20, 20, 20, 20, 20, 20, 21, 668, 668, 668, 19, 20, 20, 20, 20, 20, 20, 21, 20, 20, 20, 669,
+        685, 20, 20, 20, 20, 20, 20, 20, 20, 21, 668, 20, 20, 37, 38, 38, 38, 38, 38, 38, 39, 686, 686, 686, 687
+      }
+    },
+    {
+      type = "tilelayer",
+      x = 0,
+      y = 0,
+      width = 25,
+      height = 20,
+      id = 4,
+      name = "other",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 811, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 776, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 776, 0, 0, 776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 669, 703, 704, 704, 704, 704, 704, 704, 0, 0, 0, 776, 0, 0, 0, 0, 0, 0, 776, 0,
+        0, 0, 0, 0, 0, 0, 739, 739, 740, 740, 740, 740, 741, 775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 776, 0, 0, 0, 0, 0, 10, 11, 12, 274, 0, 0, 775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 28, 29, 30, 292, 275, 297, 775, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 293, 0, 775, 0, 0, 0, 0, 0, 776, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 776, 0, 0, 0, 0, 793, 758, 777, 758, 758, 0, 0, 0, 0, 776, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 776, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 776, 0, 0, 0, 0, 776, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 776, 0, 0, 0, 0, 0, 0, 276, 277, 278, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 294, 295, 296, 0, 0, 0, 776, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 776, 312, 313, 314, 0, 0, 0, 0, 0, 0, 0,
+        776, 0, 0, 0, 0, 0, 0, 0, 0, 0, 758, 794, 758, 0, 0, 0, 0, 0, 0, 776, 0, 0, 0, 0, 0,
+        297, 297, 297, 297, 297, 297, 297, 297, 297, 297, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 297, 297, 297, 297
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 2,
+      name = "walls",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 2,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 452,
+          y = 826,
+          width = 250,
+          height = 20,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 3,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 684,
+          y = 860,
+          width = 26,
+          height = 220,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 4,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 630,
+          y = 1068,
+          width = 50,
+          height = 20,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 5,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 620,
+          y = 1084,
+          width = 16,
+          height = 206,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 7,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 188,
+          y = 1072,
+          width = 316,
+          height = 20,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 8,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 186,
+          y = 192,
+          width = 16,
+          height = 884,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 9,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 198,
+          y = 186,
+          width = 1142,
+          height = 22,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 10,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1328,
+          y = 194,
+          width = 10,
+          height = 1080,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 11,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 830,
+          y = 1258,
+          width = 494,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 12,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 830,
+          y = 768,
+          width = 20,
+          height = 492,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 14,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 848,
+          y = 768,
+          width = 114,
+          height = 12,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 15,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1086,
+          y = 768,
+          width = 72,
+          height = 18,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 16,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1146,
+          y = 372,
+          width = 14,
+          height = 394,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 19,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 372,
+          y = 368,
+          width = 788,
+          height = 18,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 20,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 368,
+          y = 366,
+          width = 16,
+          height = 526,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 21,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 366,
+          y = 890,
+          width = 90,
+          height = 22,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 22,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 444,
+          y = 836,
+          width = 12,
+          height = 58,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 24,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 499,
+          y = 1025,
+          width = 12.5,
+          height = 66,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 27,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 634,
+          y = 1180,
+          width = 70,
+          height = 34,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 28,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 769.333,
+          y = 1180,
+          width = 61.3333,
+          height = 33.3333,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 31,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 448,
+          y = 453,
+          width = 192,
+          height = 115,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 34,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 853,
+          y = 383,
+          width = 19,
+          height = 319,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 35,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 853,
+          y = 663,
+          width = 107,
+          height = 42,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 36,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1088,
+          y = 662,
+          width = 67,
+          height = 40,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 37,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 648,
+          y = 452,
+          width = 50,
+          height = 120,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 38,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 710,
+          y = 540,
+          width = 48,
+          height = 100,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 39,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 782,
+          y = 522,
+          width = 32,
+          height = 54,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 40,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1002,
+          y = 966,
+          width = 106,
+          height = 178,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 41,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1352,
+          y = 1222,
+          width = 236,
+          height = 48,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 42,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 6,
+          y = 1220,
+          width = 608,
+          height = 54,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 43,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -32,
+          y = -16,
+          width = 34,
+          height = 1290,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 44,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 4,
+          y = -62,
+          width = 1594,
+          height = 60,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 45,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1602,
+          y = -68,
+          width = 30,
+          height = 1350,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 46,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1024,
+          y = 658.667,
+          width = 63.3333,
+          height = 45.3333,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 3,
+      name = "doors",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 1,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 706,
+          y = 1188,
+          width = 60,
+          height = 22,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mapID"] = "3"
+          }
+        },
+        {
+          id = 30,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 522,
+          y = 537,
+          width = 46,
+          height = 31,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mapID"] = "2"
+          }
+        }
+      }
+    }
+  }
+}

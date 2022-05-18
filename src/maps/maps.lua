@@ -6,7 +6,7 @@ map.ySize = 2000
 map.large = true
 map.walls = {}
 map.doors = {}
-gameMap = sti("src/maps/test1.lua")
+gameMap = sti("src/maps/map1.lua")
 function map:load()
   if gameMap.layers["doors"] then
     for i, obj in pairs(gameMap.layers["doors"].objects) do
@@ -30,16 +30,30 @@ end
 function map.update(dt)
 
   if map.newId ~= map.id then
-    map:unload()
-    if map.newId == 420 then
 
-      gameMap = sti("src/maps/test2.lua")
+    if map.newId == 1 then
+      map:unload()
+      gameMap = sti("src/maps/map1.lua")
       map:load()
       map.id = map.newId
-    elseif map.newId == 69 then
-      gameMap = sti("src/maps/test1.lua")
+      player:changePos(450,500)
+    elseif map.newId == 2 then
+      map:unload()
+      gameMap = sti("src/maps/map2.lua")
       map:load()
       map.id = map.newId
+      player:changePos(450,550)
+    elseif map.newId == 3 then
+      if player.inventory.key then
+        map:unload()
+        player.inventory.key = false
+        gameMap = sti("src/maps/map3.lua")
+        map:load()
+        map.id = map.newId
+        player:changePos(0,0)
+      else
+        map.newId = map.id
+      end
     end
 
 
@@ -55,8 +69,9 @@ function map.draw()
   --    gameMap:drawLayer(l)
   --  end
   --end
-  gameMap:drawLayer(gameMap.layers["Tile Layer 1"])
-  gameMap:drawLayer(gameMap.layers["trees"])
+  gameMap:drawLayer(gameMap.layers["base"])
+  gameMap:drawLayer(gameMap.layers["other"])
+  --gameMap:drawLayer(gameMap.layers["trees"])
 end
 
 function map:unload()
