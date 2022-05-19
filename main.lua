@@ -90,8 +90,15 @@ function love.keypressed(key)
       end
     end
 
-
+    local items = world:queryCircleArea(px,py,25, {'item'})
+    --if #items > 0 then
+      --for _,i in ipairs(items) do
+      --  player.inventory:add(i.name)
+      --  i.dead = true
+      --end
+  --  end
   end
+
     --enter all keypress if statements...
     -- this is where the game controls are defined.
 end

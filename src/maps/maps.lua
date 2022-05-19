@@ -6,7 +6,9 @@ map.ySize = 2000
 map.large = true
 map.walls = {}
 map.doors = {}
+map.items = {}
 gameMap = sti("src/maps/map1.lua")
+
 function map:load()
   if gameMap.layers["doors"] then
     for i, obj in pairs(gameMap.layers["doors"].objects) do
@@ -25,7 +27,11 @@ function map:load()
       table.insert(map.walls,wall)
     end
   end
+
+
+
 end
+
 
 function map.update(dt)
 
@@ -36,7 +42,8 @@ function map.update(dt)
       gameMap = sti("src/maps/map1.lua")
       map:load()
       map.id = map.newId
-      player:changePos(450,500)
+      player:changePos(520,575)
+      spawnItem(600,600,"heart",map.items)
     elseif map.newId == 2 then
       map:unload()
       gameMap = sti("src/maps/map2.lua")
@@ -60,6 +67,14 @@ function map.update(dt)
 
 
   end
+
+  if #map.items > 0 then
+    for _, item in pairs(map.items) do
+      if item.dead then
+        item:destroy()
+      end
+    end
+  end
 end
 
 
@@ -71,6 +86,14 @@ function map.draw()
   --end
   gameMap:drawLayer(gameMap.layers["base"])
   gameMap:drawLayer(gameMap.layers["other"])
+
+  if #map.items > 0 then
+    for _, item in pairs(map.items) do
+      item:draw()
+    end
+
+  end
+
   --gameMap:drawLayer(gameMap.layers["trees"])
 end
 
@@ -91,7 +114,13 @@ function map:unload()
     map.walls = nil
     map.walls = {}
   end
-  --for _,d in ipairs(map.doors) do
-    --d:destroy
-  --end
+
+  if #map.items > 0 then
+    for _, item in pairs(map.items) do
+      item:destroy()
+    end
+    map.items = nil
+    map.items = {}
+  end
+
 end

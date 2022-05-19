@@ -4,7 +4,6 @@ local function cowInit(cow,x,y)
   cow.y = y
   cow.dirx = 0
   cow.diry = 0
-  cow.test = 420
   cow.timer = 5
   -- 0 - Ready to move
   -- 1 - moving roight

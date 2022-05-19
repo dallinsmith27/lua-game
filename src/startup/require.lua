@@ -14,6 +14,8 @@ function requireAll()
   require("src/maps/StartScreen")
   require("src/maps/map1")
   require("src/maps/map2")
+  require("src/items/item")
+  require("src/items/heart")
 
   require("src/inventory")
   require("libraries.anim8.anim8")

@@ -17,7 +17,7 @@ player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
 player.collider:setLinearDamping(1)
 player.hearts = 3
-player.health = 12
+player.health = 3
 player.maxHealth = player.hearts * 4
 player.stunTimer = 0
 
@@ -180,5 +180,15 @@ function player:changePos(x, y)
   player.collider:setFixedRotation(true)
   player.collider:setCollisionClass("Player")
   player.collider:setLinearDamping(1)
+
+end
+
+function player.inventory:add(item)
+  if item == "heart" then
+    player.health = player.health + 4
+    if player.health > player.maxHealth then
+      player.health = player.maxHealth
+    end
+  end
 
 end
