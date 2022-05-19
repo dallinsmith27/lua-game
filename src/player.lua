@@ -17,10 +17,12 @@ player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
 player.collider:setLinearDamping(1)
 player.hearts = 3
+player.prevHealth = 0
 player.health = 3
+player.healthCounter = 0
 player.maxHealth = player.hearts * 4
 player.stunTimer = 0
-
+player.money = 0
 
 player.heartImage = love.graphics.newImage("sprites/fullHeart.png")
 player.halfHeartImage = love.graphics.newImage("sprites/halfHeart.png")
@@ -53,6 +55,7 @@ player.state = 0
 --player.sprite = love.graphics.newImage('sprites/')
 
 function player:update(dt)
+
   player.x = player.collider:getX() - player.width / 2
   player.y = player.collider:getY() - player.height / 2
 
@@ -124,30 +127,44 @@ function player:draw()
     local topy = cam.y - love.graphics.getHeight()/2 + 10
 
     local drawn = 0
-    local remainder = player.health
+    local newHealth = player.prevHealth
+    if player.healthCounter == 10 then
+      player.healthCounter = 0
+      if player.prevHealth > player.health then
+        newHealth = player.prevHealth - 1
+        player.prevHealth = player.prevHealth - 1
+      elseif player.prevHealth < player.health then
+        newHealth = player.prevHealth + 1
+        player.prevHealth = player.prevHealth + 1
+      end
+    end
+    player.healthCounter = player.healthCounter +1
+
+
+
     for i=1,player.hearts do
-      if player.health >= 4 * i then
+      if player.prevHealth >= 4 * i then
         love.graphics.draw(player.heartImage,topx,topy)
         topx = topx - 60
-        remainder = remainder - 4
+        newHealth = newHealth - 4
         drawn = drawn+1
       end
     end
 
 
-    if remainder == 3 then
+    if newHealth == 3 then
       love.graphics.draw(player.threeQuarterHeartImage, topx, topy)
-      remainder = remainder - 3
+      newHealth = newHealth - 3
       drawn = drawn+1
       topx = topx - 60
-  elseif remainder == 2 then
+  elseif newHealth == 2 then
       love.graphics.draw(player.halfHeartImage, topx, topy)
-      remainder = remainder - 2
+      newHealth = newHealth - 2
       drawn = drawn+1
       topx = topx - 60
-    elseif remainder == 1 then
+    elseif newHealth == 1 then
       love.graphics.draw(player.quarterHeartImage, topx, topy)
-      remainder = remainder - 1
+      newHealth = newHealth - 1
       drawn = drawn+1
       topx = topx - 60
     end
@@ -201,6 +218,8 @@ function player.inventory:add(item)
     player.health = player.maxHealth
   elseif item == "blackHeart" then
     player.health = player.health - 4
+  elseif item == "bronzeCoin" then
+    player.money = player.money + 1
 
   end
 

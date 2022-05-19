@@ -46,7 +46,8 @@ function map.update(dt)
       player:changePos(520,575)
       spawnItem(600,600,"heart",map.items)
       spawnItem(600,700,"addHeart",map.items)
-      spawnItem(600,800,"blackHeart",map.items)
+      spawnItem(600,780,"bronzeCoin",map.items)
+
       spawnNpc(1000,1000,"cow",map.npcs)
     elseif map.newId == 2 then
       map:unload()
@@ -77,7 +78,8 @@ function map.update(dt)
       if item.dead then
         item:destroy()
         table.remove(map.items,n)
-
+      else
+        item:update()
       end
     end
   end

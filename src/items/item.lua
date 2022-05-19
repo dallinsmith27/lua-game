@@ -15,6 +15,8 @@ function spawnItem(x,y,type,list)
        init = require("src/items/addHeart")
      elseif type == "blackHeart" then
        init = require("src/items/blackHeart")
+     elseif type == "bronzeCoin" then
+       init = require("src/items/bronzeCoin")
      end
 
      item = init(item, x, y)
