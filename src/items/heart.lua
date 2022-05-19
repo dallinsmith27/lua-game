@@ -6,6 +6,7 @@ local function heartInit(heart,x,y)
   heart.name = "heart"
   heart.image = love.graphics.newImage("sprites/fullHeart.png")
 
+
   function heart:load()
 
 
@@ -22,12 +23,9 @@ local function heartInit(heart,x,y)
   end
 
   function heart:draw()
-    if not heart.dead then
-      love.graphics.draw(heart.image, heart.x, heart.y)
-    end
-  end
+    love.graphics.draw(heart.image, heart.x, heart.y)
 
-  
+  end
 
 
   return heart

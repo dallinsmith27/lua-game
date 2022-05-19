@@ -44,6 +44,8 @@ function map.update(dt)
       map.id = map.newId
       player:changePos(520,575)
       spawnItem(600,600,"heart",map.items)
+      spawnItem(600,700,"addHeart",map.items)
+      spawnItem(600,800,"blackHeart",map.items)
     elseif map.newId == 2 then
       map:unload()
       gameMap = sti("src/maps/map2.lua")
@@ -69,9 +71,11 @@ function map.update(dt)
   end
 
   if #map.items > 0 then
-    for _, item in pairs(map.items) do
+    for n, item in pairs(map.items) do
       if item.dead then
         item:destroy()
+        table.remove(map.items,n)
+
       end
     end
   end
@@ -118,6 +122,7 @@ function map:unload()
   if #map.items > 0 then
     for _, item in pairs(map.items) do
       item:destroy()
+
     end
     map.items = nil
     map.items = {}

@@ -56,6 +56,12 @@ function player:update(dt)
   player.x = player.collider:getX() - player.width / 2
   player.y = player.collider:getY() - player.height / 2
 
+  if player.collider:enter("item") then
+    local collision_data = player.collider:getEnterCollisionData('item')
+    player.inventory:add(collision_data.collider.name)
+    collision_data.collider.dead = true
+  end
+
   if player.state == 0 then
 
         local dirX = 0
@@ -189,6 +195,14 @@ function player.inventory:add(item)
     if player.health > player.maxHealth then
       player.health = player.maxHealth
     end
+  elseif item == "addHeart" then
+    player.hearts = player.hearts +1
+    player.maxHealth = player.hearts * 4
+    player.health = player.maxHealth
+  elseif item == "blackHeart" then
+    player.health = player.health - 4
+
   end
+
 
 end

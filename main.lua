@@ -35,7 +35,7 @@ function love.draw()
   cam:detach()
   if test.bool then
 
-    love.graphics.print(test.num)
+    love.graphics.print(test.string)
   end
 
 
@@ -81,8 +81,7 @@ function love.keypressed(key)
       px = px + 40
     end
 
-    local query = world:queryCircleArea(px,py,25, {'Door'})
-
+    local query = world:queryCircleArea(px,py,25, {"Door"})
 
     if #query > 0 then
       for _,w in ipairs(query) do
@@ -90,27 +89,15 @@ function love.keypressed(key)
         map.newId = w.id
       end
     end
-
-<<<<<<< HEAD
-    local items = world:queryCircleArea(px,py,25, {'item'})
+    --local cows = world:queryCircleArea(px,py,25, {"cow"})
+    --local items = world:queryCircleArea(px,py,25, {"item"})
     --if #items > 0 then
       --for _,i in ipairs(items) do
-      --  player.inventory:add(i.name)
-      --  i.dead = true
+        --player.inventory:add(i.name)
+        --i.dead = true
       --end
-  --  end
-=======
-    local query = world:queryCircleArea(px,py,25, {'cow'})
-
-    if #query > 0 then
-      dialogue.isOpen = true
-      dialogue:load()
-      
-    end
-
->>>>>>> 185b00380eac2950a289378e5c9b1c49ec12af8d
+    --end
   end
-
     --enter all keypress if statements...
     -- this is where the game controls are defined.
 end

@@ -21,6 +21,7 @@ function requireAll()
   require("src/inventory")
   require("libraries.anim8.anim8")
   vector = require("libraries/hump/vector")
+  flux = require "libraries/flux/flux"
   require("src/update")
   require("src/draw")
 end
