@@ -25,7 +25,7 @@ end
 function inventory:draw()
   if inventory.isOpen then
 
-    love.graphics.draw(inventory.image, cam.x - inventory.width/2  ,cam.y - inventory.height/2 )
+    love.graphics.draw(inventory.image, cam.x - inventory.width/2  ,cam.y - inventory.height/2)
     if player.inventory.sword then
       inventory.swordx = cam.x - inventory.width/2 + 75
       inventory.swordy = cam.y - inventory.height/2 + 82
