@@ -31,9 +31,11 @@ local function cowInit(cow,x,y)
   cow.anim = cow.animations.walkDown
 
   function cow:load()
-    cow.collider = world:newCircleCollider(cow.x,cow.y,30)
+
+    cow.collider = world:newRectangleCollider(cow.x, cow.y, 50, 50)
 
     cow.collider:setCollisionClass('cow')
+    cow.collider:setFixedRotation(true)
 
   end
 

@@ -4,6 +4,7 @@ function requireAll()
   createCollisionClasses()
 
   require("src/camera")
+  require("src/dialogue")
   require("src/player")
   require("src/npcs/npc")
   require("src/npcs/cow")

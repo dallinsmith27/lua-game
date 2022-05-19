@@ -77,7 +77,8 @@ function love.keypressed(key)
       px = px + 40
     end
 
-    local query = world:queryCircleArea(px,py,25, {"Door"})
+    local query = world:queryCircleArea(px,py,25, {'Door'})
+
 
     if #query > 0 then
       for _,w in ipairs(query) do
@@ -85,6 +86,13 @@ function love.keypressed(key)
       end
     end
 
+    local query = world:queryCircleArea(px,py,25, {'cow'})
+
+    if #query > 0 then
+      dialogue.isOpen = true
+      dialogue:load()
+      
+    end
 
   end
     --enter all keypress if statements...
