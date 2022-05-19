@@ -1,5 +1,5 @@
 local function cowInit(cow,x,y)
-  cow = {}
+  cow = world:newRectangleCollider(x, y, 50, 50)
   cow.x = x
   cow.y = y
   cow.dirx = 0
@@ -31,14 +31,14 @@ local function cowInit(cow,x,y)
 
   function cow:load()
 
-    cow.collider = world:newRectangleCollider(cow.x, cow.y, 50, 50)
 
-    cow.collider:setCollisionClass('cow')
-    cow.collider:setFixedRotation(true)
+
+    cow:setCollisionClass('cow')
+    cow:setFixedRotation(true)
 
   end
 
-  function cow.update(dt)
+  function cow:update(dt)
     delta = love.timer.getDelta( )
     if cow.timer < 0 then
       cow.dirx = 0
@@ -78,7 +78,7 @@ local function cowInit(cow,x,y)
       end
     end
 
-    cow.collider:setLinearVelocity(cow.dirx * cow.speed, cow.diry * cow.speed)
+    cow:setLinearVelocity(cow.dirx * cow.speed, cow.diry * cow.speed)
 
     if cow.dirx == 0 and cow.diry == 0 then
         cow.walking = false
@@ -92,15 +92,11 @@ local function cowInit(cow,x,y)
     end
   end
 
-  function cow.draw()
-    local px = cow.collider:getX() - cow.width / 2
-    local py = cow.collider:getY() - cow.height / 2
+  function cow:draw()
+    local px = cow:getX() - cow.width / 2
+    local py = cow:getY() - cow.height / 2
     cow.anim:draw(cow.walkSheet, px, py)
 
-  end
-
-  function cow.destroy()
-    cow.collider:destroy()
   end
 
 

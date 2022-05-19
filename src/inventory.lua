@@ -36,7 +36,7 @@ function inventory:draw()
     end
     if player.equippedItem ~= "none" then
       love.graphics.draw(inventory.circle,inventory.circlex ,inventory.circley )
-      -- display sword
+    
     end
   end
 

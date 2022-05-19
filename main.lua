@@ -35,7 +35,7 @@ function love.draw()
   cam:detach()
   if test.bool then
 
-    love.graphics.print(test.string)
+    love.graphics.print(test.num)
   end
 
 
@@ -103,6 +103,9 @@ function love.keypressed(key)
 end
 
 function love.mousepressed(x, y, b, isTouch)
+  if b == 2 then
+    player:useItem()
+  end
   if game.startScreen then
 
     if b == 1 then

@@ -1,5 +1,5 @@
 map = {}
-map.id = 1
+map.id = -1
 map.newId = 1
 map.xSize = 3000
 map.ySize = 2000
@@ -7,6 +7,7 @@ map.large = true
 map.walls = {}
 map.doors = {}
 map.items = {}
+map.npcs = {}
 gameMap = sti("src/maps/map1.lua")
 
 function map:load()
@@ -46,6 +47,7 @@ function map.update(dt)
       spawnItem(600,600,"heart",map.items)
       spawnItem(600,700,"addHeart",map.items)
       spawnItem(600,800,"blackHeart",map.items)
+      spawnNpc(1000,1000,"cow",map.npcs)
     elseif map.newId == 2 then
       map:unload()
       gameMap = sti("src/maps/map2.lua")
@@ -79,6 +81,17 @@ function map.update(dt)
       end
     end
   end
+  if #map.npcs > 0 then
+    for n, npc in pairs(map.npcs) do
+      if npc.dead then
+        npc:destroy()
+        table.remove(map.npcs,n)
+      else
+        npc:update()
+      end
+
+    end
+  end
 end
 
 
@@ -94,6 +107,13 @@ function map.draw()
   if #map.items > 0 then
     for _, item in pairs(map.items) do
       item:draw()
+    end
+
+  end
+
+  if #map.npcs > 0 then
+    for _, npc in pairs(map.npcs) do
+      npc:draw()
     end
 
   end
@@ -126,6 +146,15 @@ function map:unload()
     end
     map.items = nil
     map.items = {}
+  end
+
+  if #map.npcs > 0 then
+    for _, npc in pairs(map.npcs) do
+      npc:destroy()
+
+    end
+    map.npcs = nil
+    map.npcs = {}
   end
 
 end

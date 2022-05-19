@@ -206,3 +206,11 @@ function player.inventory:add(item)
 
 
 end
+
+function player:useItem()
+  if player.equippedItem == "none" then
+
+  elseif player.equippedItem == "sword" then
+
+  end
+end
