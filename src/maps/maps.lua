@@ -1,68 +1,97 @@
 map = {}
---maps = {}
-
-
-map.id = 9999
-map.newId = 0
+map.id = 1
+map.newId = 1
 map.xSize = 3000
 map.ySize = 2000
 map.large = true
-
-function map.update(dt)
-  if map.newId ~= map.id then
-    -- switch map
-    if map.id == 0 then
-      mapstart.unload()
-    elseif map.id == 1 then
-      --player.collider:destroy()
-      map1.unload()
-      --player.collider = world:newCircleCollider(doors2[1].px,doors2[1].py,25)
-    elseif map.id == 2 then
-      map2.unload()
+map.walls = {}
+map.doors = {}
+gameMap = sti("src/maps/map1.lua")
+function map:load()
+  if gameMap.layers["doors"] then
+    for i, obj in pairs(gameMap.layers["doors"].objects) do
+      local door = world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
+      door:setCollisionClass("Door")
+      door:setType("static")
+      door.id = obj.properties["mapID"] + 0
+      table.insert(map.doors,door)
     end
-
-    if map.newId == 0 then
-      mapstart.load()
-      mapstart.update(dt)
-      map.xSize = mapstart.xSize
-      map.ySize = mapstart.ySize
-      map.large = mapstart.large
-    elseif map.newId == 1 then
-      map1.load()
-      map1.update(dt)
-      map.xSize = map1.xSize
-      map.ySize = map1.ySize
-      map.large = map1.large
-    elseif map.newId == 2 then
-      map2.load()
-      map2.update(dt)
-      map.xSize = map2.xSize
-      map.ySize = map2.ySize
-      map.large = map2.large
-
-    end
-
-    map.id = map.newId
-
-  else
-    if mapid == 0 then
-      mapstart.update(dt)
-    elseif map.id == 1 then
-      map1.update(dt)
-    elseif map.id == 2 then
-      map2.update(dt)
+  end
+  if gameMap.layers["walls"] then
+    for i, obj in pairs(gameMap.layers["walls"].objects) do
+      local wall = world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
+      wall:setCollisionClass("Wall")
+      wall:setType("static")
+      table.insert(map.walls,wall)
     end
   end
 end
 
+function map.update(dt)
+
+  if map.newId ~= map.id then
+
+    if map.newId == 1 then
+      map:unload()
+      gameMap = sti("src/maps/map1.lua")
+      map:load()
+      map.id = map.newId
+      player:changePos(450,500)
+    elseif map.newId == 2 then
+      map:unload()
+      gameMap = sti("src/maps/map2.lua")
+      map:load()
+      map.id = map.newId
+      player:changePos(450,550)
+    elseif map.newId == 3 then
+      if player.inventory.key then
+        map:unload()
+        player.inventory.key = false
+        gameMap = sti("src/maps/map3.lua")
+        map:load()
+        map.id = map.newId
+        player:changePos(0,0)
+      else
+        map.newId = map.id
+      end
+    end
+
+
+
+
+  end
+end
+
+
 function map.draw()
-  if map.id == 0 then
-    mapstart.draw()
-  elseif map.id == 1 then
-    map1.draw()
-  elseif map.id == 2 then
-    map2.draw()
+  --for _,l in ipairs(gameMap.layers) do
+  --  if l ~= "walls" then
+  --    gameMap:drawLayer(l)
+  --  end
+  --end
+  gameMap:drawLayer(gameMap.layers["base"])
+  gameMap:drawLayer(gameMap.layers["other"])
+  --gameMap:drawLayer(gameMap.layers["trees"])
+end
+
+function map:unload()
+  if #map.doors > 0 then
+    for _, door in pairs(map.doors) do
+      door:destroy()
+    end
+    map.doors = nil
+    map.doors = {}
   end
 
 
+  if #map.walls > 0 then
+    for _, wall in pairs(map.walls) do
+      wall:destroy()
+    end
+    map.walls = nil
+    map.walls = {}
+  end
+  --for _,d in ipairs(map.doors) do
+    --d:destroy
+  --end
 end

@@ -2,7 +2,7 @@ function requireAll()
 
   require("src/startup/collisionClasses")
   createCollisionClasses()
-
+  sti = require "libraries/sti"
   require("src/camera")
   require("src/dialogue")
   require("src/player")
@@ -11,10 +11,11 @@ function requireAll()
   require("src/enemies/enemy")
   require("src/enemies/glitch1")
   require("src/maps/maps")
+  require("src/maps/test")
   require("src/maps/StartScreen")
   require("src/maps/map1")
   require("src/maps/map2")
-  require("src/maps/map3")
+
   require("src/inventory")
   require("libraries.anim8.anim8")
   vector = require("libraries/hump/vector")

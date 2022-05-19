@@ -8,4 +8,5 @@ function createCollisionClasses()
     world:addCollisionClass('button', {ignores = {'Ignore'}})
     world:addCollisionClass('cow', {ignores = {'Ignore'}})
     world:addCollisionClass('glitch1', {ignores = {'Ignore'}})
+    world:addCollisionClass('error', {ignores = {'Ignore'}})
 end

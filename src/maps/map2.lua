@@ -1,54 +1,251 @@
-map2 = {}
-
-doors2 = {}
-map2.id = 2
-map2.large = false
-map2.xSize = 1400
-map2.ySize = 700
-map2.background = love.graphics.newImage('src/maps/images/mapid2.png')
-
-
-
-function map2.load()
-  map2.border = world:newRectangleCollider(0,0,map2.xSize,map2.ySize)
-  map2.border:setType('static')
-  map2.border:setCollisionClass('Ignore')
-
-
-  map2.barriers()
-  map2.interactions()
-end
-
-function map2.update(dt)
-
-
-
-end
-
-function map2.draw()
-  love.graphics.draw(map2.background, 0, 0)
-end
-
-function map2.unload()
-  map2.border:destroy()
-  for i = #doors2,1,-1 do
-    doors2[i]:destroy()
-    doors2[i] = nil
-  end
-end
-
-function map2.barriers()
-
-end
-
-function map2.interactions()
-  local door1 = world:newRectangleCollider(680,700,40,60)
-  door1:setType('static')
-  door1:setCollisionClass("Door")
-  door1:setObject(door2)
-  door1.enter = false
-  door1.id = 1
-  door1.px = 460
-  door1.py = 760 - 60/2
-  table.insert(doors2, door1)
-end
+return {
+  version = "1.5",
+  luaversion = "5.1",
+  tiledversion = "1.8.4",
+  orientation = "orthogonal",
+  renderorder = "right-down",
+  width = 15,
+  height = 10,
+  tilewidth = 64,
+  tileheight = 64,
+  nextlayerid = 5,
+  nextobjectid = 10,
+  properties = {},
+  tilesets = {
+    {
+      name = "tiless",
+      firstgid = 1,
+      tilewidth = 64,
+      tileheight = 64,
+      spacing = 0,
+      margin = 0,
+      columns = 18,
+      image = "../../sprites/tileset.png",
+      imagewidth = 1152,
+      imageheight = 768,
+      objectalignment = "unspecified",
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 64,
+        height = 64
+      },
+      properties = {},
+      wangsets = {},
+      tilecount = 216,
+      tiles = {}
+    }
+  },
+  layers = {
+    {
+      type = "tilelayer",
+      x = 0,
+      y = 0,
+      width = 15,
+      height = 10,
+      id = 1,
+      name = "base",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      encoding = "lua",
+      data = {
+        4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6,
+        22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24,
+        22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24,
+        22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24,
+        22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24,
+        22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24,
+        22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24,
+        22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24,
+        22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24,
+        40, 41, 41, 41, 41, 41, 41, 23, 23, 41, 41, 41, 41, 41, 42
+      }
+    },
+    {
+      type = "tilelayer",
+      x = 0,
+      y = 0,
+      width = 15,
+      height = 10,
+      id = 2,
+      name = "other",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      encoding = "lua",
+      data = {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 25, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 43, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 59, 0, 0, 59, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 95, 0, 0, 95, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 3,
+      name = "walls",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 1,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 128.15,
+          y = 126.952,
+          width = 124.557,
+          height = 190.428,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 2,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 383.251,
+          y = 470.681,
+          width = 63.476,
+          height = 102.999,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 3,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 576.075,
+          y = 471.878,
+          width = 58.6854,
+          height = 98.2082,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 4,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 0,
+          y = 1.19766,
+          width = 14.3719,
+          height = 637.156,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 5,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 11.9766,
+          y = 615.598,
+          width = 434.751,
+          height = 22.7556,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 6,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 578.47,
+          y = 615.598,
+          width = 382.054,
+          height = 21.5579,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 7,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 944.954,
+          y = -1.19766,
+          width = 16.7673,
+          height = 614.4,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 8,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 9.58129,
+          y = -1.19766,
+          width = 940.164,
+          height = 20.3602,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 4,
+      name = "doors",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 9,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 445.53,
+          y = 638.353,
+          width = 130.545,
+          height = 22.7556,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mapID"] = "1"
+          }
+        }
+      }
+    }
+  }
+}
