@@ -1,5 +1,5 @@
 map = {}
-map.id = -1
+map.id = 1
 map.newId = 1
 map.xSize = 3000
 map.ySize = 2000
@@ -8,7 +8,7 @@ map.walls = {}
 map.doors = {}
 map.items = {}
 map.npcs = {}
-gameMap = sti("src/maps/map1.lua")
+gameMap = sti("src/maps/testmap1.lua")
 
 function map:load()
   if gameMap.layers["doors"] then
@@ -98,13 +98,15 @@ end
 
 
 function map.draw()
-  --for _,l in ipairs(gameMap.layers) do
-  --  if l ~= "walls" then
-  --    gameMap:drawLayer(l)
-  --  end
-  --end
-  gameMap:drawLayer(gameMap.layers["base"])
-  gameMap:drawLayer(gameMap.layers["other"])
+  test.num = 0
+  for _,l in ipairs(gameMap.layers) do
+    if l.type == "tilelayer" then
+    
+     gameMap:drawLayer(gameMap.layers[l.name])
+    end
+  end
+
+
 
   if #map.items > 0 then
     for _, item in pairs(map.items) do
