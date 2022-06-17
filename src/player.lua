@@ -2,8 +2,8 @@
 
 player = {}
 sprites = {}
-player.x = 600
-player.y = 600
+player.x = 0
+player.y = 0
 player.dir = "down"
 player.rightWall = 600
 player.leftWall = 100
@@ -11,7 +11,7 @@ player.upWall = 100
 player.downWall = 400
 player.walking = false
 player.collider = {}
-player.collider = world:newBSGRectangleCollider(400,400,24,50,5)
+player.collider = world:newBSGRectangleCollider(0,0,24,50,5)
 player.collider:setMass(1)
 player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")

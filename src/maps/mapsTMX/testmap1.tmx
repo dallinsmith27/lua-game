@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="1" nextlayerid="15" nextobjectid="17">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="1" nextlayerid="15" nextobjectid="26">
+ <editorsettings>
+  <export target="../testmap1.lua" format="lua"/>
+ </editorsettings>
  <tileset firstgid="1" name="rpg 32x32" tilewidth="32" tileheight="32" tilecount="1064" columns="8">
   <image source="../../../sprites/Pipoya RPG Tileset 32x32/[Base]BaseChip_pipo.png" width="256" height="4256"/>
  </tileset>
@@ -1049,9 +1052,20 @@
   <object id="14" x="-800.667" y="-1088" width="65.3333" height="63.3333"/>
   <object id="15" x="-801.333" y="-992" width="34.6667" height="33.3333"/>
   <object id="16" x="-800.667" y="-1023.33" width="31.3333" height="31.3333"/>
+  <object id="17" x="-574.25" y="-664" width="61" height="50.25"/>
+  <object id="23" x="-160.5" y="-1343.5" width="31" height="29.5"/>
+  <object id="24" x="-351.5" y="-1296" width="32.5" height="76"/>
  </objectgroup>
  <objectgroup id="14" name="doors">
-  <object id="4" x="-766" y="-578" width="28" height="31"/>
-  <object id="5" x="323" y="-128" width="27" height="32"/>
+  <object id="4" x="-766" y="-578" width="28" height="31">
+   <properties>
+    <property name="mapID" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="5" x="323" y="-128" width="27" height="32">
+   <properties>
+    <property name="mapID" type="int" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -9,7 +9,7 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 15,
-  nextobjectid = 17,
+  nextobjectid = 26,
   properties = {},
   tilesets = {
     {
@@ -1619,6 +1619,45 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 17,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -574.25,
+          y = -664,
+          width = 61,
+          height = 50.25,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 23,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -160.5,
+          y = -1343.5,
+          width = 31,
+          height = 29.5,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 24,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -351.5,
+          y = -1296,
+          width = 32.5,
+          height = 76,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -1646,7 +1685,9 @@ return {
           height = 31,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["mapID"] = 2
+          }
         },
         {
           id = 5,
@@ -1659,7 +1700,9 @@ return {
           height = 32,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["mapID"] = 1
+          }
         }
       }
     }
