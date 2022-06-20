@@ -1,18 +1,12 @@
 Camera = require "libraries/hump/camera"
 --cam = Camera(0, 0, scale)
-cam = Camera(0, 0, 1.5)
+
+
+cam = Camera(0, 0, game.scale)
 
 function cam:update(dt)
     local camX = player.x
     local camY = player.y
-
-    -- This section prevents the camera from viewing outside the background
-    -- First, get width/height of the game window, divided by the game scale
-    --local w = love.graphics.getWidth() / scale
-    --local h = love.graphics.getHeight() / scale
-
-    -- Get width/height of background
-    --***NEEDS TO BE INTERFACED WITH MAP CLASS
 
 
   cam:lookAt(camX, camY)

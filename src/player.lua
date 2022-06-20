@@ -128,8 +128,10 @@ function player:draw()
 
 
 
-    local topx = cam.x - 60 + love.graphics.getWidth()/2
-    local topy = cam.y - love.graphics.getHeight()/2 + 10
+    local topx = ((cam.x - 60)*game.scale + love.graphics.getWidth()/2)/game.scale
+    local topy = (cam.y * game.scale - love.graphics.getHeight()/2 + 10)/game.scale
+
+    love.graphics.print( player.money, topx, topy+player.heartImage:getHeight(), 0, 5, 5)
 
     local drawn = 0
     local newHealth = player.prevHealth
