@@ -10,13 +10,20 @@ player.upWall = 100
 player.downWall = 400
 player.walking = false
 player.collider = {}
-player.collider = world:newBSGRectangleCollider(-100,-400,24,50,5)
+
+player.height = 50
+player.width = 20
+
+player.collider = world:newBSGRectangleCollider(-100,-400,player.width,player.height,5)
 player.x = player.collider:getX()
 player.y = player.collider:getY()
 player.collider:setMass(1)
 player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
 player.collider:setLinearDamping(1)
+
+
+
 player.hearts = 3
 player.prevHealth = 0
 player.health = 3
@@ -35,9 +42,8 @@ player.speed = 200
 player.animSpeed = 0.08
 sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")
 player.animations = {}
-player.height = 64
-player.width = 32
-player.grid = anim8.newGrid(player.width, player.height, sprites.walkSheet:getWidth(), sprites.walkSheet:getHeight())
+
+player.grid = anim8.newGrid(32, 64, sprites.walkSheet:getWidth(), sprites.walkSheet:getHeight())
 player.animations.walkDown = anim8.newAnimation(player.grid('1-9', 1), player.animSpeed)
 player.animations.walkLeft = anim8.newAnimation(player.grid('1-9', 2), player.animSpeed)
 player.animations.walkRight = anim8.newAnimation(player.grid('1-9', 3), player.animSpeed)
@@ -101,6 +107,7 @@ function player:update(dt)
 
 
         player.collider:setLinearVelocity(dirX * player.speed, dirY * player.speed)
+        
         if dirX == 0 and dirY == 0 then
             player.walking = false
             player.anim:gotoFrame(1)
@@ -122,8 +129,8 @@ function player:update(dt)
 end
 
 function player:draw()
-    local px = player.collider:getX() - player.width / 2
-    local py = player.collider:getY() - player.height / 2
+    local px = player.collider:getX() - 32 / 2
+    local py = player.collider:getY() - 64 / 2
     player.anim:draw(sprites.walkSheet, px, py)
 
 
@@ -205,11 +212,13 @@ end
 
 function player:changePos(x, y)
   player.collider:destroy()
-  player.collider = world:newBSGRectangleCollider(x,y,24,50,5)
+  player.collider = world:newBSGRectangleCollider(x,y,player.width,player.height,5)
   player.collider:setMass(1)
   player.collider:setFixedRotation(true)
   player.collider:setCollisionClass("Player")
   player.collider:setLinearDamping(1)
+
+
 
 end
 
