@@ -283,8 +283,9 @@ function Talkies.draw()
   -- local boxY = windowHeight-(boxH+currentDialog.padding)
 
   -- local boxX = cam.x - (love.graphics.getWidth() / 2) + 10
-  local boxX = (cam.x * game.scale - love.graphics.getWidth() / 2 + 10) / game.scale
-  local boxY = (cam.y * game.scale + (love.graphics.getHeight() / 2) - 300) / game.scale
+  local boxX = (cam.x * game.scale - love.graphics.getWidth() / 2 + currentDialog.padding) / game.scale
+  local boxY = (cam.y * game.scale + (love.graphics.getHeight() / 2) - (boxH + 2 * currentDialog.padding)) / game.scale
+  test.num = boxY
   -- local boxY = cam.y + (love.graphics.getHeight() / 2) - 300
   -- test.num = boxX
 
