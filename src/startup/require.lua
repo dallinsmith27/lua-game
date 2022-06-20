@@ -17,7 +17,7 @@ function requireAll()
   require("src/maps/map2")
   require("src/items/item")
   require("src/items/heart")
-
+  talkies = require("libraries/talkies/talkies")
   require("src/inventory")
   require("libraries.anim8.anim8")
   vector = require("libraries/hump/vector")

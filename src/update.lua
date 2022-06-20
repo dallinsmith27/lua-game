@@ -7,4 +7,5 @@ function updateAll(dt)
   cam:update(dt)
   world:update(dt)
   flux.update(deltatime)
+  talkies.update(dt)
 end

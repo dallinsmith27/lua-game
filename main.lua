@@ -8,19 +8,34 @@ game.startScreen = false
 game.buttonId = 0
 
 
+
+
 function love.load()
-    math.randomseed(os.time())
 
-    d1 = 0
-    d2 = 0
-    colliderToggle = false
 
-    require("src/startup/gameStart")
-    gameStart()
-    love.graphics.setDefaultFilter("nearest", "nearest")
-    love.graphics.setBackgroundColor(1, .9, .9)
-    map:load()
-    --createNewSave()
+  math.randomseed(os.time())
+
+  d1 = 0
+  d2 = 0
+  colliderToggle = false
+
+  require("src/startup/gameStart")
+  gameStart()
+  love.graphics.setDefaultFilter("nearest", "nearest")
+  love.graphics.setBackgroundColor(1, .9, .9)
+  map:load()
+  --createNewSave()
+
+  talkies.font = love.graphics.newFont("libraries/talkies/example/assets/fonts/Pixel UniCode.ttf", 32)
+  talkies.font:setFallbacks(love.graphics.newFont("libraries/talkies/example/assets/fonts/JPfallback.ttf", 32)) -- Add font fallbacks for Japanese characters
+
+  -- Audio from bfxr (https://www.bfxr.net/)
+  talkies.talkSound = love.audio.newSource("libraries/talkies/example/assets/sfx/talk.wav", "static")
+  talkies.optionOnSelectSound = love.audio.newSource("libraries/talkies/example/assets/sfx/optionSelect.wav", "static")
+  talkies.optionSwitchSound = love.audio.newSource("libraries/talkies/example/assets/sfx/optionSwitch.wav", "static")
+
+
+
 
 end
 
@@ -100,6 +115,20 @@ function love.keypressed(key)
   end
     --enter all keypress if statements...
     -- this is where the game controls are defined.
+
+  if love.keyboard.isDown("t") then
+    talkies.say(
+      "Tutorial",
+      "Typing sound is aligned with the text speed...",
+      { textSpeed = "slow" }
+    )
+  end
+
+  if key == "space" then talkies.onAction()
+    elseif key == "up" then talkies.prevOption()
+    elseif key == "down" then talkies.nextOption()
+    end
+
 end
 
 function love.mousepressed(x, y, b, isTouch)

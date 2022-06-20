@@ -6,4 +6,5 @@ function drawAll()
   end
   world:draw()
   inventory:draw()
+  talkies.draw()
 end
