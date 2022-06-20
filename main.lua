@@ -6,6 +6,7 @@ test.string = "none"
 game = {}
 game.startScreen = false
 game.buttonId = 0
+game.scale = 1.5
 
 
 
