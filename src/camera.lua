@@ -1,6 +1,6 @@
 Camera = require "libraries/hump/camera"
 --cam = Camera(0, 0, scale)
-cam = Camera(0, 0, 1)
+cam = Camera(0, 0, 1.5)
 
 function cam:update(dt)
     local camX = player.x
@@ -13,7 +13,7 @@ function cam:update(dt)
 
     -- Get width/height of background
     --***NEEDS TO BE INTERFACED WITH MAP CLASS
-    
+
 
   cam:lookAt(camX, camY)
 

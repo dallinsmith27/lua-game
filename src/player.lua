@@ -2,8 +2,7 @@
 
 player = {}
 sprites = {}
-player.x = 0
-player.y = 0
+
 player.dir = "down"
 player.rightWall = 600
 player.leftWall = 100
@@ -11,7 +10,9 @@ player.upWall = 100
 player.downWall = 400
 player.walking = false
 player.collider = {}
-player.collider = world:newBSGRectangleCollider(0,0,24,50,5)
+player.collider = world:newBSGRectangleCollider(-100,-400,24,50,5)
+player.x = player.collider:getX()
+player.y = player.collider:getY()
 player.collider:setMass(1)
 player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
@@ -30,7 +31,7 @@ player.quarterHeartImage = love.graphics.newImage("sprites/1-4Heart.png")
 player.threeQuarterHeartImage = love.graphics.newImage("sprites/3-4Heart.png")
 player.emptyHeartImage = love.graphics.newImage("sprites/emptyHeart.png")
 
-player.speed = 250
+player.speed = 200
 player.animSpeed = 0.08
 sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")
 player.animations = {}
@@ -46,7 +47,7 @@ player.inventory = {}
 player.inventory.sword = false
 player.inventory.key = false
 player.equippedItem = "none"
-
+player.companion = true
 
 -- 0 = Normal gameplay
 -- 10 = Damage stun
@@ -54,10 +55,13 @@ player.equippedItem = "none"
 player.state = 0
 --player.sprite = love.graphics.newImage('sprites/')
 
+
 function player:update(dt)
 
-  player.x = player.collider:getX() - player.width / 2
-  player.y = player.collider:getY() - player.height / 2
+  player.x = player.collider:getX()
+  player.y = player.collider:getY()
+
+  --test.num = player.x
 
   if player.collider:enter("item") then
     local collision_data = player.collider:getEnterCollisionData('item')
@@ -121,6 +125,7 @@ function player:draw()
     local px = player.collider:getX() - player.width / 2
     local py = player.collider:getY() - player.height / 2
     player.anim:draw(sprites.walkSheet, px, py)
+
 
 
     local topx = cam.x - 60 + love.graphics.getWidth()/2

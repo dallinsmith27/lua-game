@@ -1,5 +1,5 @@
 map = {}
-map.id = 1
+map.id = -1
 map.newId = 1
 map.xSize = 3000
 map.ySize = 2000
@@ -22,10 +22,29 @@ function map:load()
   end
   if gameMap.layers["walls"] then
     for i, obj in pairs(gameMap.layers["walls"].objects) do
-      local wall = world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
-      wall:setCollisionClass("Wall")
-      wall:setType("static")
-      table.insert(map.walls,wall)
+      if obj.shape == "rectangle" then
+        local wall = world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
+        wall:setCollisionClass("Wall")
+        wall:setType("static")
+        table.insert(map.walls,wall)
+      elseif obj.shape == "ellipse" then
+        local wall = world:newCircleCollider(obj.x + obj.width/2,obj.y+obj.height/2,obj.width/2)
+        wall:setCollisionClass("Wall")
+        wall:setType("static")
+        table.insert(map.walls,wall)
+      elseif obj.shape == "polygon" then
+        vert = {}
+        for _,v in pairs(obj.polygon) do
+          table.insert(vert, v.x)
+          table.insert(vert, v.y)
+        end
+        local wall = world:newPolygonCollider(vert)
+        --local wall = world:newPolygonCollider(obj.polygon[0].x,obj.polygon[0].y,obj.polygon[1].x,obj.polygon[1].y,obj.polygon[2].x,obj.polygon[2].y)
+        wall:setCollisionClass("Wall")
+        wall:setType("static")
+        table.insert(map.walls,wall)
+
+      end
     end
   end
 
@@ -40,15 +59,15 @@ function map.update(dt)
 
     if map.newId == 1 then
       map:unload()
-      gameMap = sti("src/maps/map1.lua")
+      gameMap = sti("src/maps/testmap1.lua")
       map:load()
       map.id = map.newId
-      player:changePos(520,575)
-      spawnItem(600,600,"heart",map.items)
-      spawnItem(600,700,"addHeart",map.items)
-      spawnItem(600,780,"bronzeCoin",map.items)
+      player:changePos(0,0)
+      spawnItem(50,50,"heart",map.items)
+      spawnItem(60,70,"addHeart",map.items)
+      spawnItem(50,78,"bronzeCoin",map.items)
 
-      spawnNpc(1000,1000,"cow",map.npcs)
+      spawnNpc(100,100,"cow",map.npcs)
     elseif map.newId == 2 then
       map:unload()
       gameMap = sti("src/maps/map2.lua")
@@ -66,7 +85,11 @@ function map.update(dt)
       else
         map.newId = map.id
       end
+
     end
+  if player.companion then
+    spawnNpc(0 ,0 ,"companion",map.npcs)
+  end
 
 
 
@@ -89,7 +112,7 @@ function map.update(dt)
         npc:destroy()
         table.remove(map.npcs,n)
       else
-        npc:update()
+        npc:update(love.timer.getDelta( ))
       end
 
     end
@@ -98,10 +121,10 @@ end
 
 
 function map.draw()
-  test.num = 0
+
   for _,l in ipairs(gameMap.layers) do
     if l.type == "tilelayer" then
-    
+
      gameMap:drawLayer(gameMap.layers[l.name])
     end
   end
