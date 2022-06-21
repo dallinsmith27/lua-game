@@ -27,6 +27,7 @@ local function companionInit(companion,x,y)
   companion.anim = companion.animations.walk
   companion.tooFarTalk = true
   companion.tooFarDist = 200
+  
   function companion:load()
 
 

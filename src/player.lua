@@ -2,7 +2,7 @@
 
 player = {}
 sprites = {}
-
+player.move = false
 player.dir = "down"
 player.rightWall = 600
 player.leftWall = 100
@@ -58,9 +58,9 @@ player.companion = true
 -- 0 = Normal gameplay
 -- 10 = Damage stun
 -- 12 = Transition
-player.state = 0
+player.state = 9999
 --player.sprite = love.graphics.newImage('sprites/')
-
+player.name = "player"
 
 function player:update(dt)
 
@@ -107,7 +107,7 @@ function player:update(dt)
 
 
         player.collider:setLinearVelocity(dirX * player.speed, dirY * player.speed)
-        
+
         if dirX == 0 and dirY == 0 then
             player.walking = false
             player.anim:gotoFrame(1)
@@ -123,6 +123,17 @@ function player:update(dt)
     if player.stunTimer <=0 then
       player.state = 0
     end
+  elseif player.state == 9999 then
+    if love.keyboard.isDown("w") and love.keyboard.isDown("a") and love.keyboard.isDown("s") and love.keyboard.isDown("d") then
+      if game.phase < 3 then
+        game.phase = 3
+        player.state = 0
+        phase.continue = true
+        talkies.clearMessages()
+      end
+
+    end
+    --player cannot move
   end
 
 

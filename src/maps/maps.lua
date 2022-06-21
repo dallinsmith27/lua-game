@@ -1,6 +1,6 @@
 map = {}
 map.id = -1
-map.newId = 1
+map.newId = 0
 map.xSize = 3000
 map.ySize = 2000
 map.large = true
@@ -56,8 +56,17 @@ end
 function map.update(dt)
 
   if map.newId ~= map.id then
+    if map.newId == 0 then
+      map:unload()
+      gameMap = sti("src/maps/Start0.lua")
+      map:load()
+      map.id = map.newId
+      player:changePos(0,0)
 
-    if map.newId == 1 then
+      spawnItem(0,0,"addHeart",map.items)
+
+
+    elseif map.newId == 1 then
       map:unload()
       gameMap = sti("src/maps/testmap1.lua")
       map:load()

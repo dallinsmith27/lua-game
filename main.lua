@@ -7,6 +7,7 @@ game = {}
 game.startScreen = false
 game.buttonId = 0
 game.scale = 1.5
+game.phase = 0
 
 
 
@@ -67,6 +68,9 @@ function love.keypressed(key)
   if love.keyboard.isDown("p") then
     player.inventory.sword = true
     player.inventory.key = true
+  end
+  if love.keyboard.isDown("0") then
+    map.newId = 1
   end
 
   if love.keyboard.isDown("e") then
