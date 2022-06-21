@@ -38,6 +38,9 @@ function phase:update(dt)
 
    else
      talkies.say("Companionname", "Walk around with 'W', 'A', 'S', and 'D', then interact with the object. To interact with an object press 'Space' while facing the object. ", { talkSound=blop,typedNotTalked=false,textSpeed="slow"})
+    game.phase = game.phase +1
+
+
   end
  elseif game.phase == 4 then
 
@@ -59,34 +62,34 @@ end
 function phase:dontHelp()
 
   if not phase.continue then
-    talkies.say("Companionname","I promise to help you hack into the game and gain back player controls?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","I promise to help you hack into the game and gain back player controls?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","You wont be able to do this without me?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","You wont be able to do this without me?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
+    talkies.say("Companionname","Im just gonna keep asking forever?? whadda ya say??",{options={{"Help him?", function() phase:cont() game.phase = 2 end}, {"Dont help", function() phase:dontHelp() end}}})
   end
   if not phase.continue then
-    talkies.say("Companionname","Fine you dont have to help me but ill help you",{options={{"continue", function() phase:cont() end}}})
+    talkies.say("Companionname","Fine you dont have to help me but ill help you",{options={{"continue", function() phase:cont() game.phase = 2 end} }})
 
   end
 end
