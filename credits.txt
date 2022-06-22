@@ -1,0 +1,11 @@
+CREDITS
+
+GAME LIBRARIES
+anim8
+flux
+hump
+Tiled
+Talkies
+
+ART
+--
