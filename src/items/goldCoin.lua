@@ -5,8 +5,8 @@ local function goldCoinInit(goldCoin,x,y)
   goldCoin.dead = false
   goldCoin.name = "goldCoin"
 
-  goldCoin.animSpeed = .14
-  --spins slightly faster then the bronze coin's .15
+  goldCoin.animSpeed = .13
+  --spins slightly faster than the silverCoins's .14 and the bronzeCoin's .15
   goldCoin.walkSheet = love.graphics.newImage("sprites/goldCoin.png")
   goldCoin.animations = {}
   goldCoin.height = 30

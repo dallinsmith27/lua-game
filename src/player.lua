@@ -250,6 +250,11 @@ function player.inventory:add(item)
     if player.money > 999 then
       player.money = 999
     end
+  elseif item == "silverCoin" then
+    player.money = player.money + 25
+    if player.money > 999 then
+      player.money = 999
+    end
   elseif item == "goldCoin" then
     player.money = player.money + 100
     if player.money > 999 then

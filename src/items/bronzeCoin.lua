@@ -6,6 +6,7 @@ local function bronzeCoinInit(bronzeCoin,x,y)
   bronzeCoin.name = "bronzeCoin"
 
   bronzeCoin.animSpeed = .15
+  --spins slower than the goldCoin's .13 and the silverCoin's .14
   bronzeCoin.walkSheet = love.graphics.newImage("sprites/bronzeCoin.png")
   bronzeCoin.animations = {}
   bronzeCoin.height = 30
