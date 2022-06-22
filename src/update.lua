@@ -6,6 +6,7 @@ function updateAll(dt)
   map:update(dt)
   cam:update(dt)
   world:update(dt)
-  flux.update(deltatime)
+  flux.update(dt)
   talkies.update(dt)
+  phase:update(dt)
 end

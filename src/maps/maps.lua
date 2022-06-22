@@ -1,6 +1,6 @@
 map = {}
 map.id = -1
-map.newId = 1
+map.newId = 0
 map.xSize = 3000
 map.ySize = 2000
 map.large = true
@@ -56,18 +56,40 @@ end
 function map.update(dt)
 
   if map.newId ~= map.id then
+    if map.newId == 0 then
+      map:unload()
+      gameMap = sti("src/maps/Start0.lua")
+      map:load()
+      map.id = map.newId
+      player:changePos(0,0)
 
-    if map.newId == 1 then
+      spawnItem(0,0,"addHeart",map.items)
+
+
+    elseif map.newId == 1 then
       map:unload()
       gameMap = sti("src/maps/testmap1.lua")
       map:load()
       map.id = map.newId
       player:changePos(0,0)
-      spawnItem(50,50,"heart",map.items)
-      spawnItem(60,70,"addHeart",map.items)
-      spawnItem(50,78,"bronzeCoin",map.items)
+      spawnItem(0,50,"heart",map.items)
+      spawnItem(60,50,"addHeart",map.items)
+      spawnItem(-30,62,"bronzeCoin",map.items)
+      spawnItem(-30,92,"silverCoin",map.items)
+      spawnItem(-60,92,"silverCoin",map.items)
+      spawnItem(-60,62,"goldCoin",map.items)
+      spawnItem(-90,62,"goldCoin",map.items)
+      spawnItem(-120,62,"goldCoin",map.items)
+      spawnItem(-150,62,"goldCoin",map.items)
+      spawnItem(-180,62,"goldCoin",map.items)
+      spawnItem(-210,62,"goldCoin",map.items)
+      spawnItem(-240,62,"goldCoin",map.items)
+      spawnItem(-270,62,"goldCoin",map.items)
+      spawnItem(-300,62,"goldCoin",map.items)
+      spawnItem(-330,62,"goldCoin",map.items)
 
-      spawnNpc(100,100,"cow",map.npcs)
+
+      spawnNpc(125,100,"cow",map.npcs)
     elseif map.newId == 2 then
       map:unload()
       gameMap = sti("src/maps/map2.lua")

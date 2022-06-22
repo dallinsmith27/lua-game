@@ -2,7 +2,7 @@
 
 player = {}
 sprites = {}
-
+player.move = false
 player.dir = "down"
 player.rightWall = 600
 player.leftWall = 100
@@ -10,13 +10,20 @@ player.upWall = 100
 player.downWall = 400
 player.walking = false
 player.collider = {}
-player.collider = world:newBSGRectangleCollider(-100,-400,24,50,5)
+
+player.height = 50
+player.width = 20
+
+player.collider = world:newBSGRectangleCollider(-100,-400,player.width,player.height,5)
 player.x = player.collider:getX()
 player.y = player.collider:getY()
 player.collider:setMass(1)
 player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
 player.collider:setLinearDamping(1)
+
+
+
 player.hearts = 3
 player.prevHealth = 0
 player.health = 3
@@ -35,9 +42,8 @@ player.speed = 200
 player.animSpeed = 0.08
 sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")
 player.animations = {}
-player.height = 64
-player.width = 32
-player.grid = anim8.newGrid(player.width, player.height, sprites.walkSheet:getWidth(), sprites.walkSheet:getHeight())
+
+player.grid = anim8.newGrid(32, 64, sprites.walkSheet:getWidth(), sprites.walkSheet:getHeight())
 player.animations.walkDown = anim8.newAnimation(player.grid('1-9', 1), player.animSpeed)
 player.animations.walkLeft = anim8.newAnimation(player.grid('1-9', 2), player.animSpeed)
 player.animations.walkRight = anim8.newAnimation(player.grid('1-9', 3), player.animSpeed)
@@ -52,9 +58,9 @@ player.companion = true
 -- 0 = Normal gameplay
 -- 10 = Damage stun
 -- 12 = Transition
-player.state = 0
+player.state = 9999
 --player.sprite = love.graphics.newImage('sprites/')
-
+player.name = "player"
 
 function player:update(dt)
 
@@ -101,6 +107,7 @@ function player:update(dt)
 
 
         player.collider:setLinearVelocity(dirX * player.speed, dirY * player.speed)
+
         if dirX == 0 and dirY == 0 then
             player.walking = false
             player.anim:gotoFrame(1)
@@ -116,14 +123,25 @@ function player:update(dt)
     if player.stunTimer <=0 then
       player.state = 0
     end
+  elseif player.state == 9999 then
+    if love.keyboard.isDown("w") and love.keyboard.isDown("a") and love.keyboard.isDown("s") and love.keyboard.isDown("d") then
+      if game.phase < 3 then
+        game.phase = 3
+        player.state = 0
+        phase.continue = true
+        talkies.clearMessages()
+      end
+
+    end
+    --player cannot move
   end
 
 
 end
 
 function player:draw()
-    local px = player.collider:getX() - player.width / 2
-    local py = player.collider:getY() - player.height / 2
+    local px = player.collider:getX() - 32 / 2
+    local py = player.collider:getY() - 64 / 2
     player.anim:draw(sprites.walkSheet, px, py)
 
 
@@ -131,7 +149,7 @@ function player:draw()
     local topx = ((cam.x - 60)*game.scale + love.graphics.getWidth()/2)/game.scale
     local topy = (cam.y * game.scale - love.graphics.getHeight()/2 + 10)/game.scale
 
-    love.graphics.print( player.money, topx, topy+player.heartImage:getHeight(), 0, 5, 5)
+    love.graphics.print( player.money, topx-120, topy+player.heartImage:getHeight(), 0, 5, 5)
 
     local drawn = 0
     local newHealth = player.prevHealth
@@ -205,11 +223,13 @@ end
 
 function player:changePos(x, y)
   player.collider:destroy()
-  player.collider = world:newBSGRectangleCollider(x,y,24,50,5)
+  player.collider = world:newBSGRectangleCollider(x,y,player.width,player.height,5)
   player.collider:setMass(1)
   player.collider:setFixedRotation(true)
   player.collider:setCollisionClass("Player")
   player.collider:setLinearDamping(1)
+
+
 
 end
 
@@ -227,7 +247,19 @@ function player.inventory:add(item)
     player.health = player.health - 4
   elseif item == "bronzeCoin" then
     player.money = player.money + 1
-
+    if player.money > 999 then
+      player.money = 999
+    end
+  elseif item == "silverCoin" then
+    player.money = player.money + 25
+    if player.money > 999 then
+      player.money = 999
+    end
+  elseif item == "goldCoin" then
+    player.money = player.money + 100
+    if player.money > 999 then
+      player.money = 999
+    end
   end
 
 

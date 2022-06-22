@@ -27,6 +27,7 @@ local function companionInit(companion,x,y)
   companion.anim = companion.animations.walk
   companion.tooFarTalk = true
   companion.tooFarDist = 200
+  
   function companion:load()
 
 
@@ -44,16 +45,25 @@ local function companionInit(companion,x,y)
     local dir = vector(player.x - px,player.y - py)
     local d = dir:len()
 
-    if d >= companion.tooFarDist and companion.tooFarTalk then
-      companion.tooFarTalk = false
+    if d >= companion.tooFarDist and companion.timer <= 0 then
+      companion.timer = 30
+      talkies.say("Glitch", "Hey Wait for me!! >:( ", {
+        image=companion.walksheet,
+        talkSound=blop,
+        typedNotTalked=false,
+        textSpeed="slow"
+        })
+
 
       -- hey slow down for me
     else
-      
+      test.num = companion.timer
+      companion.timer = companion.timer - dt
     end
+
     if d >= companion.chaseDistance then
 
-      companion.tooFarTalk = true
+
       dir = dir:normalized() * companion.speed
       companion:setLinearVelocity(dir:unpack())
     else

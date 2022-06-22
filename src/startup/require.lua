@@ -26,4 +26,5 @@ function requireAll()
   flux = require "libraries/flux/flux"
   require("src/update")
   require("src/draw")
+  require("src/phase")
 end

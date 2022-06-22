@@ -7,6 +7,7 @@ game = {}
 game.startScreen = false
 game.buttonId = 0
 game.scale = 1.5
+game.phase = 0
 
 
 
@@ -68,6 +69,44 @@ function love.keypressed(key)
     player.inventory.sword = true
     player.inventory.key = true
   end
+  --below keybind sends to the start map which begins tutorial
+  if love.keyboard.isDown("m") and love.keyboard.isDown("0") then
+    map.newId = 0
+  end
+  --sends to farm/cemetery map
+  if love.keyboard.isDown("m") and love.keyboard.isDown("1") then
+    map.newId = 1
+  end
+  --sends to interior of house on farm/cemetery map
+  if love.keyboard.isDown("m") and love.keyboard.isDown("2") then
+    map.newId = 2
+  end
+  --doesn't change where the player is, but seems to spawn in another glitch character and restart the timer.
+  if love.keyboard.isDown("m") and love.keyboard.isDown("3") then
+    map.newId = 3
+  end
+  -- 4-9 do not seem to change the map, but stop the timer at 5 and spawn in a glitch then continually spawn in glitches.
+  if love.keyboard.isDown("m") and love.keyboard.isDown("4") then
+    map.newId = 4
+  end
+  if love.keyboard.isDown("m") and love.keyboard.isDown("5") then
+    map.newId = 5
+  end
+  if love.keyboard.isDown("m") and love.keyboard.isDown("6") then
+    map.newId = 6
+  end
+  if love.keyboard.isDown("m") and love.keyboard.isDown("7") then
+    map.newId = 7
+  end
+  if love.keyboard.isDown("m") and love.keyboard.isDown("8") then
+    map.newId = 8
+  end
+  if love.keyboard.isDown("m") and love.keyboard.isDown("9") then
+    map.newId = 9
+  end
+
+
+
 
   if love.keyboard.isDown("e") then
     if inventory.isOpen then
