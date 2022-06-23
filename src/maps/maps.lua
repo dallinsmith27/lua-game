@@ -8,6 +8,7 @@ map.walls = {}
 map.doors = {}
 map.items = {}
 map.npcs = {}
+map.enemies = {}
 gameMap = sti("src/maps/testmap1.lua")
 
 function map:load()
@@ -128,6 +129,16 @@ function map.update(dt)
       end
     end
   end
+  if #map.enemies > 0 then
+    for n, enemy in pairs(map.enemies) do
+      if enemy.dead then
+        enemy:destroy()
+        table.remove(map.enemy,n)
+      else
+        enemy:update()
+      end
+    end
+  end
   if #map.npcs > 0 then
     for n, npc in pairs(map.npcs) do
       if npc.dead then
@@ -163,6 +174,13 @@ function map.draw()
   if #map.npcs > 0 then
     for _, npc in pairs(map.npcs) do
       npc:draw()
+    end
+
+  end
+
+  if #map.enemies > 0 then
+    for _, enemy in pairs(map.enemies) do
+      enemy:draw()
     end
 
   end
@@ -204,6 +222,15 @@ function map:unload()
     end
     map.npcs = nil
     map.npcs = {}
+  end
+
+  if #map.enemies > 0 then
+    for _, enemy in pairs(map.enemies) do
+      enemy:destroy()
+
+    end
+    map.enemies = nil
+    map.enemies = {}
   end
 
 end

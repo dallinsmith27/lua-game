@@ -272,3 +272,7 @@ function player:useItem()
 
   end
 end
+
+function player:invertCompanion()
+  player.companion = not player.companion
+end

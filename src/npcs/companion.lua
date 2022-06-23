@@ -51,13 +51,13 @@ local function companionInit(companion,x,y)
         image=companion.walksheet,
         talkSound=blop,
         typedNotTalked=false,
-        textSpeed="slow"
+        textSpeed="medium"
         })
 
 
-      -- hey slow down for me
+      -- hey medium down for me
     else
-      
+
       companion.timer = companion.timer - dt
     end
 
@@ -74,9 +74,11 @@ local function companionInit(companion,x,y)
   end
 
   function companion:draw()
-    local px = companion:getX() - companion.width / 2
-    local py = companion:getY() - companion.height / 2
-    companion.anim:draw(companion.walkSheet, px, py)
+    if player.companion then
+      local px = companion:getX() - companion.width / 2
+      local py = companion:getY() - companion.height / 2
+      companion.anim:draw(companion.walkSheet, px, py)
+    end
 
   end
 

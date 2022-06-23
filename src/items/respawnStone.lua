@@ -9,7 +9,7 @@ local function respawnStoneInit(respawnStone,x,y)
   respawnStone.beginningStone = 0
 
 
-  --spins slower than the goldCoin's .13 and the silverCoin's .14
+  --spins mediumer than the goldCoin's .13 and the silverCoin's .14
   respawnStone.image = love.graphics.newImage("sprites/respawnStone.png")
   respawnStone.glowImage = love.graphics.newImage("sprites/respawnStoneGlow.png")
 
@@ -38,9 +38,12 @@ local function respawnStoneInit(respawnStone,x,y)
           respawnStone.glow = true
           phase.num = phase.num + 1
           if phase.num == 1 then
-            talkies.say("Companionname", "Perfect, Only one more to go!!", { talkSound=blop,typedNotTalked=false,textSpeed="slow"})
+
+            talkies.say("Companionname", "Perfect, Only one more to go!!", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
           elseif phase.num == 2 then
-            talkies.say("Companionname", "Perfect that should do it. I'm transferring us to the game now.", { talkSound=blop,typedNotTalked=false,textSpeed="slow"})
+            talkies.say("Companionname", "The game code identifies those as Respawn Stones. When you interacted with them it alowed me to see their code for a brief second as they were queued in the games processor. From there I tied your respawn point into the game. simple", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+            talkies.say("Companionname", "You should be able to respawn there now. Thanks for all your help... \n ", {options={{"goobye >:)", function() player:invertCompanion() end}}, talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+
             game.phase = game.phase+1
           end
         end
