@@ -172,6 +172,70 @@ function Talkies.say(title, messages, config)
     onstart       = config.onstart or function(dialog) end,
     onmessage     = config.onmessage or function(dialog, left) end,
     oncomplete    = config.oncomplete or function(dialog) end,
+    isBubble      = false,
+
+    -- theme
+    indicatorCharacter     = config.indicatorCharacter or Talkies.indicatorCharacter,
+    optionCharacter        = config.optionCharacter or Talkies.optionCharacter,
+    padding                = config.padding or Talkies.padding,
+    rounding               = config.rounding or Talkies.rounding,
+    thickness              = config.thickness or Talkies.thickness,
+    talkSound              = config.talkSound or Talkies.talkSound,
+    optionSwitchSound      = config.optionSwitchSound or Talkies.optionSwitchSound,
+    inlineOptions          = config.inlineOptions or Talkies.inlineOptions,
+    font                   = font,
+    fontHeight             = font:getHeight(" "),
+    typedNotTalked         = config.typedNotTalked == nil and Talkies.typedNotTalked or config.typedNotTalked,
+    pitchValues            = config.pitchValues or Talkies.pitchValues,
+
+    optionIndex   = 1,
+
+    showOptions = function(dialog) return dialog.messages:len() == 1 and type(dialog.options) == "table" end,
+    isShown     = function(dialog) return Talkies.dialogs:peek() == dialog end
+  }
+
+  newDialog.messageBackgroundColor = config.messageBackgroundColor or Talkies.messageBackgroundColor
+  newDialog.titleBackgroundColor = config.titleBackgroundColor or Talkies.titleBackgroundColor or newDialog.messageBackgroundColor
+
+  newDialog.messageColor = config.messageColor or Talkies.messageColor
+  newDialog.titleColor = config.titleColor or Talkies.titleColor or newDialog.messageColor
+
+  newDialog.messageBorderColor = config.messageBorderColor or Talkies.messageBorderColor or newDialog.messageBackgroundColor
+  newDialog.titleBorderColor = config.titleBorderColor or Talkies.titleBorderColor or newDialog.messageBorderColor
+
+  Talkies.dialogs:push(newDialog)
+  if Talkies.dialogs:len() == 1 then
+    Talkies.dialogs:peek():onstart()
+  end
+
+  return newDialog
+end
+
+function Talkies.sayBubble(title, messages, collider, config)
+  config = config or {}
+  if type(messages) ~= "table" then
+    messages = { messages }
+  end
+
+  msgFifo = Fifo.new()
+
+  for i=1, #messages do
+    msgFifo:push(Typer.new(messages[i], config.textSpeed or Talkies.textSpeed))
+  end
+
+  local font = config.font or Talkies.font
+
+  -- Insert the Talkies.new into its own instance (table)
+  local newDialog = {
+    title         = title or "",
+    messages      = msgFifo,
+    image         = config.image,
+    options       = config.options,
+    onstart       = config.onstart or function(dialog) end,
+    onmessage     = config.onmessage or function(dialog, left) end,
+    oncomplete    = config.oncomplete or function(dialog) end,
+    collider      = collider,
+    isBubble      = true,
 
     -- theme
     indicatorCharacter     = config.indicatorCharacter or Talkies.indicatorCharacter,
@@ -283,6 +347,14 @@ function Talkies.draw()
   local boxX = (cam.x * game.scale - love.graphics.getWidth() / 2 + currentDialog.padding) / game.scale
   local boxY = (cam.y * game.scale + (love.graphics.getHeight() / 2)) / game.scale - (boxH + currentDialog.padding)
 
+  if currentDialog.isBubble == true then
+    boxW = (windowWidth-(2*currentDialog.padding)) / (game.scale * 3)
+    boxH = currentDialog.font:getHeight()
+
+    boxX = currentDialog.collider:getX() - (boxW / 2)
+    boxY = currentDialog.collider:getY() + currentDialog.padding
+  end
+
   -- image
   local imgX, imgY, imgW, imgScale = boxX+currentDialog.padding, boxY+currentDialog.padding, 0, 0
   if currentDialog.image ~= nil then
@@ -292,24 +364,26 @@ function Talkies.draw()
 
   -- title box
   local textX, textY = imgX + imgW + currentDialog.padding, boxY + 4
+  if currentDialog.isBubble == false then
 
-  love.graphics.setFont(currentDialog.font)
+    love.graphics.setFont(currentDialog.font)
 
-  if currentDialog.title ~= "" then
-    local titleBoxW = currentDialog.font:getWidth(currentDialog.title)+(2*currentDialog.padding)
-    local titleBoxH = currentDialog.fontHeight+currentDialog.padding
-    local titleBoxY = boxY-titleBoxH-(currentDialog.padding/2)
-    local titleX, titleY = boxX + currentDialog.padding, titleBoxY + 2
+    if currentDialog.title ~= "" then
+      local titleBoxW = currentDialog.font:getWidth(currentDialog.title)+(2*currentDialog.padding)
+      local titleBoxH = currentDialog.fontHeight+currentDialog.padding
+      local titleBoxY = boxY-titleBoxH-(currentDialog.padding/2)
+      local titleX, titleY = boxX + currentDialog.padding, titleBoxY + 2
 
-    -- Message title
-    love.graphics.setColor(currentDialog.titleBackgroundColor)
-    love.graphics.rectangle("fill", boxX, titleBoxY, titleBoxW, titleBoxH, currentDialog.rounding, currentDialog.rounding)
-    if currentDialog.thickness > 0 then
-      love.graphics.setColor(currentDialog.titleBorderColor)
-      love.graphics.rectangle("line", boxX, titleBoxY, titleBoxW, titleBoxH, currentDialog.rounding, currentDialog.rounding)
+      -- Message title
+      love.graphics.setColor(currentDialog.titleBackgroundColor)
+      love.graphics.rectangle("fill", boxX, titleBoxY, titleBoxW, titleBoxH, currentDialog.rounding, currentDialog.rounding)
+      if currentDialog.thickness > 0 then
+        love.graphics.setColor(currentDialog.titleBorderColor)
+        love.graphics.rectangle("line", boxX, titleBoxY, titleBoxW, titleBoxH, currentDialog.rounding, currentDialog.rounding)
+      end
+      love.graphics.setColor(currentDialog.titleColor)
+      love.graphics.print(currentDialog.title, titleX, titleY)
     end
-    love.graphics.setColor(currentDialog.titleColor)
-    love.graphics.print(currentDialog.title, titleX, titleY)
   end
 
   -- Main message box

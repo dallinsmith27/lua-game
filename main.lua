@@ -156,6 +156,11 @@ function love.keypressed(key)
     --enter all keypress if statements...
     -- this is where the game controls are defined.
 
+  if key == 'y' then
+    player.state = 0
+    talkies.clearMessages()
+  end
+
   if love.keyboard.isDown("t") then
     talkies.say(
       "Tutorial",

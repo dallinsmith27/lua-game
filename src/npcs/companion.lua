@@ -47,17 +47,18 @@ local function companionInit(companion,x,y)
 
     if d >= companion.tooFarDist and companion.timer <= 0 then
       companion.timer = 30
-      talkies.say("Glitch", "Hey Wait for me!! >:( ", {
-        image=companion.walksheet,
-        talkSound=blop,
-        typedNotTalked=false,
-        textSpeed="slow"
-        })
+      talkies.sayBubble("Glitch", "Hey Wait for me!! >:(", companion)
+
+      -- talkies.say("Glitch", "Hey Wait for me!! >:(", {
+      --   image=companion.walksheet,
+      --   talkSound=blop,
+      --   typedNotTalked=false,
+      --   textSpeed="slow"
+      --   })
 
 
       -- hey slow down for me
     else
-      test.num = companion.timer
       companion.timer = companion.timer - dt
     end
 
