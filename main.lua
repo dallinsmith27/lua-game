@@ -10,6 +10,11 @@ game.scale = 1.5
 game.phase = 0
 
 
+function game:save()
+  talkies:clearMessages()
+  
+end
+
 
 
 function love.load()
@@ -144,6 +149,17 @@ function love.keypressed(key)
         map.newId = w.id
       end
     end
+    query = nil
+
+    local query = world:queryCircleArea(px,py,25, {"respawnStone"})
+
+    if #query > 0 then
+      for _,s in ipairs(query) do
+        s.interact = true
+
+      end
+    end
+    query = nil
     --local cows = world:queryCircleArea(px,py,25, {"cow"})
     --local items = world:queryCircleArea(px,py,25, {"item"})
     --if #items > 0 then
