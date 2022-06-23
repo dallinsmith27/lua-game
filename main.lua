@@ -165,8 +165,8 @@ function love.keypressed(key)
   end
 
   if key == "space" then talkies.onAction()
-    elseif key == "up" then talkies.prevOption()
-    elseif key == "down" then talkies.nextOption()
+  elseif key == "w" then talkies.prevOption()
+  elseif key == "s" then talkies.nextOption()
     end
 
 end
