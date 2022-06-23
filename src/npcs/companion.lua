@@ -27,7 +27,7 @@ local function companionInit(companion,x,y)
   companion.anim = companion.animations.walk
   companion.tooFarTalk = true
   companion.tooFarDist = 200
-  
+
   function companion:load()
 
 
@@ -57,7 +57,7 @@ local function companionInit(companion,x,y)
 
       -- hey slow down for me
     else
-      test.num = companion.timer
+      
       companion.timer = companion.timer - dt
     end
 

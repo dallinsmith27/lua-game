@@ -1,5 +1,6 @@
 phase = {}
 phase.timer = 1
+phase.num = 0
 
 
 function phase:load()
@@ -35,15 +36,13 @@ function phase:update(dt)
    if phase.continue then
      talkies.say("Companionname", "Perfect You Did it!! you're turning out to be quite the accomplice. You should be able to walk around using 'W', 'A', 'S', and 'D'. Now there should be an item here you can interfacce with. That should drop the wall barrier around us. ", { talkSound=blop,typedNotTalked=false,textSpeed="slow"})
      phase.continue = false
-
    else
      talkies.say("Companionname", "Walk around with 'W', 'A', 'S', and 'D', then interact with the object. To interact with an object press 'Space' while facing the object. ", { talkSound=blop,typedNotTalked=false,textSpeed="slow"})
-    game.phase = game.phase +1
+   end
 
-
-  end
  elseif game.phase == 4 then
 
+   
  elseif game.phase == 5 then
 
  elseif game.phase == 6 then

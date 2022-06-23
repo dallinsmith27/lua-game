@@ -63,8 +63,8 @@ function map.update(dt)
       map.id = map.newId
       player:changePos(0,0)
 
-      spawnItem(0,0,"addHeart",map.items)
-
+      spawnItem(-164,-200,"respawnStone",map.items)
+      spawnItem(138,-200,"respawnStone",map.items)
 
     elseif map.newId == 1 then
       map:unload()
