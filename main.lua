@@ -170,7 +170,7 @@ function love.keypressed(key)
     --end
   end
     --enter all keypress if statements...
-    -- this is where the game controls are defined.
+    -- this is where the game controls are defined.yucky
 
   if key == 'y' then
     player.state = 0
