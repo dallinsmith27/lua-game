@@ -12,7 +12,6 @@ game.phase = 0
 
 function game:save()
   talkies:clearMessages()
-  
 end
 
 

@@ -55,7 +55,7 @@ end
 
 
 function map.update(dt)
-
+  dt = love.timer.getDelta()
   if map.newId ~= map.id then
     if map.newId == 0 then
       map:unload()
@@ -125,7 +125,7 @@ function map.update(dt)
         item:destroy()
         table.remove(map.items,n)
       else
-        item:update()
+        item:update(dt)
       end
     end
   end
@@ -135,7 +135,7 @@ function map.update(dt)
         enemy:destroy()
         table.remove(map.enemy,n)
       else
-        enemy:update()
+        enemy:update(dt)
       end
     end
   end
