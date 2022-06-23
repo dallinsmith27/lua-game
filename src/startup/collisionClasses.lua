@@ -14,6 +14,7 @@ function createCollisionClasses()
     world:addCollisionClass('glitch1', {ignores = {'Ignore'}})
     world:addCollisionClass('error', {ignores = {'Ignore'}})
     world:addCollisionClass('respawnStone', {ignores = {'Ignore'}})
+    world:addCollisionClass('fog', {ignores = {'Ignore'}})
 
     world:addCollisionClass('companion', {ignores = {"All", except = {"Player"}}})
 end

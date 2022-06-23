@@ -49,7 +49,7 @@ local function companionInit(companion,x,y)
       companion.timer = 30
       talkies.sayBubble("Glitch", "Hey Wait for me!! >:(", companion)
     else
-      
+
       companion.timer = companion.timer - dt
     end
 
@@ -66,9 +66,11 @@ local function companionInit(companion,x,y)
   end
 
   function companion:draw()
-    local px = companion:getX() - companion.width / 2
-    local py = companion:getY() - companion.height / 2
-    companion.anim:draw(companion.walkSheet, px, py)
+    if player.companion then
+      local px = companion:getX() - companion.width / 2
+      local py = companion:getY() - companion.height / 2
+      companion.anim:draw(companion.walkSheet, px, py)
+    end
 
   end
 
