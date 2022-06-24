@@ -17,9 +17,9 @@ player.width = 20
 player.collider = world:newBSGRectangleCollider(-100,-400,player.width,player.height,5)
 player.x = player.collider:getX()
 player.y = player.collider:getY()
-player.respawnX = 0
-player.respawnY = 0
-player.respawnMap = 1
+player.respawnX = 180
+player.respawnY = 250
+player.respawnMap = 2
 player.collider:setMass(1)
 player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
@@ -315,6 +315,9 @@ function player:respawn()
   player.dead = false
   player.health = player.maxHealth
   player.state = 0
-  player:changePos(player.respawnX,player.respawnY)
+  --player:changePos(player.respawnX,player.respawnY)
+  map.playerX = player.respawnX
+  map.playerY = player.respawnY
   map.newId = player.respawnMap
+
 end

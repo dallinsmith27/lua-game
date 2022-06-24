@@ -9,6 +9,8 @@ map.doors = {}
 map.items = {}
 map.npcs = {}
 map.enemies = {}
+map.playerX = 0
+map.playerY = 0
 gameMap = sti("src/maps/testmap1.lua")
 
 function map:load()
@@ -62,7 +64,7 @@ function map.update(dt)
       gameMap = sti("src/maps/Start0.lua")
       map:load()
       map.id = map.newId
-      player:changePos(0,0)
+      player:changePos(map.playerX,map.playerY)
 
       spawnItem(-164,-200,"respawnStone",map.items)
       spawnItem(138,-200,"respawnStone",map.items)
@@ -72,7 +74,7 @@ function map.update(dt)
       gameMap = sti("src/maps/testmap1.lua")
       map:load()
       map.id = map.newId
-      player:changePos(0,0)
+      player:changePos(map.playerX,map.playerY)
       spawnItem(0,50,"heart",map.items)
       spawnItem(60,50,"addHeart",map.items)
       spawnItem(-30,62,"bronzeCoin",map.items)
@@ -97,7 +99,9 @@ function map.update(dt)
       gameMap = sti("src/maps/farmland2.lua")
       map:load()
       map.id = map.newId
-      player:changePos(450,550)
+      player:changePos(map.playerX,map.playerY)
+      spawnItem(64,192,"respawnStone",map.items)
+      map.items[1].glow = true
     elseif map.newId == 3 then
       if player.inventory.key then
         map:unload()
@@ -105,14 +109,14 @@ function map.update(dt)
         gameMap = sti("src/maps/map3.lua")
         map:load()
         map.id = map.newId
-        player:changePos(0,0)
+        player:changePos(map.playerX,map.playerY)
       else
         map.newId = map.id
       end
 
     end
   if player.companion then
-    spawnNpc(0 ,0 ,"companion",map.npcs)
+    spawnNpc(map.playerX ,map.playerY ,"companion",map.npcs)
   end
 
 
