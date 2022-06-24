@@ -20,6 +20,8 @@ function map:load()
       door:setCollisionClass("Door")
       door:setType("static")
       door.id = obj.properties["mapID"] + 0
+      --door.newX = obj.newX
+      --door.newY = obj.newY
       table.insert(map.doors,door)
     end
   end
