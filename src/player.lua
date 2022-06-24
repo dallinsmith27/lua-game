@@ -181,6 +181,9 @@ function player:draw()
 
 --displays the coins the player has on the HUD
 --the last two values on each line control scaling x and y respectively
+  --Old coin image
+    -- love.graphics.draw( player.coinImage, topx - (.85 * player.heartImage:getWidth()), 22 + topy + player.heartImage:getHeight(), 0, .5, .5)
+  --New coin image
     love.graphics.draw( player.coinImage, topx - (1.2 * player.heartImage:getWidth()), 22 + topy + player.heartImage:getHeight(), 0, 1.2, 1.2)
     love.graphics.print("x", topx - (.5 * player.heartImage:getWidth()), 18 + topy + player.heartImage:getHeight(), 0, .7, .7)
     love.graphics.print( player.money, topx - (.1 * player.heartImage:getWidth()), 10 + topy + player.heartImage:getHeight(), 0, 1, 1)
