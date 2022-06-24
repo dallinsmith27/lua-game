@@ -24,6 +24,7 @@ local function silverCoinInit(silverCoin,x,y)
     silverCoin:setFixedRotation(true)
     silverCoin:setMass(2)
     silverCoin:setLinearDamping(2)
+    silverCoin:setType("static")
   end
 
   function silverCoin:update(dt)

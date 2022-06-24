@@ -15,6 +15,7 @@ local function blackHeartInit(blackHeart,x,y)
     blackHeart:setFixedRotation(true)
     blackHeart:setMass(2)
     blackHeart:setLinearDamping(2)
+    blackHeart:setType("static")
   end
 
   function blackHeart:update(dt)

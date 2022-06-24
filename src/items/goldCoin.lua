@@ -24,6 +24,7 @@ local function goldCoinInit(goldCoin,x,y)
     goldCoin:setFixedRotation(true)
     goldCoin:setMass(2)
     goldCoin:setLinearDamping(2)
+    goldCoin:setType("static")
   end
 
   function goldCoin:update(dt)
