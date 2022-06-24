@@ -35,15 +35,11 @@ local function fogInit(fog,x,y)
 
 
   function fog:draw()
-    local px = fog:getX() - fog.width / 2 - 5
-    local py = fog:getY() - fog.height / 2 + 5
+    local px = fog:getX() - fog.width / 2
+    local py = fog:getY() - fog.height / 2
     fog.anim:draw(fog.walkSheet, px, py)
 
 
-  end
-
-  function fog:destroy()
-    fog.collider:destroy()
   end
 
   return fog

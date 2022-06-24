@@ -127,7 +127,7 @@ function love.keypressed(key)
   end
 
 
-  if love.keyboard.isDown("space") then
+  if love.keyboard.isDown("space") and not player.dead then
     local px = player.collider:getX()
     local py = player.collider:getY()
 

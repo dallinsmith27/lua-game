@@ -90,10 +90,11 @@ function map.update(dt)
       spawnItem(-330,62,"goldCoin",map.items)
 
 
+
       spawnNpc(125,100,"cow",map.npcs)
     elseif map.newId == 2 then
       map:unload()
-      gameMap = sti("src/maps/map2.lua")
+      gameMap = sti("src/maps/farmland2.lua")
       map:load()
       map.id = map.newId
       player:changePos(450,550)

@@ -75,6 +75,7 @@ local function companionInit(companion,x,y)
   end
 
 
+
   return companion
 
 end
