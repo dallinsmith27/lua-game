@@ -7,12 +7,22 @@ local function goldCoinInit(goldCoin,x,y)
 
   goldCoin.animSpeed = .13
   --spins slightly faster than the silverCoins's .14 and the bronzeCoin's .15
-  goldCoin.walkSheet = love.graphics.newImage("sprites/goldCoin.png")
+
+--new coin animation
+  goldCoin.walkSheet = love.graphics.newImage("sprites/money/coin_gold_sheet.png")
   goldCoin.animations = {}
-  goldCoin.height = 30
-  goldCoin.width = 30
+  goldCoin.height = 32
+  goldCoin.width = 32
   goldCoin.grid = anim8.newGrid(goldCoin.width, goldCoin.height, goldCoin.walkSheet:getWidth(), goldCoin.walkSheet:getHeight())
-  goldCoin.anim = anim8.newAnimation(goldCoin.grid('1-4', 1), goldCoin.animSpeed)
+  goldCoin.anim = anim8.newAnimation(goldCoin.grid('1-8', 1), goldCoin.animSpeed)
+
+--old coin animations
+  -- goldCoin.walkSheet = love.graphics.newImage("sprites/money/goldCoin.png")
+  -- goldCoin.animations = {}
+  -- goldCoin.height = 30
+  -- goldCoin.width = 30
+  -- goldCoin.grid = anim8.newGrid(goldCoin.width, goldCoin.height, goldCoin.walkSheet:getWidth(), goldCoin.walkSheet:getHeight())
+  -- goldCoin.anim = anim8.newAnimation(goldCoin.grid('1-4', 1), goldCoin.animSpeed)
 
 
 

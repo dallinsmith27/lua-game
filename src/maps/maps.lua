@@ -94,6 +94,8 @@ function map.update(dt)
 
 
       spawnNpc(125,100,"cow",map.npcs)
+
+
     elseif map.newId == 2 then
       map:unload()
       gameMap = sti("src/maps/farmland2.lua")

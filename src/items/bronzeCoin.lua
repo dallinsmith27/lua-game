@@ -6,13 +6,23 @@ local function bronzeCoinInit(bronzeCoin,x,y)
   bronzeCoin.name = "bronzeCoin"
 
   bronzeCoin.animSpeed = .15
-  --spins slower than the goldCoin's .13 and the silverCoin's .14
-  bronzeCoin.walkSheet = love.graphics.newImage("sprites/bronzeCoin.png")
+  --spins slower than the bronzeCoin's .13 and the silverCoin's .14
+
+--new coin animation
+  bronzeCoin.walkSheet = love.graphics.newImage("sprites/money/coin_copper_sheet.png")
   bronzeCoin.animations = {}
-  bronzeCoin.height = 30
-  bronzeCoin.width = 30
+  bronzeCoin.height = 32
+  bronzeCoin.width = 32
   bronzeCoin.grid = anim8.newGrid(bronzeCoin.width, bronzeCoin.height, bronzeCoin.walkSheet:getWidth(), bronzeCoin.walkSheet:getHeight())
-  bronzeCoin.anim = anim8.newAnimation(bronzeCoin.grid('1-4', 1), bronzeCoin.animSpeed)
+  bronzeCoin.anim = anim8.newAnimation(bronzeCoin.grid('1-8', 1), bronzeCoin.animSpeed)
+
+--old coin animations
+  -- bronzeCoin.walkSheet = love.graphics.newImage("sprites/money/bronzeCoin.png")
+  -- bronzeCoin.animations = {}
+  -- bronzeCoin.height = 30
+  -- bronzeCoin.width = 30
+  -- bronzeCoin.grid = anim8.newGrid(bronzeCoin.width, bronzeCoin.height, bronzeCoin.walkSheet:getWidth(), bronzeCoin.walkSheet:getHeight())
+  -- bronzeCoin.anim = anim8.newAnimation(bronzeCoin.grid('1-4', 1), bronzeCoin.animSpeed)
 
 
 
