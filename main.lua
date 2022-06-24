@@ -1,3 +1,4 @@
+love.window.setTitle( "LuaGame - Velocity Corrected" )
 
 test = {}
 test.bool = true
