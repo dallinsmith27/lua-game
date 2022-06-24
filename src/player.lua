@@ -45,6 +45,7 @@ player.threeQuarterHeartImage = love.graphics.newImage("sprites/3-4Heart.png")
 player.emptyHeartImage = love.graphics.newImage("sprites/emptyHeart.png")
 
 player.speed = 200
+player.sprint = 3
 player.sprintMod = 1
 player.animSpeed = 0.08
 sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")
@@ -78,7 +79,10 @@ function player:update(dt)
   player.x = player.collider:getX()
   player.y = player.collider:getY()
 
-  --test.num = player.x
+--for the show player coordinates toggle
+  game.player_x = player.x
+  game.player_y = player.y
+
 
   if player.collider:enter("item") then
     local collision_data = player.collider:getEnterCollisionData('item')
@@ -93,12 +97,11 @@ function player:update(dt)
   if player.state == 0 then
 
     if love.keyboard.isDown("lshift") then
-      player.sprintMod = 5
+      player.sprintMod = player.sprint
     else
       player.sprintMod = 1
     end
 
-test.num = player.speed
 
         local dirX = 0
         local dirY = 0
@@ -127,14 +130,12 @@ test.num = player.speed
           player.dir = "up"
         end
 
-        -- if love.keyboard.isDown("lshift") then
-        --   player.animSpeed = player.animSpeed * (6/8)
-        --   player.speed = 800
-        -- end
+      --Diagonal Velocity Corrected
+        local vec = vector(dirX, dirY):normalized() * player.speed * player.sprintMod
+        player.collider:setLinearVelocity(vec.x, vec.y)
 
-
-
-        player.collider:setLinearVelocity(dirX * player.speed * player.sprintMod, dirY * player.speed * player.sprintMod)
+      --Old Method that did not correct Diagonal Velocity
+        -- player.collider:setLinearVelocity(dirX * player.speed * player.sprintMod, dirY * player.speed * player.sprintMod)
 
         if dirX == 0 and dirY == 0 then
             player.walking = false
