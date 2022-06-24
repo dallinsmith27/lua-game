@@ -19,9 +19,9 @@ function map:load()
       local door = world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
       door:setCollisionClass("Door")
       door:setType("static")
-      door.id = obj.properties["mapID"] + 0
-      --door.newX = obj.newX
-      --door.newY = obj.newY
+      door.id = obj.properties["mapID"]
+      door.newX = obj.properties["newX"]
+      door.newY = obj.properties["newY"]
       table.insert(map.doors,door)
     end
   end
@@ -107,17 +107,12 @@ function map.update(dt)
       spawnItem(64,192,"respawnStone",map.items)
       map.items[1].glow = true
     elseif map.newId == 3 then
-      if player.inventory.key then
         map:unload()
         player.inventory.key = false
-        gameMap = sti("src/maps/map3.lua")
+        gameMap = sti("src/maps/farmHouse3.lua")
         map:load()
         map.id = map.newId
         player:changePos(map.playerX,map.playerY)
-      else
-        map.newId = map.id
-      end
-
     end
   if player.companion then
     spawnNpc(map.playerX ,map.playerY ,"companion",map.npcs)

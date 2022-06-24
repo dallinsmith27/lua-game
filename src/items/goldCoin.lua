@@ -1,5 +1,5 @@
 local function goldCoinInit(goldCoin,x,y)
-  goldCoin = world:newCircleCollider(x + 15,y + 15,15)
+  goldCoin = world:newCircleCollider(x+16 ,y+16 ,10)
   goldCoin.x = x
   goldCoin.y = y
   goldCoin.dead = false
@@ -34,7 +34,7 @@ local function goldCoinInit(goldCoin,x,y)
     goldCoin:setFixedRotation(true)
     goldCoin:setMass(2)
     goldCoin:setLinearDamping(2)
-    goldCoin:setType("static")
+    
   end
 
   function goldCoin:update(dt)
@@ -43,7 +43,7 @@ local function goldCoinInit(goldCoin,x,y)
   end
 
   function goldCoin:draw()
-    goldCoin.anim:draw(goldCoin.walkSheet,goldCoin.x,goldCoin.y)
+    goldCoin.anim:draw(goldCoin.walkSheet,goldCoin:getX() - 16,goldCoin:getY() - 10)
 
   end
 

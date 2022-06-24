@@ -158,7 +158,8 @@ function love.keypressed(key)
 
     if #query > 0 then
       for _,w in ipairs(query) do
-
+        map.playerX = w.newX
+        map.playerY = w.newY
         map.newId = w.id
       end
     end

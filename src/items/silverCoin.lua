@@ -1,5 +1,5 @@
 local function silverCoinInit(silverCoin,x,y)
-  silverCoin = world:newCircleCollider(x + 15,y + 15,15)
+  silverCoin = world:newCircleCollider(x+16 ,y+16 ,10)
   silverCoin.x = x
   silverCoin.y = y
   silverCoin.dead = false
@@ -34,7 +34,7 @@ local function silverCoinInit(silverCoin,x,y)
     silverCoin:setFixedRotation(true)
     silverCoin:setMass(2)
     silverCoin:setLinearDamping(2)
-    silverCoin:setType("static")
+    
   end
 
   function silverCoin:update(dt)
@@ -43,7 +43,7 @@ local function silverCoinInit(silverCoin,x,y)
   end
 
   function silverCoin:draw()
-    silverCoin.anim:draw(silverCoin.walkSheet,silverCoin.x,silverCoin.y)
+    silverCoin.anim:draw(silverCoin.walkSheet,silverCoin:getX() - 16,silverCoin:getY() - 10)
 
   end
 

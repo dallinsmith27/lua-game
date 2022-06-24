@@ -9,7 +9,7 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 9,
-  nextobjectid = 274,
+  nextobjectid = 279,
   properties = {},
   tilesets = {
     {
@@ -3411,7 +3411,7 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 73, 74,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3473, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2137, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 81, 0
           }
@@ -4542,7 +4542,7 @@ return {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4079, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4095, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2137, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4079, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4095, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
@@ -8171,8 +8171,75 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["mapID"] = 3
+            ["mapID"] = 3,
+            ["newX"] = -5,
+            ["newY"] = 20
           }
+        },
+        {
+          id = 274,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -23.3333,
+          y = -180.667,
+          width = 26,
+          height = 26,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 275,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -28,
+          y = -162.667,
+          width = 26,
+          height = 16.6667,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 276,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -3.33333,
+          y = -158,
+          width = 23.3333,
+          height = 19.3333,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 277,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 5.33333,
+          y = -173.333,
+          width = 8,
+          height = 15.3333,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 278,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 13.3333,
+          y = -167.333,
+          width = 12,
+          height = 17.3333,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     }
