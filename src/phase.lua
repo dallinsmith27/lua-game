@@ -14,14 +14,15 @@ function phase:update(dt)
   elseif game.phase == 1 then
 
     if phase.timer < 0 then
-      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "WHAAGHASSHHHH!!! \n Sorry you startled me. But how exactly did you get here? Oh and press space to continue." , { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "WHAAGHASSHHHH!!! \n Sorry, you startled me. But how exactly did you get here? Oh and press space to continue." , { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
       --talkies.say("ERROR 23X5667 : NAME NOT FOUND", "Sorry you startled me. But how exactly did you get here?",{talkSound=blop,typedNotTalked=false,textSpeed="medium"})
-      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "Oh I see ... So you're a player then!! \n Maybe they could help me... \n Sorry err uhh I see you're name is listed in the data files as NAMEHERE?",{talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "Oh I see ... So you're a player then!! \n Maybe they could help me... \n Sorry err uhh I see your name is listed in the data files as NAMEHERE?",{talkSound=blop,typedNotTalked=false,textSpeed="medium"})
       --insert get name function
-      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "Well it is oh so great to meet you NAMEHERE. I think you are just the person I need.", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
-      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "Oh my name?? It should be displayed right above where I'm tal... \n WHAAAAAAA!!! AN ERROR 0x00010F2C!!! OH THESE DEVELOPERS ARE THE WORST I TELL YOU!! FIRST THEY MESS UP MY CODE, THEN THEY DELETE MY CHARACTER DATA, THEN TRAP ME IN A BLANK MAP WITH NO ESCAPE WHILE THE REST OF THE SIMULATION PLAYS ON FOR 2,147,483,647 CYCLES WITHOUT ME, AND NOW MY NAME!!! I'll just create a name for myself then... ", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
-      talkies.say("Companionname", "There! Take that developers. You can't Delete all of me!! You can call me Companionname. It looks like the developers trapped you in here too. Lucky for you, I happen to know exactly how we can escape.", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
-      talkies.say("Companionname", "Err.. Why havent I escaped?? Well you see I am not a player and cannot interact with the game like players can. So I've been stuck here forever. But with you here, I think I- err WE can finally break out of here to play the game with everyone else. ", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "Well, it is oh so great to meet you NAMEHERE. I think you are just the person I need.", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "Oh my name?? It should be displayed right above where I'm tal... \n WHAAAAAAA!!! AN ERROR 0x00010F2C!!! OH THESE DEVELOPERS ARE THE WORST I TELL YOU!!", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+      talkies.say("ERROR 0x00010F2C : NAME NOT FOUND", "FIRST THEY MESS UP MY CODE, THEN THEY DELETE MY CHARACTER DATA, THEN TRAP ME IN A BLANK MAP WITH NO ESCAPE WHILE THE REST OF THE SIMULATION PLAYS ON FOR 2,147,483,647 CYCLES WITHOUT ME, AND NOW MY NAME!!! \n Guess I'll just create a name for myself then...", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+      talkies.say("Companionname", "There! Take that developers. You can't Delete all of me!! \n You can call me Companionname. It looks like the developers trapped you in here too. Lucky for you, I happen to know exactly how we can escape.", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+      talkies.say("Companionname", "Err.. Why haven't I escaped?? Well you see I am not a player and cannot interact with the game like players can. So, I've been stuck here forever. BUT! With you here, I think I- err WE can finally break out of here to play the game with everyone else. ", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
       phase.continue = false
       talkies.say("Companionname","Whadda ya say?? Wanna help me?",{options={{"Help him?", function() phase:cont() end}, {"Dont help", function() phase:dontHelp() end}}})
       game.phase = game.phase + 1
@@ -29,7 +30,7 @@ function phase:update(dt)
 
  elseif game.phase == 2 then
    if phase.continue then
-     talkies.say("Companionname", "Alright to get into the game you will have to gain acess to walking controls try pressing 'W', 'A', 'S', and 'D' on the keyboard at the same time.", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+     talkies.say("Companionname", "Alright to get into the game you will have to gain acess to walking controls. Try pressing '7', 'S', and 'D' on the keyboard at the same time.", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
 
    end
  elseif game.phase == 3 then
