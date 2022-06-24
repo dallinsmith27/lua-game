@@ -8,4 +8,5 @@ Tiled
 Talkies
 
 ART
---
+--New Coins: Clint Bellanger for Liberated Pixel Art.
+  --https://opengameart.org/content/animated-coins

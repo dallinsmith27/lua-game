@@ -6,13 +6,23 @@ local function silverCoinInit(silverCoin,x,y)
   silverCoin.name = "silverCoin"
 
   silverCoin.animSpeed = .14
-  --spins in between the goldCoin's .13 and the bronzeCoin's .15
-  silverCoin.walkSheet = love.graphics.newImage("sprites/silverCoin.png")
-  silverCoin.animations = {}
-  silverCoin.height = 30
-  silverCoin.width = 30
-  silverCoin.grid = anim8.newGrid(silverCoin.width, silverCoin.height, silverCoin.walkSheet:getWidth(), silverCoin.walkSheet:getHeight())
-  silverCoin.anim = anim8.newAnimation(silverCoin.grid('1-4', 1), silverCoin.animSpeed)
+  --spins in between the silverCoin's .13 and the bronzeCoin's .15
+
+  --new coin animation
+    silverCoin.walkSheet = love.graphics.newImage("sprites/money/coin_silver_sheet.png")
+    silverCoin.animations = {}
+    silverCoin.height = 32
+    silverCoin.width = 32
+    silverCoin.grid = anim8.newGrid(silverCoin.width, silverCoin.height, silverCoin.walkSheet:getWidth(), silverCoin.walkSheet:getHeight())
+    silverCoin.anim = anim8.newAnimation(silverCoin.grid('1-8', 1), silverCoin.animSpeed)
+
+  --old coin animations
+    -- silverCoin.walkSheet = love.graphics.newImage("sprites/money/silverCoin.png")
+    -- silverCoin.animations = {}
+    -- silverCoin.height = 30
+    -- silverCoin.width = 30
+    -- silverCoin.grid = anim8.newGrid(silverCoin.width, silverCoin.height, silverCoin.walkSheet:getWidth(), silverCoin.walkSheet:getHeight())
+    -- silverCoin.anim = anim8.newAnimation(silverCoin.grid('1-4', 1), silverCoin.animSpeed)
 
 
 
