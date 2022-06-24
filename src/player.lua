@@ -32,6 +32,7 @@ player.maxHealth = player.hearts * 4
 player.stunTimer = 0
 player.money = 0
 
+player.coinImage = love.graphics.newImage("sprites/coinImage.png")
 player.heartImage = love.graphics.newImage("sprites/fullHeart.png")
 player.halfHeartImage = love.graphics.newImage("sprites/halfHeart.png")
 player.quarterHeartImage = love.graphics.newImage("sprites/1-4Heart.png")
@@ -163,7 +164,9 @@ function player:draw()
     local topx = ((cam.x - 60)*game.scale + love.graphics.getWidth()/2)/game.scale
     local topy = (cam.y * game.scale - love.graphics.getHeight()/2 + 10)/game.scale
 
-    love.graphics.print( player.money, topx-120, topy+player.heartImage:getHeight(), 0, 5, 5)
+    love.graphics.draw( player.coinImage, topx - (.85 * player.heartImage:getWidth()), 22 + topy + player.heartImage:getHeight(), 0, .5, .5)
+    love.graphics.print("x", topx - (.5 * player.heartImage:getWidth()), 18 + topy + player.heartImage:getHeight(), 0, .7, .7)
+    love.graphics.print( player.money, topx - (.1 * player.heartImage:getWidth()), 10 + topy + player.heartImage:getHeight(), 0, 1, 1)
 
     local drawn = 0
     local newHealth = player.prevHealth
