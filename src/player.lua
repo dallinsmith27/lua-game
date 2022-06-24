@@ -34,7 +34,9 @@ player.healthCounter = 0
 player.maxHealth = player.hearts * 4
 player.stunTimer = 0
 player.money = 0
+player.maxMoney = 999
 
+player.coinImage = love.graphics.newImage("sprites/coinImage.png")
 player.heartImage = love.graphics.newImage("sprites/fullHeart.png")
 player.halfHeartImage = love.graphics.newImage("sprites/halfHeart.png")
 player.quarterHeartImage = love.graphics.newImage("sprites/1-4Heart.png")
@@ -42,6 +44,7 @@ player.threeQuarterHeartImage = love.graphics.newImage("sprites/3-4Heart.png")
 player.emptyHeartImage = love.graphics.newImage("sprites/emptyHeart.png")
 
 player.speed = 200
+player.sprintMod = 1
 player.animSpeed = 0.08
 sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")
 player.animations = {}
@@ -88,6 +91,14 @@ function player:update(dt)
 
   if player.state == 0 then
 
+    if love.keyboard.isDown("lshift") then
+      player.sprintMod = 5
+    else
+      player.sprintMod = 1
+    end
+
+test.num = player.speed
+
         local dirX = 0
         local dirY = 0
 
@@ -115,9 +126,14 @@ function player:update(dt)
           player.dir = "up"
         end
 
+        -- if love.keyboard.isDown("lshift") then
+        --   player.animSpeed = player.animSpeed * (6/8)
+        --   player.speed = 800
+        -- end
 
 
-        player.collider:setLinearVelocity(dirX * player.speed, dirY * player.speed)
+
+        player.collider:setLinearVelocity(dirX * player.speed * player.sprintMod, dirY * player.speed * player.sprintMod)
 
         if dirX == 0 and dirY == 0 then
             player.walking = false
@@ -162,7 +178,11 @@ function player:draw()
     local topx = ((cam.x - 60)*game.scale + love.graphics.getWidth()/2)/game.scale
     local topy = (cam.y * game.scale - love.graphics.getHeight()/2 + 10)/game.scale
 
-    love.graphics.print( player.money, topx-120, topy+player.heartImage:getHeight(), 0, 5, 5)
+--displays the coins the player has on the HUD
+--the last two values on each line control scaling x and y respectively
+    love.graphics.draw( player.coinImage, topx - (.85 * player.heartImage:getWidth()), 22 + topy + player.heartImage:getHeight(), 0, .5, .5)
+    love.graphics.print("x", topx - (.5 * player.heartImage:getWidth()), 18 + topy + player.heartImage:getHeight(), 0, .7, .7)
+    love.graphics.print( player.money, topx - (.1 * player.heartImage:getWidth()), 10 + topy + player.heartImage:getHeight(), 0, 1, 1)
 
     local drawn = 0
     local newHealth = player.prevHealth
@@ -260,18 +280,18 @@ function player.inventory:add(item)
     player.health = player.health - 4
   elseif item == "bronzeCoin" then
     player.money = player.money + 1
-    if player.money > 999 then
-      player.money = 999
+    if player.money > player.maxMoney then
+      player.money = player.maxMoney
     end
   elseif item == "silverCoin" then
     player.money = player.money + 25
-    if player.money > 999 then
-      player.money = 999
+    if player.money > player.maxMoney then
+      player.money = player.maxMoney
     end
   elseif item == "goldCoin" then
     player.money = player.money + 100
-    if player.money > 999 then
-      player.money = 999
+    if player.money > player.maxMoney then
+      player.money = player.maxMoney
     end
   end
 

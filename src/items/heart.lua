@@ -15,6 +15,7 @@ local function heartInit(heart,x,y)
     heart:setFixedRotation(true)
     heart:setMass(2)
     heart:setLinearDamping(2)
+    heart:setType("static")
   end
 
   function heart:update(dt)

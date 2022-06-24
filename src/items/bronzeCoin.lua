@@ -24,6 +24,7 @@ local function bronzeCoinInit(bronzeCoin,x,y)
     bronzeCoin:setFixedRotation(true)
     bronzeCoin:setMass(2)
     bronzeCoin:setLinearDamping(2)
+    bronzeCoin:setType("static")
   end
 
   function bronzeCoin:update(dt)
