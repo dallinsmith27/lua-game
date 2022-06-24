@@ -17,16 +17,19 @@ player.width = 20
 player.collider = world:newBSGRectangleCollider(-100,-400,player.width,player.height,5)
 player.x = player.collider:getX()
 player.y = player.collider:getY()
+player.respawnX = 0
+player.respawnY = 0
+player.respawnMap = 1
 player.collider:setMass(1)
 player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
 player.collider:setLinearDamping(1)
 
 
-
+player.dead = false
 player.hearts = 3
 player.prevHealth = 0
-player.health = 3
+player.health = 12
 player.healthCounter = 0
 player.maxHealth = player.hearts * 4
 player.stunTimer = 0
@@ -66,6 +69,10 @@ player.state = 9999
 player.name = "player"
 
 function player:update(dt)
+  if player.health <= 0 then
+    player.dead = true
+    player.state = 9999
+  end
 
   player.x = player.collider:getX()
   player.y = player.collider:getY()
@@ -76,6 +83,10 @@ function player:update(dt)
     local collision_data = player.collider:getEnterCollisionData('item')
     player.inventory:add(collision_data.collider.name)
     collision_data.collider.dead = true
+  end
+  if player.collider:enter("fog") then
+    player.health = player.health - 1
+
   end
 
   if player.state == 0 then
@@ -140,15 +151,17 @@ test.num = player.speed
       player.state = 0
     end
   elseif player.state == 9999 then
-    if love.keyboard.isDown("w") and love.keyboard.isDown("a") and love.keyboard.isDown("s") and love.keyboard.isDown("d") then
+    if love.keyboard.isDown("d") and love.keyboard.isDown("7") and love.keyboard.isDown("s")then
       if game.phase < 3 then
         game.phase = 3
         player.state = 0
         phase.continue = true
         talkies.clearMessages()
       end
-
+    elseif player.dead then
+      talkies.say("Game Over","Game Over \n lolz u died haha",{options={{"Respawn", function() player:respawn() game.phase = 2 end}, {"Quit", function() love.event.quit() end}}})
     end
+
     --player cannot move
   end
 
@@ -295,4 +308,13 @@ end
 
 function player:invertCompanion()
   player.companion = not player.companion
+end
+
+function player:respawn()
+  talkies.clearMessages()
+  player.dead = false
+  player.health = player.maxHealth
+  player.state = 0
+  player:changePos(player.respawnX,player.respawnY)
+  map.newId = player.respawnMap
 end
