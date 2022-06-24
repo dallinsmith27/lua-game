@@ -9,6 +9,9 @@ game.buttonId = 0
 game.scale = 1.5
 game.phase = 0
 
+test.showPlayerXY = false
+game.player_x = 0
+game.player_y = 0
 
 function game:save()
   talkies:clearMessages()
@@ -57,6 +60,12 @@ function love.draw()
   if test.bool then
 
     love.graphics.print(test.num)
+  end
+  if test.showPlayerXY then
+    love.graphics.print("X: ", 0, 20)
+    love.graphics.print("Y: ", 0, 40)
+    love.graphics.print(string.format('%.02f', game.player_x), 25, 20)
+    love.graphics.print(string.format('%.02f',game.player_y), 25, 40)
   end
 
 
@@ -107,6 +116,10 @@ function love.keypressed(key)
   end
   if love.keyboard.isDown("m") and love.keyboard.isDown("9") then
     map.newId = 9
+  end
+
+  if love.keyboard.isDown(",") and love.keyboard.isDown("l") then
+    test.showPlayerXY = not test.showPlayerXY
   end
 
 
