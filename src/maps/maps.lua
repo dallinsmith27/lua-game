@@ -92,12 +92,20 @@ function map.update(dt)
 
 
       spawnNpc(125,100,"cow",map.npcs)
+
+
     elseif map.newId == 2 then
       map:unload()
       gameMap = sti("src/maps/farmland2.lua")
       map:load()
       map.id = map.newId
-      player:changePos(450,550)
+      player:changePos(100,230)
+
+      spawnItem(200,240,"goldCoin",map.items)
+      spawnItem(320,120,"goldCoin",map.items)
+      spawnItem(600,120,"goldCoin",map.items)
+      spawnItem(900,230,"goldCoin",map.items)
+
     elseif map.newId == 3 then
       if player.inventory.key then
         map:unload()
@@ -106,6 +114,7 @@ function map.update(dt)
         map:load()
         map.id = map.newId
         player:changePos(0,0)
+
       else
         map.newId = map.id
       end
