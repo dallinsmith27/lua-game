@@ -29,6 +29,7 @@ Interact with NPC's
 
   NEEDED
     -BUG to Fix: NPC's can push the hit boxes for items away from the item animations.
+      -Temporarily fixed by making all items have static hit boxes.
     -BUG to Fix: manually changing map while mini message is up throws an error:
       Error
 
