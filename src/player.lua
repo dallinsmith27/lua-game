@@ -39,6 +39,7 @@ player.threeQuarterHeartImage = love.graphics.newImage("sprites/3-4Heart.png")
 player.emptyHeartImage = love.graphics.newImage("sprites/emptyHeart.png")
 
 player.speed = 200
+player.sprintMod = 1
 player.animSpeed = 0.08
 sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")
 player.animations = {}
@@ -77,6 +78,14 @@ function player:update(dt)
 
   if player.state == 0 then
 
+    if love.keyboard.isDown("lshift") then
+      player.sprintMod = 5
+    else
+      player.sprintMod = 1
+    end
+
+test.num = player.speed
+
         local dirX = 0
         local dirY = 0
 
@@ -104,9 +113,14 @@ function player:update(dt)
           player.dir = "up"
         end
 
+        -- if love.keyboard.isDown("lshift") then
+        --   player.animSpeed = player.animSpeed * (6/8)
+        --   player.speed = 800
+        -- end
 
 
-        player.collider:setLinearVelocity(dirX * player.speed, dirY * player.speed)
+
+        player.collider:setLinearVelocity(dirX * player.speed * player.sprintMod, dirY * player.speed * player.sprintMod)
 
         if dirX == 0 and dirY == 0 then
             player.walking = false
