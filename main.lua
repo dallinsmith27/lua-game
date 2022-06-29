@@ -172,7 +172,7 @@ function love.keypressed(key)
     if #query > 0 then
       for _,i in ipairs(query) do
         if i.name == "respawnStone" then
-          i.interact = true+++++++++++++++++++++++++++++++++++++++++++++++++++
+          i.interact = true
         end
       end
     end
