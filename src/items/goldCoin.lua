@@ -1,10 +1,10 @@
 local function goldCoinInit(goldCoin,x,y)
-  goldCoin = world:newCircleCollider(x+16 ,y+16 ,10)
+  goldCoin = world:newCircleCollider(x,y,5)
   goldCoin.x = x
   goldCoin.y = y
   goldCoin.dead = false
   goldCoin.name = "goldCoin"
-
+  goldCoin.touchInteraction = true
   goldCoin.animSpeed = .13
   --spins slightly faster than the silverCoins's .14 and the bronzeCoin's .15
 
@@ -34,7 +34,7 @@ local function goldCoinInit(goldCoin,x,y)
     goldCoin:setFixedRotation(true)
     goldCoin:setMass(2)
     goldCoin:setLinearDamping(2)
-    
+
   end
 
   function goldCoin:update(dt)
@@ -43,7 +43,7 @@ local function goldCoinInit(goldCoin,x,y)
   end
 
   function goldCoin:draw()
-    goldCoin.anim:draw(goldCoin.walkSheet,goldCoin:getX() - 16,goldCoin:getY() - 10)
+    goldCoin.anim:draw(goldCoin.walkSheet,goldCoin:getX() - 8,goldCoin:getY() - 5,0,.5,.5)
 
   end
 

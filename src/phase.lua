@@ -48,6 +48,9 @@ function phase:update(dt)
      spawnEnemy(0,0,"fog",map.enemies)
      spawnEnemy(1,1,"fog",map.enemies)
      spawnEnemy(-1,1,"fog",map.enemies)
+     spawnEnemy(0,0,"fog",map.enemies)
+     spawnEnemy(1,1,"fog",map.enemies)
+     spawnEnemy(-1,1,"fog",map.enemies)
      phase.timer = 2
    end
 

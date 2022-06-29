@@ -7,7 +7,7 @@ local function respawnStoneInit(respawnStone,x,y)
   respawnStone.glow = false
   respawnStone.interact = false
   respawnStone.beginningStone = 0
-
+  respawnStone.touchInteraction = false
 
   --spins mediumer than the goldCoin's .13 and the silverCoin's .14
   respawnStone.image = love.graphics.newImage("sprites/respawnStone.png")
@@ -23,7 +23,7 @@ local function respawnStoneInit(respawnStone,x,y)
 
 
 
-    respawnStone:setCollisionClass('respawnStone')
+    respawnStone:setCollisionClass('item')
     respawnStone:setFixedRotation(true)
     respawnStone:setType("static")
   end
@@ -33,20 +33,20 @@ local function respawnStoneInit(respawnStone,x,y)
     if respawnStone.interact then
       respawnStone.interact = false
       talkies:clearMessages()
+      if not respawnStone.glow then
+        respawnStone.glow = true
+        phase.num = phase.num + 1
+      end
       if game.phase < 4 then
-        if not respawnStone.glow then
-          respawnStone.glow = true
-          phase.num = phase.num + 1
           if phase.num == 1 then
-
             talkies.say("Companionname", "Perfect, Only one more to go!!", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
           elseif phase.num == 2 then
             talkies.say("Companionname", "The game code identifies those as Respawn Stones. When you interacted with them it alowed me to see their code for a brief second as they were queued in the games processor. From there I tied your respawn point into the game. simple", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
             talkies.say("Companionname", "You should be able to respawn there now. Thanks for all your help... \n ", {options={{"goobye >:)", function() player:invertCompanion() end}}, talkSound=blop,typedNotTalked=false,textSpeed="medium"})
-
             game.phase = game.phase+1
+            phase.timer = 10
           end
-        end
+
       else
         talkies.say("Mysterious Stone","Do You Want to Save Progress?",{options={{"Save", function() game:save() end}, {"Don't Save", function() talkies:clearMessages() end}}})
       end

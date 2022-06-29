@@ -1,10 +1,10 @@
 local function bronzeCoinInit(bronzeCoin,x,y)
-  bronzeCoin = world:newCircleCollider(x+16 ,y+16 ,10)
+  bronzeCoin = world:newCircleCollider(x ,y ,5)
   bronzeCoin.x = x
   bronzeCoin.y = y
   bronzeCoin.dead = false
   bronzeCoin.name = "bronzeCoin"
-
+  bronzeCoin.touchInteraction = true
   bronzeCoin.animSpeed = .15
   --spins slower than the bronzeCoin's .13 and the silverCoin's .14
 
@@ -34,7 +34,7 @@ local function bronzeCoinInit(bronzeCoin,x,y)
     bronzeCoin:setFixedRotation(true)
     bronzeCoin:setMass(2)
     bronzeCoin:setLinearDamping(2)
-    
+
   end
 
   function bronzeCoin:update(dt)
@@ -43,7 +43,7 @@ local function bronzeCoinInit(bronzeCoin,x,y)
   end
 
   function bronzeCoin:draw()
-    bronzeCoin.anim:draw(bronzeCoin.walkSheet,bronzeCoin:getX()-16,bronzeCoin:getY()-10)
+    bronzeCoin.anim:draw(bronzeCoin.walkSheet,bronzeCoin:getX()-8,bronzeCoin:getY()-5,0,.5,.5)
 
   end
 

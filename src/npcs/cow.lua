@@ -1,10 +1,11 @@
 local function cowInit(cow,x,y)
-  cow = world:newRectangleCollider(x, y, 50, 50)
+  cow = world:newRectangleCollider(x, y, 25, 25)
   cow.x = x
   cow.y = y
   cow.dirx = 0
   cow.diry = 0
   cow.timer = 5
+  cow.name = "cow"
   -- 0 - Ready to move
   -- 1 - moving roight
   -- 2 - moving left
@@ -93,9 +94,9 @@ local function cowInit(cow,x,y)
   end
 
   function cow:draw()
-    local px = cow:getX() - cow.width / 2
-    local py = cow:getY() - cow.height / 2
-    cow.anim:draw(cow.walkSheet, px, py)
+    local px = cow:getX() - cow.width / 4
+    local py = cow:getY() - cow.height / 4
+    cow.anim:draw(cow.walkSheet, px, py,0,.5,.5)
 
   end
 

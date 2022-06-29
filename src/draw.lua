@@ -4,7 +4,9 @@ function drawAll()
   if not game.startScreen then
     player:draw()
   end
-  world:draw()
+  if game.hitBoxes then
+    world:draw()
+  end
   inventory:draw()
   talkies.draw()
 end

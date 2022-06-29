@@ -5,7 +5,7 @@ local function addHeartInit(addHeart,x,y)
   addHeart.dead = false
   addHeart.name = "addHeart"
   addHeart.image = love.graphics.newImage("sprites/addHeart.png")
-
+  addHeart.touchInteraction = true
 
   function addHeart:load()
 

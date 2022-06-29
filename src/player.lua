@@ -11,8 +11,8 @@ player.downWall = 400
 player.walking = false
 player.collider = {}
 
-player.height = 50
-player.width = 20
+player.height = 32
+player.width = 15
 
 player.collider = world:newBSGRectangleCollider(-100,-400,player.width,player.height,5)
 player.x = player.collider:getX()
@@ -86,8 +86,10 @@ function player:update(dt)
 
   if player.collider:enter("item") then
     local collision_data = player.collider:getEnterCollisionData('item')
-    player.inventory:add(collision_data.collider.name)
-    collision_data.collider.dead = true
+    if collision_data.collider.touchInteraction then
+      player.inventory:add(collision_data.collider.name)
+      collision_data.collider.dead = true
+    end
   end
   if player.collider:enter("fog") then
     player.health = player.health - 1
@@ -171,9 +173,9 @@ function player:update(dt)
 end
 
 function player:draw()
-    local px = player.collider:getX() - 32 / 2
-    local py = player.collider:getY() - 64 / 2
-    player.anim:draw(sprites.walkSheet, px, py)
+    local px = player.collider:getX() - 32 / 4
+    local py = player.collider:getY() - 64 / 4
+    player.anim:draw(sprites.walkSheet, px, py,0,.5,.5)
 
 
 

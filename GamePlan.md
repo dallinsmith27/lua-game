@@ -14,6 +14,7 @@ Items:
   --Chest [Tangible but can open for loot]
   --Heart Container [pickup on collide; increases max health]
   --Heart [pickup on collide; restores some health]
+  --
 
 Interact with NPC's
   --They talk to you sometimes
@@ -28,10 +29,14 @@ Interact with NPC's
 
 
   NEEDED
-    -BUG to Fix: NPC's can push the hit boxes for items away from the item animations.
-      -Temporarily fixed by making all items have static hit boxes.
+    - respawn stone doesnt work in game
+    - MAP ID CHANGE TO CLEAR MESSAGES
+    - PRESS KEY TO CHANGE PLAYER COLLISION CLASS TO IGNORE
     -BUG to Fix: manually changing map while mini message is up throws an error:
       Error
+    - ADD SWORD Items
+    - ADD PLAYER ANIMATION
+    - 
 
       libraries/talkies/talkies.lua:354: calling 'getX' on bad self (Body expected, got nil)
 

@@ -13,6 +13,7 @@ game.phase = 0
 test.showPlayerXY = false
 game.player_x = 0
 game.player_y = 0
+game.hitBoxes = false
 
 function game:save()
   talkies:clearMessages()
@@ -121,6 +122,7 @@ function love.keypressed(key)
 
   if love.keyboard.isDown(",") and love.keyboard.isDown("l") then
     test.showPlayerXY = not test.showPlayerXY
+    toggleHitboxes()
   end
 
 
@@ -145,16 +147,16 @@ function love.keypressed(key)
     local py = player.collider:getY()
 
     if player.dir == "up" then
-      py = py - 40
+      py = py - 20
     elseif player.dir == "down" then
-      py = py + 40
+      py = py + 20
     elseif player.dir == "left" then
-      px = px - 40
+      px = px - 15
     elseif player.dir == "right" then
-      px = px + 40
+      px = px + 15
     end
 
-    local query = world:queryCircleArea(px,py,25, {"Door"})
+    local query = world:queryCircleArea(px,py,12, {"Door"})
 
     if #query > 0 then
       for _,w in ipairs(query) do
@@ -165,12 +167,13 @@ function love.keypressed(key)
     end
     query = nil
 
-    local query = world:queryCircleArea(px,py,25, {"respawnStone"})
+    local query = world:queryCircleArea(px,py,12, {"item"})
 
     if #query > 0 then
-      for _,s in ipairs(query) do
-        s.interact = true
-
+      for _,i in ipairs(query) do
+        if i.name == "respawnStone" then
+          i.interact = true+++++++++++++++++++++++++++++++++++++++++++++++++++
+        end
       end
     end
     query = nil
@@ -261,4 +264,8 @@ end
 function distanceBetween(x1,y1,x2,y2)
   local d = math.sqrt((x2-x1)^2+(y2-y1)^2)
   return d
+end
+
+function toggleHitboxes()
+  game.hitBoxes = not game.hitBoxes
 end

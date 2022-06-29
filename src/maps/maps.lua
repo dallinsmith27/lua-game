@@ -25,6 +25,16 @@ function map:load()
       table.insert(map.doors,door)
     end
   end
+  if gameMap.layers["items"] then
+    for i, obj in pairs(gameMap.layers["items"].objects) do
+      spawnItem(obj.x,obj.y,obj.properties["name"],map.items)
+    end
+  end
+  if gameMap.layers["npcs"] then
+    for i, obj in pairs(gameMap.layers["npcs"].objects) do
+      spawnNpc(obj.x,obj.y,obj.properties["name"],map.npcs)
+    end
+  end
   if gameMap.layers["walls"] then
     for i, obj in pairs(gameMap.layers["walls"].objects) do
       if obj.shape == "rectangle" then
@@ -61,6 +71,7 @@ end
 function map.update(dt)
   dt = love.timer.getDelta()
   if map.newId ~= map.id then
+    talkies.clearMessages()
     if map.newId == 0 then
       map:unload()
       gameMap = sti("src/maps/Start0.lua")
@@ -68,8 +79,6 @@ function map.update(dt)
       map.id = map.newId
       player:changePos(map.playerX,map.playerY)
 
-      spawnItem(-164,-200,"respawnStone",map.items)
-      spawnItem(138,-200,"respawnStone",map.items)
 
     elseif map.newId == 1 then
       map:unload()
@@ -104,8 +113,7 @@ function map.update(dt)
       map:load()
       map.id = map.newId
       player:changePos(map.playerX,map.playerY)
-      spawnItem(64,192,"respawnStone",map.items)
-      map.items[1].glow = true
+
     elseif map.newId == 3 then
         map:unload()
         player.inventory.key = false

@@ -5,7 +5,7 @@ local function blackHeartInit(blackHeart,x,y)
   blackHeart.dead = false
   blackHeart.name = "blackHeart"
   blackHeart.image = love.graphics.newImage("sprites/blackHeart.png")
-
+  blackHeart.touchInteraction = true
 
   function blackHeart:load()
 
