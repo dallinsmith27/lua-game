@@ -61,7 +61,7 @@ function love.draw()
   cam:detach()
   if test.bool then
 
-    love.graphics.print(test.num)
+    love.graphics.print(test.string)
   end
   if test.showPlayerXY then
     love.graphics.print("X: ", 0, 20)
@@ -173,6 +173,10 @@ function love.keypressed(key)
       for _,i in ipairs(query) do
         if i.name == "respawnStone" then
           i.interact = true
+        elseif i.name == "book" then
+          i.isOpen = not i.isOpen
+        elseif i.name == "chest" then
+          i.interaction = true
         end
       end
     end

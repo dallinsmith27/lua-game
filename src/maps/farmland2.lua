@@ -8,8 +8,8 @@ return {
   height = 10,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 13,
-  nextobjectid = 285,
+  nextlayerid = 15,
+  nextobjectid = 290,
   properties = {},
   tilesets = {
     {
@@ -4969,6 +4969,24 @@ return {
       }
     },
     {
+      type = "tilelayer",
+      x = 0,
+      y = 0,
+      width = 15,
+      height = 10,
+      id = 13,
+      name = "Tile Layer 6",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      encoding = "lua",
+      chunks = {}
+    },
+    {
       type = "objectgroup",
       draworder = "topdown",
       id = 2,
@@ -8351,7 +8369,7 @@ return {
     {
       type = "objectgroup",
       draworder = "topdown",
-      id = 10,
+      id = 14,
       name = "items",
       visible = true,
       opacity = 1,
@@ -8362,18 +8380,63 @@ return {
       properties = {},
       objects = {
         {
-          id = 283,
+          id = 286,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 89,
-          y = 209,
+          x = 909.75,
+          y = 232.5,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
           properties = {
-            ["name"] = "respawnStone"
+            ["name"] = "bronzeCoin"
+          }
+        },
+        {
+          id = 287,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 909.75,
+          y = 273.75,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "bronzeCoin"
+          }
+        },
+        {
+          id = 288,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 910.25,
+          y = 314,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "bronzeCoin"
+          }
+        },
+        {
+          id = 289,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 910.917,
+          y = 353.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "bronzeCoin"
           }
         }
       }

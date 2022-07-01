@@ -8,8 +8,8 @@ return {
   height = 10,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 15,
-  nextobjectid = 31,
+  nextlayerid = 16,
+  nextobjectid = 42,
   properties = {},
   tilesets = {
     {
@@ -2053,6 +2053,92 @@ return {
           visible = true,
           properties = {
             ["mapID"] = 1
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 15,
+      name = "items",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 31,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -186.333,
+          y = -218.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "blue",
+            ["mod2"] = "goldCoin",
+            ["name"] = "book"
+          }
+        },
+        {
+          id = 38,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -927.333,
+          y = -896.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "gold",
+            ["mod2"] = "bronzeCoin",
+            ["modNum"] = 20,
+            ["name"] = "chest"
+          }
+        },
+        {
+          id = 39,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -864,
+          y = -896,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "metal",
+            ["mod2"] = "silverCoin",
+            ["modNum"] = 2,
+            ["name"] = "chest"
+          }
+        },
+        {
+          id = 41,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 129,
+          y = -33,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "gold",
+            ["mod2"] = "bronzeCoin",
+            ["modNum"] = 20,
+            ["name"] = "chest"
           }
         }
       }

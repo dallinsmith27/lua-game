@@ -1,4 +1,4 @@
-function spawnItem(x,y,type,list)
+function spawnItem(x,y,type,list,mod1,mod2,modNum)
   local item = {}
 
      item.type = type
@@ -23,9 +23,13 @@ function spawnItem(x,y,type,list)
        init = require("src/items/goldCoin")
      elseif type == "respawnStone" then
        init = require("src/items/respawnStone")
+     elseif type == "book" then
+       init = require("src/items/book")
+    elseif type == "chest" then
+      init = require("src/items/chest")
      end
 
-     item = init(item, x, y)
+     item = init(item, x, y,mod1,mod2,modNum)
 
      item:load()
      table.insert(list, item)

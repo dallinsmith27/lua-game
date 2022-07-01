@@ -27,7 +27,7 @@ function map:load()
   end
   if gameMap.layers["items"] then
     for i, obj in pairs(gameMap.layers["items"].objects) do
-      spawnItem(obj.x,obj.y,obj.properties["name"],map.items)
+      spawnItem(obj.x,obj.y,obj.properties["name"],map.items,obj.properties["mod1"],obj.properties["mod2"],obj.properties["modNum"])
     end
   end
   if gameMap.layers["npcs"] then
@@ -121,6 +121,13 @@ function map.update(dt)
         map:load()
         map.id = map.newId
         player:changePos(map.playerX,map.playerY)
+    elseif map.newId == 4 then
+      map:unload()
+      gameMap = sti("src/maps/village4.lua")
+      map:load()
+      map.id = map.newId
+      player:changePos(map.playerX,map.playerY)
+
     end
   if player.companion then
     spawnNpc(map.playerX ,map.playerY ,"companion",map.npcs)
