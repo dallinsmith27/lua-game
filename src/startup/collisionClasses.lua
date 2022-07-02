@@ -1,6 +1,6 @@
 function createCollisionClasses()
     world:addCollisionClass('Ignore', {ignores = {'Ignore'}})
-    world:addCollisionClass('item', {ignores = {'Ignore'}})
+    world:addCollisionClass('item', {ignores = {'Ignore',"item"}})
 
 
     world:addCollisionClass('npc', {ignores = {'Ignore'}})

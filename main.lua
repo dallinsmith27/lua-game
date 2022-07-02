@@ -61,7 +61,7 @@ function love.draw()
   cam:detach()
   if test.bool then
 
-    love.graphics.print(test.string)
+    love.graphics.print(test.num)
   end
   if test.showPlayerXY then
     love.graphics.print("X: ", 0, 20)

@@ -59,9 +59,24 @@ local function chestInit(chest,x,y,mod1,mod2,modNum)
     if chest.state == 1 then
       chest.timer = chest.timer - dt
       if chest.timer < 0 and chest.numItems > 0 then
-        local dirX = math.random(-50, 50)
-        local dirY = math.random(-50, 50)
-        spawnItem(chest:getX() +dirX ,chest:getY() + dirY ,chest.item,chest.items,chest.items)
+        local d = 0
+        local dirX =0
+        local dirY =0
+        while d < 35 do
+
+          dirX = math.random(-50,50)
+          dirY = math.random(-50, 50)
+          local dir = vector(dirX , dirY)
+          d = dir:len()
+
+        end
+
+
+
+        spawnItem(chest:getX() ,chest:getY() ,chest.item,chest.items,chest.items)
+
+        chest.items[#chest.items].newX = chest:getX() + dirX
+        chest.items[#chest.items].newY = chest:getY() + dirY
         chest.numItems = chest.numItems - 1
         chest.timer = .2
       end
@@ -73,6 +88,16 @@ local function chestInit(chest,x,y,mod1,mod2,modNum)
           table.remove(chest.items,n)
         else
           item:update(dt)
+          local dir = vector(item.newX - item:getX() , item.newY - item:getY())
+          local d = dir:len()
+          
+          if d > 5 then
+            dir = dir:normalized() * 100
+            item:setLinearVelocity(dir:unpack())
+          elseif d <5 then
+            item:setLinearVelocity(0,0)
+          end
+
         end
       end
     end
