@@ -14,6 +14,7 @@ map.playerY = 0
 gameMap = sti("src/maps/testmap1.lua")
 
 function map:load()
+
   if gameMap.layers["doors"] then
     for i, obj in pairs(gameMap.layers["doors"].objects) do
       local door = world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
@@ -25,7 +26,8 @@ function map:load()
       table.insert(map.doors,door)
     end
   end
-  if gameMap.layers["items"] then
+  if gameMap.layers["items"] and map.doLoad then
+    map.doLoad = false
     for i, obj in pairs(gameMap.layers["items"].objects) do
       spawnItem(obj.x,obj.y,obj.properties["name"],map.items,obj.properties["mod1"],obj.properties["mod2"],obj.properties["modNum"])
     end
@@ -75,7 +77,10 @@ function map.update(dt)
     if map.newId == 0 then
       map:unload()
       gameMap = sti("src/maps/Start0.lua")
-      map:load()
+      map.items = map0.items
+      map.doLoad = map0.load
+        map:load()
+      map0.load = false
       map.id = map.newId
       player:changePos(map.playerX,map.playerY)
 
@@ -83,34 +88,24 @@ function map.update(dt)
     elseif map.newId == 1 then
       map:unload()
       gameMap = sti("src/maps/testmap1.lua")
-      map:load()
+
+      map.items = map1.items
+      map.doLoad = map1.load
+        map:load()
+      map1.load = false
+      --end
+
       map.id = map.newId
       player:changePos(map.playerX,map.playerY)
-      spawnItem(0,50,"heart",map.items)
-      spawnItem(60,50,"addHeart",map.items)
-      spawnItem(-30,62,"bronzeCoin",map.items)
-      spawnItem(-30,92,"silverCoin",map.items)
-      spawnItem(-60,92,"silverCoin",map.items)
-      spawnItem(-60,62,"goldCoin",map.items)
-      spawnItem(-90,62,"goldCoin",map.items)
-      spawnItem(-120,62,"goldCoin",map.items)
-      spawnItem(-150,62,"goldCoin",map.items)
-      spawnItem(-180,62,"goldCoin",map.items)
-      spawnItem(-210,62,"goldCoin",map.items)
-      spawnItem(-240,62,"goldCoin",map.items)
-      spawnItem(-270,62,"goldCoin",map.items)
-      spawnItem(-300,62,"goldCoin",map.items)
-      spawnItem(-330,62,"goldCoin",map.items)
-
-
-
-      spawnNpc(125,100,"cow",map.npcs)
 
 
     elseif map.newId == 2 then
       map:unload()
       gameMap = sti("src/maps/farmland2.lua")
-      map:load()
+      map.items = map2.items
+      map.doLoad = map2.load
+        map:load()
+      map2.load = false
       map.id = map.newId
       player:changePos(map.playerX,map.playerY)
 
@@ -118,13 +113,19 @@ function map.update(dt)
         map:unload()
         player.inventory.key = false
         gameMap = sti("src/maps/farmHouse3.lua")
-        map:load()
+        map.items = map3.items
+        map.doLoad = map3.load
+          map:load()
+        map3.load = false
         map.id = map.newId
         player:changePos(map.playerX,map.playerY)
     elseif map.newId == 4 then
       map:unload()
       gameMap = sti("src/maps/village4.lua")
-      map:load()
+      map.items = map4.items
+      map.doLoad = map4.load
+        map:load()
+      map4.load = false
       map.id = map.newId
       player:changePos(map.playerX,map.playerY)
 
@@ -208,11 +209,36 @@ function map.draw()
 end
 
 function map:unload()
+  if mapID == 0 then
+    map0.items = map.items
+    map0.npcs = map.npcs
+    map0.doors = map.doors
+  elseif mapID == 1 then
+    map1.items = map.items
+    map1.npcs = map.npcs
+    map1.doors = map.doors
+  elseif mapID == 2 then
+    map2.items = map.items
+    map2.npcs = map.npcs
+    map2.doors = map.doors
+  elseif mapID == 3 then
+    map3.items = map.items
+    map3.npcs = map.npcs
+    map3.doors = map.doors
+  elseif mapID == 4 then
+    map4.items = map.items
+    map4.npcs = map.npcs
+    map4.doors = map.doors
+  elseif mapID == 5 then
+    map5.items = map.items
+    map5.npcs = map.npcs
+    map5.doors = map.doors
+  elseif mapID == 6 then
+    map6.items = map.items
+    map6.npcs = map.npcs
+    map6.doors = map.doors
+  end
   if #map.doors > 0 then
-    for _, door in pairs(map.doors) do
-      door:destroy()
-    end
-    map.doors = nil
     map.doors = {}
   end
 
@@ -226,20 +252,10 @@ function map:unload()
   end
 
   if #map.items > 0 then
-    for _, item in pairs(map.items) do
-      item:destroy()
-
-    end
-    map.items = nil
     map.items = {}
   end
 
   if #map.npcs > 0 then
-    for _, npc in pairs(map.npcs) do
-      npc:destroy()
-
-    end
-    map.npcs = nil
     map.npcs = {}
   end
 
