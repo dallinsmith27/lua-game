@@ -128,6 +128,15 @@ function map.update(dt)
       map4.load = false
       map.id = map.newId
       player:changePos(map.playerX,map.playerY)
+    elseif map.newId == 5 then
+      map:unload()
+      gameMap = sti("src/maps/tutorial.lua")
+      map.items = map5.items
+      map.doLoad = map5.load
+        map:load()
+      map5.load = false
+      map.id = map.newId
+      player:changePos(map.playerX,map.playerY)
 
     end
   if player.companion then

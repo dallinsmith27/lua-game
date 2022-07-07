@@ -9,7 +9,7 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 15,
-  nextobjectid = 290,
+  nextobjectid = 291,
   properties = {},
   tilesets = {
     {
@@ -8437,6 +8437,21 @@ return {
           visible = true,
           properties = {
             ["name"] = "bronzeCoin"
+          }
+        },
+        {
+          id = 290,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 96,
+          y = 192.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "respawnStone"
           }
         }
       }

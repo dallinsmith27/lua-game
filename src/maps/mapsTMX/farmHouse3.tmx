@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="1" nextlayerid="11" nextobjectid="34">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="1" nextlayerid="11" nextobjectid="35">
  <editorsettings>
   <export target="../farmHouse3.lua" format="lua"/>
  </editorsettings>
@@ -489,8 +489,8 @@
 0,0,1015,1016,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,996,0,0,0,0,0,0,0,0,0,0,
-0,0,2684356427,1012,0,1004,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,2684356427,1012,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,2684356427,1020,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,2684356427,0,0,0,973,0,0,0,0,0,0,0,0,0,
 0,0,2684356427,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -650,6 +650,12 @@
    <properties>
     <property name="name" value="book"/>
     <property name="other" value="blue"/>
+   </properties>
+  </object>
+  <object id="34" x="166" y="-232.667">
+   <properties>
+    <property name="mod1" value="single"/>
+    <property name="name" value="candleStick"/>
    </properties>
   </object>
  </objectgroup>

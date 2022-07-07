@@ -178,6 +178,8 @@ function love.keypressed(key)
           i.isOpen = not i.isOpen
         elseif i.name == "chest" then
           i.interaction = true
+        elseif i.name == "candleStick" then
+          i.isOn = not i.isOn
         end
       end
     end

@@ -9,7 +9,7 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 16,
-  nextobjectid = 42,
+  nextobjectid = 45,
   properties = {},
   tilesets = {
     {
@@ -2139,6 +2139,54 @@ return {
             ["mod2"] = "bronzeCoin",
             ["modNum"] = 20,
             ["name"] = "chest"
+          }
+        },
+        {
+          id = 42,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 330.667,
+          y = -858.667,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "single",
+            ["name"] = "candleStick"
+          }
+        },
+        {
+          id = 43,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 384,
+          y = -863.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "lantern",
+            ["name"] = "candleStick"
+          }
+        },
+        {
+          id = 44,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 448,
+          y = -859.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "triple",
+            ["name"] = "candleStick"
           }
         }
       }
