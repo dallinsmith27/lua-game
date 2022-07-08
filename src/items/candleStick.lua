@@ -45,7 +45,7 @@ local function candleStickInit(candleStick,x,y,mod1)
 
     candleStick:setCollisionClass('item')
     candleStick:setType("static")
-
+    candleStick:setFixedRotation(true)
   end
 
   function candleStick:update(dt)

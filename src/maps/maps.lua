@@ -15,7 +15,7 @@ gameMap = sti("src/maps/testmap1.lua")
 
 function map:load()
 
-  if gameMap.layers["doors"] then
+  if gameMap.layers["doors"] and map.doLoad then
     for i, obj in pairs(gameMap.layers["doors"].objects) do
       local door = world:newRectangleCollider(obj.x,obj.y,obj.width,obj.height)
       door:setCollisionClass("Door")
@@ -25,16 +25,27 @@ function map:load()
       door.newY = obj.properties["newY"]
       table.insert(map.doors,door)
     end
+  else
+    for _, door in pairs(map.doors) do
+      door:setCollisionClass("Door")
+    end
   end
   if gameMap.layers["items"] and map.doLoad then
-    map.doLoad = false
     for i, obj in pairs(gameMap.layers["items"].objects) do
       spawnItem(obj.x,obj.y,obj.properties["name"],map.items,obj.properties["mod1"],obj.properties["mod2"],obj.properties["modNum"])
     end
+  else
+    for _, item in pairs(map.items) do
+      item:setCollisionClass("item")
+    end
   end
-  if gameMap.layers["npcs"] then
+  if gameMap.layers["npcs"] and map.doLoad then
     for i, obj in pairs(gameMap.layers["npcs"].objects) do
       spawnNpc(obj.x,obj.y,obj.properties["name"],map.npcs)
+    end
+  else
+    for _, npc in pairs(map.npcs) do
+      npc:setCollisionClass("npc")
     end
   end
   if gameMap.layers["walls"] then
@@ -78,7 +89,10 @@ function map.update(dt)
       map:unload()
       gameMap = sti("src/maps/Start0.lua")
       map.items = map0.items
+      map.npcs = map0.npcs
+      map.doors = map0.doors
       map.doLoad = map0.load
+
         map:load()
       map0.load = false
       map.id = map.newId
@@ -90,6 +104,8 @@ function map.update(dt)
       gameMap = sti("src/maps/testmap1.lua")
 
       map.items = map1.items
+      map.npcs = map1.npcs
+      map.doors = map1.doors
       map.doLoad = map1.load
         map:load()
       map1.load = false
@@ -103,6 +119,8 @@ function map.update(dt)
       map:unload()
       gameMap = sti("src/maps/farmland2.lua")
       map.items = map2.items
+      map.npcs = map2.npcs
+      map.doors = map2.doors
       map.doLoad = map2.load
         map:load()
       map2.load = false
@@ -114,6 +132,8 @@ function map.update(dt)
         player.inventory.key = false
         gameMap = sti("src/maps/farmHouse3.lua")
         map.items = map3.items
+        map.npcs = map3.npcs
+        map.doors = map3.doors
         map.doLoad = map3.load
           map:load()
         map3.load = false
@@ -123,6 +143,8 @@ function map.update(dt)
       map:unload()
       gameMap = sti("src/maps/village4.lua")
       map.items = map4.items
+      map.npcs = map4.npcs
+      map.doors = map4.doors
       map.doLoad = map4.load
         map:load()
       map4.load = false
@@ -132,6 +154,8 @@ function map.update(dt)
       map:unload()
       gameMap = sti("src/maps/tutorial.lua")
       map.items = map5.items
+      map.npcs = map5.npcs
+      map.doors = map5.doors
       map.doLoad = map5.load
         map:load()
       map5.load = false
@@ -139,9 +163,9 @@ function map.update(dt)
       player:changePos(map.playerX,map.playerY)
 
     end
-  if player.companion then
-    spawnNpc(map.playerX ,map.playerY ,"companion",map.npcs)
-  end
+  --if player.companion then
+    --spawnNpc(map.playerX ,map.playerY ,"companion",map.npcs)
+  --end
 
 
 
@@ -248,6 +272,9 @@ function map:unload()
     map6.doors = map.doors
   end
   if #map.doors > 0 then
+    for _, door in pairs(map.doors) do
+      door:setCollisionClass("Ignore")
+    end
     map.doors = {}
   end
 
@@ -261,10 +288,20 @@ function map:unload()
   end
 
   if #map.items > 0 then
+    for _, item in pairs(map.items) do
+      item:setCollisionClass("Ignore")
+    end
     map.items = {}
   end
 
   if #map.npcs > 0 then
+    for _, npc in pairs(map.npcs) do
+      if npc.name == "companion" then
+        npc:destroy()
+      else
+        npc:setCollisionClass("Ignore")
+      end
+    end
     map.npcs = {}
   end
 

@@ -3,7 +3,7 @@ function createCollisionClasses()
     world:addCollisionClass('item', {ignores = {'Ignore',"item"}})
 
 
-    world:addCollisionClass('npc', {ignores = {'Ignore'}})
+    world:addCollisionClass('npc', {ignores = {'Ignore',"item"}})
     world:addCollisionClass('Wall', {ignores = {'Ignore'}})
     world:addCollisionClass('Transition', {ignores = {'Ignore'}})
     world:addCollisionClass('Enemy', {ignores = {'Ignore'}})

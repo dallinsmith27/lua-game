@@ -5,6 +5,7 @@ local function companionInit(companion,x,y)
   companion.dirx = 0
   companion.diry = 0
   companion.timer = 5
+  companion.name = "companion"
   -- 0 - Ready to move
   -- 1 - moving roight
   -- 2 - moving left
