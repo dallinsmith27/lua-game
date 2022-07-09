@@ -23,8 +23,7 @@ player.respawnMap = 2
 player.collider:setMass(1)
 player.collider:setFixedRotation(true)
 player.collider:setCollisionClass("Player")
-player.collider:setLinearDamping(1)
-
+player.collider:setLinearDamping(10)
 
 player.dead = false
 player.hearts = 3
@@ -255,19 +254,18 @@ end
 
 function player.collider:damage(damage,knockback,stun)
   player.state = 10
-  knockback = knockback*player.speed*2
   player.stunTimer = stun
   player.health = player.health - damage
-  player.collider:setLinearVelocity(knockback:unpack())
+  player.collider:applyForce(knockback:unpack())
 end
 
 function player:changePos(x, y)
   player.collider:destroy()
   player.collider = world:newBSGRectangleCollider(x,y,player.width,player.height,5)
-  player.collider:setMass(1)
+  player.collider:setMass(50)
   player.collider:setFixedRotation(true)
   player.collider:setCollisionClass("Player")
-  player.collider:setLinearDamping(1)
+  player.collider:setLinearDamping(10)
 
 
 

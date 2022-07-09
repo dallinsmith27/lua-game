@@ -8,8 +8,8 @@ return {
   height = 10,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 16,
-  nextobjectid = 45,
+  nextlayerid = 18,
+  nextobjectid = 56,
   properties = {},
   tilesets = {
     {
@@ -1750,7 +1750,7 @@ return {
       draworder = "topdown",
       id = 13,
       name = "walls",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -2017,7 +2017,7 @@ return {
       draworder = "topdown",
       id = 14,
       name = "doors",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -2062,7 +2062,7 @@ return {
       draworder = "topdown",
       id = 15,
       name = "items",
-      visible = true,
+      visible = false,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -2187,6 +2187,186 @@ return {
           properties = {
             ["mod1"] = "triple",
             ["name"] = "candleStick"
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 16,
+      name = "npcs",
+      visible = false,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 45,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 387.333,
+          y = -603.333,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "sarah"
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 17,
+      name = "enemies",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 47,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -629.333,
+          y = -1169.67,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
+          }
+        },
+        {
+          id = 48,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -632.5,
+          y = -1122,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
+          }
+        },
+        {
+          id = 49,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -541.5,
+          y = -1126,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
+          }
+        },
+        {
+          id = 50,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -540.5,
+          y = -1178.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
+          }
+        },
+        {
+          id = 51,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -588,
+          y = -1077.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
+          }
+        },
+        {
+          id = 52,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -667,
+          y = -1073,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
+          }
+        },
+        {
+          id = 53,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -716,
+          y = -1169.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
+          }
+        },
+        {
+          id = 54,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -509,
+          y = -1018.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
+          }
+        },
+        {
+          id = 55,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -616,
+          y = -1025.5,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "glitchedBlob"
           }
         }
       }

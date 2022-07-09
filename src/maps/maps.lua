@@ -48,6 +48,11 @@ function map:load()
       npc:setCollisionClass("npc")
     end
   end
+  if gameMap.layers["enemies"] then
+    for i, obj in pairs(gameMap.layers["enemies"].objects) do
+      spawnEnemy(obj.x,obj.y,obj.properties["name"],map.enemies)
+    end
+  end
   if gameMap.layers["walls"] then
     for i, obj in pairs(gameMap.layers["walls"].objects) do
       if obj.shape == "rectangle" then
