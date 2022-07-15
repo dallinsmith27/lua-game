@@ -46,21 +46,22 @@ player.emptyHeartImage = love.graphics.newImage("sprites/emptyHeart.png")
 player.speed = 200
 player.sprint = 3
 player.sprintMod = 1
-player.animSpeed = 0.08
-sprites.walkSheet = love.graphics.newImage("sprites/stickman_spritesheet.png")
+player.animSpeed = 0.15
+sprites.walkSheet = love.graphics.newImage("sprites/playerSprite.png")
 player.animations = {}
 
-player.grid = anim8.newGrid(32, 64, sprites.walkSheet:getWidth(), sprites.walkSheet:getHeight())
-player.animations.walkDown = anim8.newAnimation(player.grid('1-9', 1), player.animSpeed)
-player.animations.walkLeft = anim8.newAnimation(player.grid('1-9', 2), player.animSpeed)
-player.animations.walkRight = anim8.newAnimation(player.grid('1-9', 3), player.animSpeed)
-player.animations.walkUp = anim8.newAnimation(player.grid('1-9', 4), player.animSpeed)
+player.grid = anim8.newGrid(64, 64, sprites.walkSheet:getWidth(), sprites.walkSheet:getHeight())
+player.animations.walkDown = anim8.newAnimation(player.grid('1-4', 1), player.animSpeed)
+player.animations.walkLeft = anim8.newAnimation(player.grid('1-4', 2), player.animSpeed)
+player.animations.walkRight = anim8.newAnimation(player.grid('1-4', 3), player.animSpeed)
+player.animations.walkUp = anim8.newAnimation(player.grid('1-4', 4), player.animSpeed)
 player.anim = player.animations.walkDown
 player.inventory = {}
 player.inventory.sword = false
 player.inventory.key = false
 player.equippedItem = "none"
 player.companion = true
+player.holdingItem = false
 
 -- 0 = Normal gameplay
 -- 10 = Damage stun
@@ -172,7 +173,7 @@ function player:update(dt)
 end
 
 function player:draw()
-    local px = player.collider:getX() - 32 / 4
+    local px = player.collider:getX() - 64 / 4
     local py = player.collider:getY() - 64 / 4
     player.anim:draw(sprites.walkSheet, px, py,0,.5,.5)
 

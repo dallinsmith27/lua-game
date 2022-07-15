@@ -124,6 +124,7 @@ function love.keypressed(key)
   if love.keyboard.isDown(",") and love.keyboard.isDown("l") then
     test.showPlayerXY = not test.showPlayerXY
     toggleHitboxes()
+    player.collider:setCollisionClass("Ignore")
   end
 
 
@@ -176,6 +177,8 @@ function love.keypressed(key)
           i.interact = true
         elseif i.name == "book" then
           i.isOpen = not i.isOpen
+        elseif i.name == "sign" then
+          i.read = not i.read
         elseif i.name == "chest" then
           i.interaction = true
         elseif i.name == "candleStick" then
@@ -184,6 +187,14 @@ function love.keypressed(key)
       end
     end
     query = nil
+
+    local query = world:queryCircleArea(px,py,12, {"npc"})
+    if #query > 0 then
+      for _,i in ipairs(query) do
+
+        i:speak()
+      end
+    end
     --local cows = world:queryCircleArea(px,py,25, {"cow"})
     --local items = world:queryCircleArea(px,py,25, {"item"})
     --if #items > 0 then

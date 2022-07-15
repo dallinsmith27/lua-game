@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="1" nextlayerid="18" nextobjectid="56">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="1" nextlayerid="18" nextobjectid="74">
  <editorsettings>
   <export target="../testmap1.lua" format="lua"/>
  </editorsettings>
@@ -1316,7 +1316,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup id="14" name="doors" visible="0">
+ <objectgroup id="14" name="doors">
   <object id="4" x="-766" y="-578" width="28" height="31">
    <properties>
     <property name="mapID" type="int" value="2"/>
@@ -1327,8 +1327,14 @@
     <property name="mapID" type="int" value="1"/>
    </properties>
   </object>
+  <object id="56" x="-553" y="-925" width="17" height="25">
+   <properties>
+    <property name="interaction" type="bool" value="false"/>
+    <property name="mapID" type="int" value="5"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup id="15" name="items" visible="0">
+ <objectgroup id="15" name="items">
   <object id="31" x="-186.333" y="-218.667">
    <properties>
     <property name="mod1" value="blue"/>
@@ -1378,6 +1384,29 @@
     <property name="name" value="candleStick"/>
    </properties>
   </object>
+  <object id="64" x="-226" y="-1184">
+   <properties>
+    <property name="mod1" value="medium"/>
+    <property name="name" value="sign"/>
+   </properties>
+  </object>
+  <object id="66" x="-64.6667" y="-1185.33">
+   <properties>
+    <property name="mod1" value="large"/>
+    <property name="name" value="sign"/>
+   </properties>
+  </object>
+  <object id="72" x="-350.667" y="-1183.33">
+   <properties>
+    <property name="mod1" value="small"/>
+    <property name="name" value="sign"/>
+   </properties>
+  </object>
+  <object id="73" x="96.6667" y="-1215.33">
+   <properties>
+    <property name="name" value="sign"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="16" name="npcs" visible="0">
   <object id="45" x="387.333" y="-603.333">
@@ -1387,47 +1416,7 @@
   </object>
  </objectgroup>
  <objectgroup id="17" name="enemies">
-  <object id="47" x="-629.333" y="-1169.67">
-   <properties>
-    <property name="name" value="glitchedBlob"/>
-   </properties>
-  </object>
-  <object id="48" x="-632.5" y="-1122">
-   <properties>
-    <property name="name" value="glitchedBlob"/>
-   </properties>
-  </object>
-  <object id="49" x="-541.5" y="-1126">
-   <properties>
-    <property name="name" value="glitchedBlob"/>
-   </properties>
-  </object>
-  <object id="50" x="-540.5" y="-1178.5">
-   <properties>
-    <property name="name" value="glitchedBlob"/>
-   </properties>
-  </object>
-  <object id="51" x="-588" y="-1077.5">
-   <properties>
-    <property name="name" value="glitchedBlob"/>
-   </properties>
-  </object>
-  <object id="52" x="-667" y="-1073">
-   <properties>
-    <property name="name" value="glitchedBlob"/>
-   </properties>
-  </object>
   <object id="53" x="-716" y="-1169.5">
-   <properties>
-    <property name="name" value="glitchedBlob"/>
-   </properties>
-  </object>
-  <object id="54" x="-509" y="-1018.5">
-   <properties>
-    <property name="name" value="glitchedBlob"/>
-   </properties>
-  </object>
-  <object id="55" x="-616" y="-1025.5">
    <properties>
     <property name="name" value="glitchedBlob"/>
    </properties>

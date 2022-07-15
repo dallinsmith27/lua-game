@@ -9,7 +9,7 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 18,
-  nextobjectid = 56,
+  nextobjectid = 74,
   properties = {},
   tilesets = {
     {
@@ -2017,7 +2017,7 @@ return {
       draworder = "topdown",
       id = 14,
       name = "doors",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -2054,6 +2054,22 @@ return {
           properties = {
             ["mapID"] = 1
           }
+        },
+        {
+          id = 56,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -553,
+          y = -925,
+          width = 17,
+          height = 25,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["interaction"] = false,
+            ["mapID"] = 5
+          }
         }
       }
     },
@@ -2062,7 +2078,7 @@ return {
       draworder = "topdown",
       id = 15,
       name = "items",
-      visible = false,
+      visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
@@ -2187,6 +2203,69 @@ return {
           properties = {
             ["mod1"] = "triple",
             ["name"] = "candleStick"
+          }
+        },
+        {
+          id = 64,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -226,
+          y = -1184,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "medium",
+            ["name"] = "sign"
+          }
+        },
+        {
+          id = 66,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -64.6667,
+          y = -1185.33,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "large",
+            ["name"] = "sign"
+          }
+        },
+        {
+          id = 72,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = -350.667,
+          y = -1183.33,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["mod1"] = "small",
+            ["name"] = "sign"
+          }
+        },
+        {
+          id = 73,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 96.6667,
+          y = -1215.33,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["name"] = "sign"
           }
         }
       }

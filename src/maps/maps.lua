@@ -168,9 +168,9 @@ function map.update(dt)
       player:changePos(map.playerX,map.playerY)
 
     end
-  --if player.companion then
-    --spawnNpc(map.playerX ,map.playerY ,"companion",map.npcs)
-  --end
+  if player.companion then
+    spawnNpc(map.playerX ,map.playerY ,"companion",map.npcs)
+  end
 
 
 
@@ -294,6 +294,7 @@ function map:unload()
 
   if #map.items > 0 then
     for _, item in pairs(map.items) do
+      item:setLinearVelocity(0,0)
       item:setCollisionClass("Ignore")
     end
     map.items = {}
@@ -304,6 +305,7 @@ function map:unload()
       if npc.name == "companion" then
         npc:destroy()
       else
+        npc:setLinearVelocity(0,0)
         npc:setCollisionClass("Ignore")
       end
     end

@@ -34,7 +34,7 @@ local function cowInit(cow,x,y)
 
 
 
-    cow:setCollisionClass('cow')
+    cow:setCollisionClass('npc')
     cow:setFixedRotation(true)
 
   end
@@ -99,7 +99,18 @@ local function cowInit(cow,x,y)
     cow.anim:draw(cow.walkSheet, px, py,0,.5,.5)
 
   end
-
+  function cow:speak()
+    local r =  math.random(1, 31)
+    if r <= 10 then
+      talkies.say("Cow", "MOOOOOOO!!!!", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+    elseif r <= 20 then
+      talkies.say("Cow", "mooo???", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+    elseif r <= 30 then
+      talkies.say("Cow", "moo...", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+    else
+      talkies.say("Cow", "Nobody will believe that im talking to you", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+    end
+  end
 
   return cow
 

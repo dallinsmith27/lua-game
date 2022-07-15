@@ -44,7 +44,7 @@ local function sarahInit(sarah,x,y)
         --talkies.say()
       end
     end
-    
+
   end
 
   function sarah:draw()
@@ -54,6 +54,11 @@ local function sarahInit(sarah,x,y)
 
   end
 
+  function sarah:speak()
+    talkies.say("Sarah", "What would you like to buy?", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+
+
+  end
 
   return sarah
 

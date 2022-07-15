@@ -29,6 +29,8 @@ function spawnItem(x,y,type,list,mod1,mod2,modNum)
       init = require("src/items/chest")
     elseif type == "candleStick" then
       init = require("src/items/candleStick")
+    elseif type == "sign" then
+      init = require("src/items/sign")
      end
 
      item = init(item, x, y,mod1,mod2,modNum)
