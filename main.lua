@@ -145,56 +145,58 @@ function love.keypressed(key)
 
 
   if love.keyboard.isDown("space") and not player.dead then
-    local px = player.collider:getX()
-    local py = player.collider:getY()
+    if not talkies.isOpen() then
 
-    if player.dir == "up" then
-      py = py - 20
-    elseif player.dir == "down" then
-      py = py + 20
-    elseif player.dir == "left" then
-      px = px - 15
-    elseif player.dir == "right" then
-      px = px + 15
-    end
+      local px = player.collider:getX()
+      local py = player.collider:getY()
 
-    local query = world:queryCircleArea(px,py,12, {"Door"})
-
-    if #query > 0 then
-      for _,w in ipairs(query) do
-        map.playerX = w.newX
-        map.playerY = w.newY
-        map.newId = w.id
+      if player.dir == "up" then
+        py = py - 20
+      elseif player.dir == "down" then
+        py = py + 20
+      elseif player.dir == "left" then
+        px = px - 15
+      elseif player.dir == "right" then
+        px = px + 15
       end
-    end
-    query = nil
 
-    local query = world:queryCircleArea(px,py,12, {"item"})
+      local query = world:queryCircleArea(px,py,12, {"Door"})
 
-    if #query > 0 then
-      for _,i in ipairs(query) do
-        if i.name == "respawnStone" then
-          i.interact = true
-        elseif i.name == "book" then
-          i.isOpen = not i.isOpen
-        elseif i.name == "sign" then
-          i.read = not i.read
-        elseif i.name == "chest" then
-          i.interaction = true
-        elseif i.name == "candleStick" then
-          i.isOn = not i.isOn
+      if #query > 0 then
+        for _,w in ipairs(query) do
+          map.playerX = w.newX
+          map.playerY = w.newY
+          map.newId = w.id
         end
       end
-    end
-    query = nil
+      query = nil
 
-    local query = world:queryCircleArea(px,py,12, {"npc"})
-    if #query > 0 then
-      for _,i in ipairs(query) do
+      local query = world:queryCircleArea(px,py,12, {"item"})
 
-        i:speak()
+      if #query > 0 then
+        for _,i in ipairs(query) do
+          if i.name == "respawnStone" then
+            i.interact = true
+          elseif i.name == "book" then
+            i.isOpen = not i.isOpen
+          elseif i.name == "sign" then
+            i.read = not i.read
+          elseif i.name == "chest" then
+            i.interaction = true
+          elseif i.name == "candleStick" then
+            i.isOn = not i.isOn
+          end
+        end
       end
-    end
+      query = nil
+
+      local query = world:queryCircleArea(px,py,12, {"npc"})
+      if #query > 0 then
+        for _,i in ipairs(query) do
+
+          i:speak()
+        end
+      end
     --local cows = world:queryCircleArea(px,py,25, {"cow"})
     --local items = world:queryCircleArea(px,py,25, {"item"})
     --if #items > 0 then
@@ -203,6 +205,7 @@ function love.keypressed(key)
         --i.dead = true
       --end
     --end
+    end
   end
     --enter all keypress if statements...
     -- this is where the game controls are defined.yucky

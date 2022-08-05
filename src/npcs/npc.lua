@@ -20,6 +20,8 @@ function spawnNpc(x,y,type,list)
          init = require("src/npcs/blankNpc")
     elseif type == "sarah" then
          init = require("src/npcs/sarah")
+    elseif type == "john" then
+         init = require("src/npcs/john")
     end
 
      npc = init(npc, x, y)
