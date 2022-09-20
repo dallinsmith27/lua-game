@@ -15,8 +15,10 @@ function spawnEnemy(x,y,type,list)
        init = require("src/enemies/error")
      elseif type == "fog" then
        init = require("src/enemies/fog")
+     elseif type == "soldier" then
+       init = require("src/enemies/soldier")
      elseif type == "glitchedBlob" then
-       
+
        init = require("src/enemies/glitchedBlob")
      end
 
