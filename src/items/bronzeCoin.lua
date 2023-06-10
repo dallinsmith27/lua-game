@@ -1,5 +1,5 @@
 local function bronzeCoinInit(bronzeCoin,x,y)
-  bronzeCoin = world:newCircleCollider(x ,y ,5)
+  bronzeCoin = world:newRectangleCollider(x ,y ,10,10)
   bronzeCoin.x = x
   bronzeCoin.y = y
   bronzeCoin.dead = false

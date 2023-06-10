@@ -23,6 +23,10 @@ function spawnItem(x,y,type,list,mod1,mod2,modNum)
        init = require("src/items/goldCoin")
      elseif type == "respawnStone" then
        init = require("src/items/respawnStone")
+     elseif type == "elementalStone" then
+       init = require("src/items/elementalStone")
+     elseif type == "elementalOrb" then
+       init = require("src/items/elementalOrb")
      elseif type == "book" then
        init = require("src/items/book")
     elseif type == "chest" then
@@ -31,6 +35,8 @@ function spawnItem(x,y,type,list,mod1,mod2,modNum)
       init = require("src/items/candleStick")
     elseif type == "sign" then
       init = require("src/items/sign")
+    elseif type == "sword" then
+      init = require("src/items/sword")
      end
 
      item = init(item, x, y,mod1,mod2,modNum)

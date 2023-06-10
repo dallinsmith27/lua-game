@@ -16,7 +16,7 @@ local function cowInit(cow,x,y)
 
   cow.state = 0
 
-
+  cow.swordTalk=false
   cow.speed = 75
   cow.animSpeed = 0.1
   cow.walkSheet = love.graphics.newImage("sprites/cowSprite.png")
@@ -100,7 +100,7 @@ local function cowInit(cow,x,y)
 
   end
   function cow:speak()
-    local r =  math.random(1, 31)
+    local r =  math.random(1, 36)
     if r <= 10 then
       talkies.say("Cow", "MOOOOOOO!!!!", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
     elseif r <= 20 then
@@ -108,7 +108,14 @@ local function cowInit(cow,x,y)
     elseif r <= 30 then
       talkies.say("Cow", "moo...", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
     else
-      talkies.say("Cow", "Nobody will believe that im talking to you", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+      if player.giveRiddle then
+        talkies.say("Cow", "Man you gotta stop talking to cows... your looking like a crazy man.\n -- I hear your looking for the secret power. all us cows know is this riddle. \n -- ", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+        talkies.say("Cow", "Four mages gifted sacred power. Pedestals of stone beg for life. Resurect the stone to awaken your power. \n -- Good Luck figuring that one out", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+        player.hasRiddle = true
+      else
+        talkies.say("Cow", "Nobody will believe that im talking to you.", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
+        player.giveRiddle = true
+      end
     end
   end
 

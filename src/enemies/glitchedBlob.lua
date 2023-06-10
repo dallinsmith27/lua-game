@@ -1,5 +1,5 @@
 local function glitchedBlobInit(glitchedBlob,x,y)
-  glitchedBlob = world:newCircleCollider(x, y, 12)
+  glitchedBlob = world:newRectangleCollider(x, y, 20,12)
   glitchedBlob.x = x
   glitchedBlob.y = y
   glitchedBlob.dirx = 0
@@ -10,7 +10,7 @@ local function glitchedBlobInit(glitchedBlob,x,y)
 
   glitchedBlob.state = 0
 
-  glitchedBlob.health = 12
+  glitchedBlob.health = 4
   glitchedBlob.sight = 500
   glitchedBlob.jumpDist = 100
   glitchedBlob.speed = 50
@@ -67,6 +67,10 @@ local function glitchedBlobInit(glitchedBlob,x,y)
       glitchedBlob.anim = glitchedBlob.animations.idle
     end
 
+    if glitchedBlob.health<0 then
+      glitchedBlob.dead = true
+    end
+
     glitchedBlob.anim:update(dt)
 
   end
@@ -76,6 +80,11 @@ local function glitchedBlobInit(glitchedBlob,x,y)
     local py = glitchedBlob:getY() - glitchedBlob.height / 2
     glitchedBlob.anim:draw(glitchedBlob.walkSheet, px, py)
 
+  end
+
+  function  glitchedBlob:damage(damage,knockback)
+    glitchedBlob.health =  glitchedBlob.health - damage
+    test.num =  glitchedBlob.health
   end
 
 

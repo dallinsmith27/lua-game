@@ -1,6 +1,6 @@
 map = {}
 map.id = -1
-map.newId = 0
+map.newId = 2
 map.xSize = 3000
 map.ySize = 2000
 map.large = true
@@ -9,8 +9,8 @@ map.doors = {}
 map.items = {}
 map.npcs = {}
 map.enemies = {}
-map.playerX = 0
-map.playerY = 0
+map.playerX = 110
+map.playerY = 260
 gameMap = sti("src/maps/testmap1.lua")
 
 function map:load()
@@ -166,13 +166,18 @@ function map.update(dt)
       map5.load = false
       map.id = map.newId
       player:changePos(map.playerX,map.playerY)
-
+    elseif map.newId == 6 then
+      map:unload()
+      gameMap = sti("src/maps/waterBoss6.lua")
+      map.items = map5.items
+      map.npcs = map5.npcs
+      map.doors = map5.doors
+      map.doLoad = map5.load
+        map:load()
+      map5.load = false
+      map.id = map.newId
+      player:changePos(map.playerX,map.playerY)
     end
-  if player.companion then
-    spawnNpc(map.playerX ,map.playerY ,"companion",map.npcs)
-  end
-
-
 
 
   end
@@ -302,12 +307,8 @@ function map:unload()
 
   if #map.npcs > 0 then
     for _, npc in pairs(map.npcs) do
-      if npc.name == "companion" then
-        npc:destroy()
-      else
         npc:setLinearVelocity(0,0)
         npc:setCollisionClass("Ignore")
-      end
     end
     map.npcs = {}
   end

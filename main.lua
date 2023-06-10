@@ -1,4 +1,4 @@
-love.window.setTitle( "LuaGame - Velocity Corrected" )
+love.window.setTitle( "Legend of Chocky" )
 
 
 test = {}
@@ -15,6 +15,7 @@ test.showPlayerXY = false
 game.player_x = 0
 game.player_y = 0
 game.hitBoxes = false
+
 
 function game:save()
   talkies:clearMessages()
@@ -124,13 +125,15 @@ function love.keypressed(key)
   if love.keyboard.isDown(",") and love.keyboard.isDown("l") then
     test.showPlayerXY = not test.showPlayerXY
     toggleHitboxes()
-    player.collider:setCollisionClass("Ignore")
+    player:toggleCollision()
+  end
+
+  if love.keyboard.isDown("e") then
+    player.useAbility()
   end
 
 
-
-
-  if love.keyboard.isDown("e") then
+  if love.keyboard.isDown("q") then
     if inventory.isOpen then
       -- close inventory
       inventory.isOpen = false
@@ -183,8 +186,23 @@ function love.keypressed(key)
             i.read = not i.read
           elseif i.name == "chest" then
             i.interaction = true
+          elseif i.name == "elementalStone" then
+            i.placeElement()
+          elseif i.name == "elementalOrb" then
+            i.lightPlayer()
+          elseif i.name == "sword" then
+            i.giveSword()
           elseif i.name == "candleStick" then
             i.isOn = not i.isOn
+          elseif i.name == "bronzeCoin" then
+            i.dead = true
+            player.money = player.money+1
+          elseif i.name == "silverCoin" then
+            i.dead = true
+            player.money = player.money+25
+          elseif i.name == "goldCoin" then
+            i.dead = true
+            player.money = player.money+100
           end
         end
       end
@@ -197,14 +215,7 @@ function love.keypressed(key)
           i:speak()
         end
       end
-    --local cows = world:queryCircleArea(px,py,25, {"cow"})
-    --local items = world:queryCircleArea(px,py,25, {"item"})
-    --if #items > 0 then
-      --for _,i in ipairs(items) do
-        --player.inventory:add(i.name)
-        --i.dead = true
-      --end
-    --end
+
     end
   end
     --enter all keypress if statements...
@@ -231,8 +242,10 @@ function love.keypressed(key)
 end
 
 function love.mousepressed(x, y, b, isTouch)
-  if b == 2 then
-    player:useItem()
+  if b == 1 then
+    player:swingSword()
+  elseif b==2 then
+    player:dodge()
   end
   if game.startScreen then
 
@@ -249,8 +262,7 @@ function love.mousepressed(x, y, b, isTouch)
     if b == 1 then
       local w = love.graphics.getWidth()
       local h = love.graphics.getHeight()
-      test.num = h/2-330
-      test.num = y
+
 
       if h/2-220 < y and y < h/2-111 then
         if w/2 - 330 < x and x < w/2-225 then

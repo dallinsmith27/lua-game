@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="1" nextlayerid="11" nextobjectid="35">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" infinite="1" nextlayerid="11" nextobjectid="38">
  <editorsettings>
   <export target="../farmHouse3.lua" format="lua"/>
  </editorsettings>
@@ -416,7 +416,7 @@
 0,0,2684356426,3221227339,3221227339,3221227339,3221227339,0,0,0,0,0,0,0,0,0,
 0,0,876,778,0,709,777,0,0,0,0,0,0,0,0,0,
 0,0,876,786,0,0,785,0,0,0,0,0,0,0,0,0,
-0,0,876,869,0,0,861,0,0,0,0,0,0,0,0,0,
+0,0,876,0,0,0,861,0,0,0,0,0,0,0,0,0,
 0,0,877,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,860,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,1866,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -487,7 +487,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,1015,1016,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1848,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,2684356427,1012,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -617,7 +617,6 @@
    <ellipse/>
   </object>
   <object id="15" x="95.5" y="-225" width="31.5" height="64.5"/>
-  <object id="16" x="99" y="-159.5" width="26.5" height="28"/>
   <object id="17" x="194.5" y="-160" width="31" height="44.5"/>
   <object id="18" x="191.5" y="-223" width="34.5" height="62.5"/>
   <object id="19" x="161" y="-224.5" width="29.5" height="18.5"/>
@@ -644,6 +643,13 @@
     <property name="newY" type="int" value="-570"/>
    </properties>
   </object>
+  <object id="37" x="39.5" y="-319.5" width="17.6667" height="19">
+   <properties>
+    <property name="mapID" type="int" value="2"/>
+    <property name="newX" type="int" value="-780"/>
+    <property name="newY" type="int" value="-723"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="items">
   <object id="33" x="-151.455" y="-163.818">
@@ -656,6 +662,14 @@
    <properties>
     <property name="mod1" value="single"/>
     <property name="name" value="candleStick"/>
+   </properties>
+  </object>
+  <object id="36" x="97" y="-158.5">
+   <properties>
+    <property name="mod1" value="gold"/>
+    <property name="mod2" value="bronzeCoin"/>
+    <property name="modNum" type="int" value="5"/>
+    <property name="name" value="chest"/>
    </properties>
   </object>
  </objectgroup>

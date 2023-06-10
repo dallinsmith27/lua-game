@@ -10,15 +10,6 @@ player.upWall = 100
 player.downWall = 400
 player.walking = false
 player.collider = {}
-player.collisions = true
-
-player.power = none
-
-player.element = "none"
-player.hasRiddle = false
-player.giveRiddle = false
-player.ability = "earth"
-player.swordDamage = 1
 
 player.height = 32
 player.width = 15
@@ -64,10 +55,6 @@ player.animations.walkDown = anim8.newAnimation(player.grid('1-4', 1), player.an
 player.animations.walkLeft = anim8.newAnimation(player.grid('1-4', 2), player.animSpeed)
 player.animations.walkRight = anim8.newAnimation(player.grid('1-4', 3), player.animSpeed)
 player.animations.walkUp = anim8.newAnimation(player.grid('1-4', 4), player.animSpeed)
-player.animations.dodgeUp = anim8.newAnimation(player.grid('1-4', 8), player.animSpeed)
-player.animations.dodgeDown = anim8.newAnimation(player.grid('1-4', 5), player.animSpeed)
-player.animations.dodgeLeft = anim8.newAnimation(player.grid('1-4', 6), player.animSpeed)
-player.animations.dodgeRight = anim8.newAnimation(player.grid('1-4', 7), player.animSpeed)
 player.anim = player.animations.walkDown
 player.inventory = {}
 player.inventory.sword = false
@@ -75,14 +62,6 @@ player.inventory.key = false
 player.equippedItem = "none"
 player.companion = false
 player.holdingItem = false
-
-player.elementalStoneLight = {}
-player.elementalStoneLight.Sheet = love.graphics.newImage("sprites/elementalStoneLights.png")
-player.elementalStoneLight.height = 16
-player.elementalStoneLight.width = 16
-player.elementalStoneLight.animSpeed = .2
-player.elementalStoneLight.grid = anim8.newGrid(player.elementalStoneLight.width, player.elementalStoneLight.height, player.elementalStoneLight.Sheet:getWidth(), player.elementalStoneLight.Sheet:getHeight())
-player.elementalStoneLight.anim = anim8.newAnimation(player.elementalStoneLight.grid('1-5', 1), player.elementalStoneLight.animSpeed)
 
 -- 0 = Normal gameplay
 -- 10 = Damage stun
@@ -153,51 +132,8 @@ function player:update(dt)
           player.dir = "up"
         end
 
-        if player.dodging then
-          player.dodgeCounter = player.dodgeCounter - dt
-          if player.dodgeCounter <0 then
-            player.dodging = false
-          end
-          if player.dir == "up" then
-            player.anim = player.animations.dodgeUp
-          elseif player.dir == "left" then
-            player.anim = player.animations.dodgeLeft
-          elseif player.dir == "right" then
-            player.anim = player.animations.dodgeRight
-          elseif player.dir == "down" then
-            player.anim = player.animations.dodgeDown
-          end
-          player.dodgeMod = 3
-        else
-          player.dodgeMod = 1
-        end
-
-        if player.swingingSword then
-          player.swingCounter = player.swingCounter - dt
-          if player.swingCounter < 0 then
-            player.swingingSword = false
-          end
-          local qx = player.x
-          local qy = player.y
-          if player.dir == "up" then
-            qy = player.y -7
-          elseif player.dir == "left" then
-            qx = player.x -7
-          elseif player.dir == "right" then
-            qx = player.x +7
-          elseif player.dir == "down" then
-            qy = player.y +7
-          end
-          local q = world:queryCircleArea(qx,qy,20, {"enemy"})
-          if #q > 0 then
-            test.num = 420
-            for _,i in ipairs(query) do
-              i.damage(player.swordDamage,1)
-            end
-          end
-        end
       --Diagonal Velocity Corrected
-        local vec = vector(dirX, dirY):normalized() * player.speed * player.sprintMod * player.dodgeMod
+        local vec = vector(dirX, dirY):normalized() * player.speed * player.sprintMod
         player.collider:setLinearVelocity(vec.x, vec.y)
 
       --Old Method that did not correct Diagonal Velocity
@@ -213,7 +149,6 @@ function player:update(dt)
         if player.walking then
             player.anim:update(dt)
         end
-        player.elementalStoneLight.anim:update(dt)
   elseif player.state == 10 then
     player.stunTimer = player.stunTimer - dt
     if player.stunTimer <=0 then
@@ -234,25 +169,6 @@ end
 function player:draw()
     local px = player.collider:getX() - 64 / 4
     local py = player.collider:getY() - 64 / 4
-    if player.element ~= "none" then
-      if player.element == "water" then
-        player.elementalStoneLight.anim = anim8.newAnimation(player.elementalStoneLight.grid('1-4', 1), player.elementalStoneLight.animSpeed)
-        player.elementalStoneLight.anim:gotoFrame(1)
-      elseif player.element == "fire" then
-        player.elementalStoneLight.anim = anim8.newAnimation(player.elementalStoneLight.grid('1-4', 1), player.elementalStoneLight.animSpeed)
-        player.elementalStoneLight.anim:gotoFrame(2)
-      elseif player.element == "earth" then
-        player.elementalStoneLight.anim = anim8.newAnimation(player.elementalStoneLight.grid('1-4', 1), player.elementalStoneLight.animSpeed)
-        player.elementalStoneLight.anim:gotoFrame(3)
-      elseif player.element == "lightning" then
-        player.elementalStoneLight.anim = anim8.newAnimation(player.elementalStoneLight.grid('1-4', 1), player.elementalStoneLight.animSpeed)
-        player.elementalStoneLight.anim:gotoFrame(4)
-      elseif player.element == "air" then
-        player.elementalStoneLight.anim = anim8.newAnimation(player.elementalStoneLight.grid('1-5', 1), player.elementalStoneLight.animSpeed)
-        player.elementalStoneLight.anim:gotoFrame(5)
-      end
-      player.elementalStoneLight.anim:draw(player.elementalStoneLight.Sheet,player.collider:getX()-8 ,player.collider:getY()-25)
-    end
     player.anim:draw(sprites.walkSheet, px, py,0,.5,.5)
 
 
@@ -401,32 +317,4 @@ function player:respawn()
   map.playerY = player.respawnY
   map.newId = player.respawnMap
 
-end
-
-function player:toggleCollision()
-  player.collisions = not player.collisions
-  if player.collisions then
-    player.collider:setCollisionClass("Player")
-  else
-    player.collider:setCollisionClass("Ignore")
-  end
-end
-
-function player:useAbility()
-
-end
-player.swingingSword = false
-function player:swingSword()
-  if not player.dodging then
-    player.swingingSword = true
-    player.swingCounter = .1
-  end
-end
-player.dodgeCounter = 0
-player.dodging = false
-function player:dodge()
-  if not player.swingingSword then
-    player.dodging=true
-    player.dodgeCounter = .25
-  end
 end

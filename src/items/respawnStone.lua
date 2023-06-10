@@ -1,5 +1,5 @@
 local function respawnStoneInit(respawnStone,x,y)
-  respawnStone = world:newRectangleCollider(x,y,26,66)
+  respawnStone = world:newRectangleCollider(x,y,26,46)
   respawnStone.x = x
   respawnStone.y = y
   respawnStone.dead = false
@@ -35,21 +35,8 @@ local function respawnStoneInit(respawnStone,x,y)
       talkies:clearMessages()
       if not respawnStone.glow then
         respawnStone.glow = true
-        phase.num = phase.num + 1
       end
-      if game.phase < 4 then
-          if phase.num == 1 then
-            talkies.say("Companionname", "Perfect, Only one more to go!!", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
-          elseif phase.num == 2 then
-            talkies.say("Companionname", "The game code identifies those as Respawn Stones. When you interacted with them it alowed me to see their code for a brief second as they were queued in the games processor. From there I tied your respawn point into the game. simple", { talkSound=blop,typedNotTalked=false,textSpeed="medium"})
-            talkies.say("Companionname", "You should be able to respawn there now. Thanks for all your help... \n ", {options={{"goobye >:)", function() player:invertCompanion() end}}, talkSound=blop,typedNotTalked=false,textSpeed="medium"})
-            game.phase = game.phase+1
-            phase.timer = 10
-          end
-
-      else
-        talkies.say("Mysterious Stone","Do You Want to Save Progress?",{options={{"Save", function() game:save() end}, {"Don't Save", function() talkies:clearMessages() end}}})
-      end
+      talkies.say("Mysterious Stone","Do You Want to Save Progress?",{options={{"Save", function() game:save() end}, {"Don't Save", function() talkies:clearMessages() end}}})
     end
 
   end
